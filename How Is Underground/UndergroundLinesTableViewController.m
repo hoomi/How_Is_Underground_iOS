@@ -21,6 +21,7 @@
     LineStatus *currentLineStatus;
     NSFetchedResultsController *fetchedResultController;
     NSFetchRequest *fetchRequest;
+    NSFetchRequest *checkFetchRequest;
     NSManagedObjectContext *managedObjectContext;
     
 }
@@ -55,13 +56,14 @@
         NSSet *registeredObjects = [managedObjectContext registeredObjects];
         for (NSManagedObject *object in registeredObjects.allObjects) {
             [managedObjectContext deleteObject:object];
+            [managedObjectContext save:nil];
         }
-        [managedObjectContext save:nil];
         
         NSXMLParser *parser = [[NSXMLParser alloc]initWithData:data];
         [parser setDelegate:self];
         [parser parse];
     }];
+    [self relodData];
     
     
 }
@@ -91,7 +93,7 @@
         abort();
     }
     [self.tableView reloadData];
-
+    
 }
 
 #pragma mark - Table view data source
@@ -118,7 +120,7 @@
     }
     LineStatus *lineStatus = [fetchedResultController objectAtIndexPath:indexPath];
     [cell setLineName:lineStatus.line.name :[lineStatus.line.id intValue]];
-
+    
     return cell;
 }
 
@@ -127,14 +129,7 @@
 {
     if ([elementName isEqualToString:@"LineStatus"]) {
         if (currentLineStatus != nil) {
-            NSError *error = nil;
-            
-            [managedObjectContext save:&error];
-            
-            if (error != nil) {
-                NSLog(@"Unresolved error %@, %@",error, [error userInfo]);
-                abort();
-            }
+            [self saveArtistInformation];
         }
         currentLineStatus = [NSEntityDescription insertNewObjectForEntityForName:@"LineStatus" inManagedObjectContext:managedObjectContext];
         currentLineStatus.id = [NSNumber numberWithInt:[[attributeDict objectForKey:@"ID"] intValue]];
@@ -155,6 +150,36 @@
     }
     
 }
+
+- (void)saveArtistInformation
+{
+    if (currentLineStatus == nil)
+    {
+        return;
+    }
+    
+    NSError *error = nil;
+    if (checkFetchRequest == nil) {
+        checkFetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"LineStatus"];
+        NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"id" ascending:YES];
+        [checkFetchRequest setSortDescriptors:@[sortDescriptor]];
+    }
+    NSPredicate *predicate =[NSPredicate predicateWithFormat:@"id == %@", currentLineStatus.id];
+    [checkFetchRequest setPredicate:predicate];
+    NSArray *array = [managedObjectContext executeFetchRequest:checkFetchRequest error:&error];
+    if ([array count] > 1) {
+        for (int i = [array count] - 1; i > 0 ; i--) {
+            [managedObjectContext deleteObject:[array objectAtIndex:i]];
+        }
+    }
+    if ([array count]>0)
+    {
+        NSManagedObject * interMediate = array[0];
+        interMediate = currentLineStatus;
+    }
+    
+        [managedObjectContext save:nil];
+    }
 
 - (void)parserDidEndDocument:(NSXMLParser *)parser
 {
