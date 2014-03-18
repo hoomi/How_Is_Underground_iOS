@@ -1,5 +1,5 @@
 //
-//  ServerCommunicator.h
+//  Line.h
 //  How Is Underground
 //
 //  Created by Hooman Ostovari on 18/03/2014.
@@ -7,7 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
 
-@interface ServerCommunicator : NSObject
-+ (void) requestLineStatus :(void (^)(NSURLResponse*, NSData*, NSError*)) completeBlock;
+
+@interface Line : NSManagedObject
+
+@property (nonatomic, retain) NSNumber * id;
+@property (nonatomic, retain) NSString * name;
+
 @end

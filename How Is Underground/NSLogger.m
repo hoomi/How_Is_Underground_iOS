@@ -12,9 +12,7 @@
 
 #define SHOW_LOGS YES
 
-#endif
-
-#if RELEASE==1
+# else
 
 #define SHOW_LOGS NO
 

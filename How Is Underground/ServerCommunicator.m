@@ -13,13 +13,13 @@
     
 }
 
-- (void) requestLineStatus :(void (^)(NSURLResponse*, NSData*, NSError*)) completeBlock
++ (void) requestLineStatus :(void (^)(NSURLResponse*, NSData*, NSError*)) completeBlock
 {
     [self request:UNDERGROUND_STATUS_URL :completeBlock];
     
 }
 
-- (void) request:(NSString*)url :(void (^)(NSURLResponse*, NSData*, NSError*)) completeBlock
++ (void) request:(NSString*)url :(void (^)(NSURLResponse*, NSData*, NSError*)) completeBlock
 {
     if(IsEmptyString(url)){
         return;

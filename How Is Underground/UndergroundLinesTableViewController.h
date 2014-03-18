@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UndergroundLinesTableViewController : UITableViewController <UITableViewDataSource,UITableViewDelegate>
+@interface UndergroundLinesTableViewController : UITableViewController <UITableViewDataSource,UITableViewDelegate, NSXMLParserDelegate,NSFetchedResultsControllerDelegate>
 
 @end

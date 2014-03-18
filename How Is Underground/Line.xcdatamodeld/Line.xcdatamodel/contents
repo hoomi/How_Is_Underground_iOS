@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5063" systemVersion="13C64" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Line" representedClassName="Line" syncable="YES">
+        <attribute name="id" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="LineStatus" representedClassName="LineStatus" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="statusDetails" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="line" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Line" syncable="YES"/>
+        <relationship name="status" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Status" syncable="YES"/>
+    </entity>
+    <entity name="Status" representedClassName="Status" syncable="YES">
+        <attribute name="cssClass" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="descriptions" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isActive" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <relationship name="statusType" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="StatusType" syncable="YES"/>
+    </entity>
+    <entity name="StatusType" representedClassName="StatusType" syncable="YES">
+        <attribute name="descriptions" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="LineStatus" positionX="-27" positionY="18" width="128" height="103"/>
+        <element name="Line" positionX="171" positionY="-9" width="128" height="73"/>
+        <element name="Status" positionX="171" positionY="149" width="128" height="118"/>
+        <element name="StatusType" positionX="394" positionY="170" width="128" height="73"/>
+    </elements>
+</model>
