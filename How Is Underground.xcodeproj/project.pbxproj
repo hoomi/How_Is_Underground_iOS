@@ -25,6 +25,11 @@
 		15AE2FB118D74544009378E2 /* Mainstoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15AE2FB018D74544009378E2 /* Mainstoryboard_iPhone.storyboard */; };
 		15E36C5818D7A1AA00598083 /* BaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E36C5718D7A1AA00598083 /* BaseTableViewCell.m */; };
 		15E36C5B18D8372600598083 /* UIColor+UIColorExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E36C5A18D8372600598083 /* UIColor+UIColorExtension.m */; };
+		15E36C5E18D8466C00598083 /* ServerCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E36C5D18D8466C00598083 /* ServerCommunicator.m */; };
+		15E36C6118D847CE00598083 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E36C6018D847CE00598083 /* Utils.m */; };
+		15E36C6418D848E000598083 /* NSLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E36C6318D848E000598083 /* NSLogger.m */; };
+		15E36C6518D84D1D00598083 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E36C6018D847CE00598083 /* Utils.m */; };
+		15E36C6718D84D5000598083 /* UtilsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E36C6618D84D5000598083 /* UtilsTest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +70,13 @@
 		15E36C5718D7A1AA00598083 /* BaseTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewCell.m; sourceTree = "<group>"; };
 		15E36C5918D8372600598083 /* UIColor+UIColorExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+UIColorExtension.h"; sourceTree = "<group>"; };
 		15E36C5A18D8372600598083 /* UIColor+UIColorExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+UIColorExtension.m"; sourceTree = "<group>"; };
+		15E36C5C18D8466C00598083 /* ServerCommunicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerCommunicator.h; sourceTree = "<group>"; };
+		15E36C5D18D8466C00598083 /* ServerCommunicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerCommunicator.m; sourceTree = "<group>"; };
+		15E36C5F18D847CE00598083 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
+		15E36C6018D847CE00598083 /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
+		15E36C6218D848E000598083 /* NSLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSLogger.h; sourceTree = "<group>"; };
+		15E36C6318D848E000598083 /* NSLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSLogger.m; sourceTree = "<group>"; };
+		15E36C6618D84D5000598083 /* UtilsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UtilsTest.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +169,7 @@
 			children = (
 				15AE2F9818D734E7009378E2 /* How_Is_UndergroundTests.m */,
 				15AE2F9318D734E7009378E2 /* Supporting Files */,
+				15E36C6618D84D5000598083 /* UtilsTest.m */,
 			);
 			path = "How Is UndergroundTests";
 			sourceTree = "<group>";
@@ -182,6 +195,8 @@
 		15AE2FA818D73C6C009378E2 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				15E36C5C18D8466C00598083 /* ServerCommunicator.h */,
+				15E36C5D18D8466C00598083 /* ServerCommunicator.m */,
 			);
 			name = Network;
 			sourceTree = "<group>";
@@ -189,9 +204,13 @@
 		15AE2FA918D73C9C009378E2 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				15E36C5F18D847CE00598083 /* Utils.h */,
+				15E36C6018D847CE00598083 /* Utils.m */,
 				15AE2FAA18D73CB4009378E2 /* Defines.h */,
 				15E36C5918D8372600598083 /* UIColor+UIColorExtension.h */,
 				15E36C5A18D8372600598083 /* UIColor+UIColorExtension.m */,
+				15E36C6218D848E000598083 /* NSLogger.h */,
+				15E36C6318D848E000598083 /* NSLogger.m */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -298,10 +317,13 @@
 			files = (
 				15E36C5818D7A1AA00598083 /* BaseTableViewCell.m in Sources */,
 				15AE2F8418D734E7009378E2 /* AppDelegate.m in Sources */,
+				15E36C5E18D8466C00598083 /* ServerCommunicator.m in Sources */,
+				15E36C6118D847CE00598083 /* Utils.m in Sources */,
 				15AE2FAE18D73E89009378E2 /* LineTableViewCell.m in Sources */,
 				15E36C5B18D8372600598083 /* UIColor+UIColorExtension.m in Sources */,
 				15AE2FA718D73564009378E2 /* UndergroundLinesTableViewController.m in Sources */,
 				15AE2F8018D734E7009378E2 /* main.m in Sources */,
+				15E36C6418D848E000598083 /* NSLogger.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -309,7 +331,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				15E36C6518D84D1D00598083 /* Utils.m in Sources */,
 				15AE2F9918D734E7009378E2 /* How_Is_UndergroundTests.m in Sources */,
+				15E36C6718D84D5000598083 /* UtilsTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
