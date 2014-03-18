@@ -32,6 +32,7 @@
     [super viewDidLoad];
     arrayOfLines = [[NSMutableArray alloc] init];
     [arrayOfLines addObject:@"Bakerloo"];
+    self.tableView.contentInset = UIEdgeInsetsMake(20.0f, 0.0f, 0.0f, 0.0f);
    }
 
 - (void)didReceiveMemoryWarning
@@ -61,7 +62,7 @@
     if (cell == nil) {
         cell = (LineTableViewCell *)[LineTableViewCell cellFromNibNamed:@"LineTableViewCell"];
     }
-    [cell setLineName:@"Test"];
+    [cell setLineName:@"Test" :1];
     [cell setBackgroundColor:[UIColor blueColor]];
     return cell;
 }

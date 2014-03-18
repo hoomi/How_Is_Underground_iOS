@@ -24,6 +24,7 @@
 		15AE2FAF18D73E89009378E2 /* LineTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15AE2FAD18D73E89009378E2 /* LineTableViewCell.xib */; };
 		15AE2FB118D74544009378E2 /* Mainstoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15AE2FB018D74544009378E2 /* Mainstoryboard_iPhone.storyboard */; };
 		15E36C5818D7A1AA00598083 /* BaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E36C5718D7A1AA00598083 /* BaseTableViewCell.m */; };
+		15E36C5B18D8372600598083 /* UIColor+UIColorExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E36C5A18D8372600598083 /* UIColor+UIColorExtension.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,8 @@
 		15AE2FB018D74544009378E2 /* Mainstoryboard_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Mainstoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		15E36C5618D7A1AA00598083 /* BaseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewCell.h; sourceTree = "<group>"; };
 		15E36C5718D7A1AA00598083 /* BaseTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewCell.m; sourceTree = "<group>"; };
+		15E36C5918D8372600598083 /* UIColor+UIColorExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+UIColorExtension.h"; sourceTree = "<group>"; };
+		15E36C5A18D8372600598083 /* UIColor+UIColorExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+UIColorExtension.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,6 +190,8 @@
 			isa = PBXGroup;
 			children = (
 				15AE2FAA18D73CB4009378E2 /* Defines.h */,
+				15E36C5918D8372600598083 /* UIColor+UIColorExtension.h */,
+				15E36C5A18D8372600598083 /* UIColor+UIColorExtension.m */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -294,6 +299,7 @@
 				15E36C5818D7A1AA00598083 /* BaseTableViewCell.m in Sources */,
 				15AE2F8418D734E7009378E2 /* AppDelegate.m in Sources */,
 				15AE2FAE18D73E89009378E2 /* LineTableViewCell.m in Sources */,
+				15E36C5B18D8372600598083 /* UIColor+UIColorExtension.m in Sources */,
 				15AE2FA718D73564009378E2 /* UndergroundLinesTableViewController.m in Sources */,
 				15AE2F8018D734E7009378E2 /* main.m in Sources */,
 			);

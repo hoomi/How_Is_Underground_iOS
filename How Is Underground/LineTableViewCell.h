@@ -12,6 +12,6 @@
 @interface LineTableViewCell : BaseTableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *lineNameLabel;
 
--(void)setLineName:(NSString*) lineName;
+-(void)setLineName:(NSString*) lineName :(NSInteger) lineId;
 
 @end
