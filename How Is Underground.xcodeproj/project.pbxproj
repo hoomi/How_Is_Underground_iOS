@@ -36,6 +36,10 @@
 		15E36C7F18D8684700598083 /* LineStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E36C7E18D8684700598083 /* LineStatus.m */; };
 		15E36C8218D8684700598083 /* Line.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E36C8118D8684700598083 /* Line.m */; };
 		15E36C8518D8684800598083 /* StatusType.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E36C8418D8684800598083 /* StatusType.m */; };
+		15E36C8918D8A3A800598083 /* TubeStatusPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E36C8718D8A3A800598083 /* TubeStatusPageViewController.m */; };
+		15E36C8A18D8A3A800598083 /* TubeStatusPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15E36C8818D8A3A800598083 /* TubeStatusPageViewController.xib */; };
+		15E36C8E18D8A44F00598083 /* LineStatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E36C8C18D8A44F00598083 /* LineStatusViewController.m */; };
+		15E36C8F18D8A44F00598083 /* LineStatusViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15E36C8D18D8A44F00598083 /* LineStatusViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +97,12 @@
 		15E36C8118D8684700598083 /* Line.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Line.m; sourceTree = "<group>"; };
 		15E36C8318D8684800598083 /* StatusType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusType.h; sourceTree = "<group>"; };
 		15E36C8418D8684800598083 /* StatusType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusType.m; sourceTree = "<group>"; };
+		15E36C8618D8A3A800598083 /* TubeStatusPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TubeStatusPageViewController.h; sourceTree = "<group>"; };
+		15E36C8718D8A3A800598083 /* TubeStatusPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TubeStatusPageViewController.m; sourceTree = "<group>"; };
+		15E36C8818D8A3A800598083 /* TubeStatusPageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TubeStatusPageViewController.xib; sourceTree = "<group>"; };
+		15E36C8B18D8A44F00598083 /* LineStatusViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineStatusViewController.h; sourceTree = "<group>"; };
+		15E36C8C18D8A44F00598083 /* LineStatusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineStatusViewController.m; sourceTree = "<group>"; };
+		15E36C8D18D8A44F00598083 /* LineStatusViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LineStatusViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +130,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1515021C18D9822900CBA59B /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Protocols;
+			sourceTree = "<group>";
+		};
 		15AE2F6718D734E6009378E2 = {
 			isa = PBXGroup;
 			children = (
@@ -154,6 +171,7 @@
 		15AE2F7918D734E6009378E2 /* How Is Underground */ = {
 			isa = PBXGroup;
 			children = (
+				1515021C18D9822900CBA59B /* Protocols */,
 				15E36C6818D8610500598083 /* Models */,
 				15AE2FA918D73C9C009378E2 /* Utils */,
 				15AE2FA818D73C6C009378E2 /* Network */,
@@ -207,6 +225,12 @@
 			children = (
 				15AE2FA518D73564009378E2 /* UndergroundLinesTableViewController.h */,
 				15AE2FA618D73564009378E2 /* UndergroundLinesTableViewController.m */,
+				15E36C8618D8A3A800598083 /* TubeStatusPageViewController.h */,
+				15E36C8718D8A3A800598083 /* TubeStatusPageViewController.m */,
+				15E36C8818D8A3A800598083 /* TubeStatusPageViewController.xib */,
+				15E36C8B18D8A44F00598083 /* LineStatusViewController.h */,
+				15E36C8C18D8A44F00598083 /* LineStatusViewController.m */,
+				15E36C8D18D8A44F00598083 /* LineStatusViewController.xib */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -328,9 +352,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				15E36C8A18D8A3A800598083 /* TubeStatusPageViewController.xib in Resources */,
 				15AE2FAF18D73E89009378E2 /* LineTableViewCell.xib in Resources */,
 				15AE2F7E18D734E7009378E2 /* InfoPlist.strings in Resources */,
 				15AE2FB118D74544009378E2 /* Mainstoryboard_iPhone.storyboard in Resources */,
+				15E36C8F18D8A44F00598083 /* LineStatusViewController.xib in Resources */,
 				15AE2F8618D734E7009378E2 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -350,6 +376,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				15E36C8E18D8A44F00598083 /* LineStatusViewController.m in Sources */,
 				15E36C5818D7A1AA00598083 /* BaseTableViewCell.m in Sources */,
 				15AE2F8418D734E7009378E2 /* AppDelegate.m in Sources */,
 				15E36C5E18D8466C00598083 /* ServerCommunicator.m in Sources */,
@@ -359,6 +386,7 @@
 				15E36C5B18D8372600598083 /* UIColor+UIColorExtension.m in Sources */,
 				15AE2FA718D73564009378E2 /* UndergroundLinesTableViewController.m in Sources */,
 				15E36C6B18D8612800598083 /* Line.xcdatamodeld in Sources */,
+				15E36C8918D8A3A800598083 /* TubeStatusPageViewController.m in Sources */,
 				15E36C8218D8684700598083 /* Line.m in Sources */,
 				15AE2F8018D734E7009378E2 /* main.m in Sources */,
 				15E36C7F18D8684700598083 /* LineStatus.m in Sources */,

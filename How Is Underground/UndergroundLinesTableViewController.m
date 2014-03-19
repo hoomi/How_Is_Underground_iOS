@@ -11,6 +11,7 @@
 #import "UndergroundLinesTableViewController.h"
 #import "LineTableViewCell.h"
 #import "ServerCommunicator.h"
+#import "TubeStatusPageViewController.h"
 #import "LineStatus.h"
 #import "Line.h"
 #import "Status.h"
@@ -63,37 +64,16 @@
         [parser setDelegate:self];
         [parser parse];
     }];
-    [self relodData];
-    
+    [self reloadData];
     
 }
+
+
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (void) relodData
-{
-    if (fetchedResultController == nil) {
-        fetchedResultController = [[NSFetchedResultsController alloc]
-                                   initWithFetchRequest:fetchRequest
-                                   managedObjectContext:managedObjectContext
-                                   sectionNameKeyPath:nil
-                                   cacheName:nil];
-        fetchedResultController.delegate = self;
-    }
-    
-    NSError *error = nil;
-    [fetchedResultController performFetch:&error];
-    
-    if (error != nil) {
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        abort();
-    }
-    [self.tableView reloadData];
-    
 }
 
 #pragma mark - Table view data source
@@ -124,12 +104,22 @@
     return cell;
 }
 
+#pragma mark - TableViewDelegate
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    TubeStatusPageViewController *nextController = [[TubeStatusPageViewController alloc] init];
+    [self.navigationController pushViewController:nextController animated:YES];
+    
+}
+
+#pragma mark - XML Parser delegate
 
 -(void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict
 {
     if ([elementName isEqualToString:@"LineStatus"]) {
         if (currentLineStatus != nil) {
-            [self saveArtistInformation];
+            [self saveLineStatus];
         }
         currentLineStatus = [NSEntityDescription insertNewObjectForEntityForName:@"LineStatus" inManagedObjectContext:managedObjectContext];
         currentLineStatus.id = [NSNumber numberWithInt:[[attributeDict objectForKey:@"ID"] intValue]];
@@ -151,7 +141,15 @@
     
 }
 
-- (void)saveArtistInformation
+- (void)parserDidEndDocument:(NSXMLParser *)parser
+{
+    currentLineStatus = nil;
+    [self reloadData];
+}
+
+#pragma mark - Utility functions
+
+- (void)saveLineStatus
 {
     if (currentLineStatus == nil)
     {
@@ -181,11 +179,29 @@
         [managedObjectContext save:nil];
     }
 
-- (void)parserDidEndDocument:(NSXMLParser *)parser
+
+- (void) reloadData
 {
-    currentLineStatus = nil;
-    [self relodData];
+    if (fetchedResultController == nil) {
+        fetchedResultController = [[NSFetchedResultsController alloc]
+                                   initWithFetchRequest:fetchRequest
+                                   managedObjectContext:managedObjectContext
+                                   sectionNameKeyPath:nil
+                                   cacheName:nil];
+        fetchedResultController.delegate = self;
+    }
+    
+    NSError *error = nil;
+    [fetchedResultController performFetch:&error];
+    
+    if (error != nil) {
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        abort();
+    }
+    [self.tableView reloadData];
+    
 }
+
 
 
 @end

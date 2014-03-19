@@ -1,10 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="x1Z-3g-h3w">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="PHa-uj-5rJ">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
-        <!--Underground Lines Table View Controller-->
+        <!--Navigation Controller-->
+        <scene sceneID="HUR-XQ-sW2">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="PHa-uj-5rJ" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="kxi-vI-5et">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="x1Z-3g-h3w" kind="relationship" relationship="rootViewController" id="W5D-i6-wlZ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LYY-Ot-n83" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-368" y="-170"/>
+        </scene>
+        <!--Underground Lines Table View Controller - Lines-->
         <scene sceneID="gF1-kY-a3D">
             <objects>
                 <tableViewController id="x1Z-3g-h3w" customClass="UndergroundLinesTableViewController" sceneMemberID="viewController">
@@ -17,6 +32,7 @@
                             <outlet property="delegate" destination="x1Z-3g-h3w" id="xO2-qz-SI8"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="Lines" id="ZHQ-DP-UfY"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H9G-sc-egF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
