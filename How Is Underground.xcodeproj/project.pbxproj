@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1515022D18D99C4100CBA59B /* PageContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1515022C18D99C4100CBA59B /* PageContainerViewController.m */; };
+		1515023118D9AA4100CBA59B /* PageContainerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1515023018D9AA4100CBA59B /* PageContainerViewController.xib */; };
 		15AE2F7418D734E6009378E2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15AE2F7318D734E6009378E2 /* Foundation.framework */; };
 		15AE2F7618D734E6009378E2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15AE2F7518D734E6009378E2 /* CoreGraphics.framework */; };
 		15AE2F7818D734E6009378E2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15AE2F7718D734E6009378E2 /* UIKit.framework */; };
@@ -36,8 +38,6 @@
 		15E36C7F18D8684700598083 /* LineStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E36C7E18D8684700598083 /* LineStatus.m */; };
 		15E36C8218D8684700598083 /* Line.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E36C8118D8684700598083 /* Line.m */; };
 		15E36C8518D8684800598083 /* StatusType.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E36C8418D8684800598083 /* StatusType.m */; };
-		15E36C8918D8A3A800598083 /* TubeStatusPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E36C8718D8A3A800598083 /* TubeStatusPageViewController.m */; };
-		15E36C8A18D8A3A800598083 /* TubeStatusPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15E36C8818D8A3A800598083 /* TubeStatusPageViewController.xib */; };
 		15E36C8E18D8A44F00598083 /* LineStatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E36C8C18D8A44F00598083 /* LineStatusViewController.m */; };
 		15E36C8F18D8A44F00598083 /* LineStatusViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15E36C8D18D8A44F00598083 /* LineStatusViewController.xib */; };
 /* End PBXBuildFile section */
@@ -53,6 +53,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1515022B18D99C4100CBA59B /* PageContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageContainerViewController.h; sourceTree = "<group>"; };
+		1515022C18D99C4100CBA59B /* PageContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageContainerViewController.m; sourceTree = "<group>"; };
+		1515023018D9AA4100CBA59B /* PageContainerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PageContainerViewController.xib; sourceTree = "<group>"; };
 		15AE2F7018D734E6009378E2 /* How Is Underground.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "How Is Underground.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		15AE2F7318D734E6009378E2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		15AE2F7518D734E6009378E2 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -97,9 +100,6 @@
 		15E36C8118D8684700598083 /* Line.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Line.m; sourceTree = "<group>"; };
 		15E36C8318D8684800598083 /* StatusType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusType.h; sourceTree = "<group>"; };
 		15E36C8418D8684800598083 /* StatusType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusType.m; sourceTree = "<group>"; };
-		15E36C8618D8A3A800598083 /* TubeStatusPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TubeStatusPageViewController.h; sourceTree = "<group>"; };
-		15E36C8718D8A3A800598083 /* TubeStatusPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TubeStatusPageViewController.m; sourceTree = "<group>"; };
-		15E36C8818D8A3A800598083 /* TubeStatusPageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TubeStatusPageViewController.xib; sourceTree = "<group>"; };
 		15E36C8B18D8A44F00598083 /* LineStatusViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineStatusViewController.h; sourceTree = "<group>"; };
 		15E36C8C18D8A44F00598083 /* LineStatusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineStatusViewController.m; sourceTree = "<group>"; };
 		15E36C8D18D8A44F00598083 /* LineStatusViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LineStatusViewController.xib; sourceTree = "<group>"; };
@@ -223,14 +223,14 @@
 		15AE2FA218D734FC009378E2 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				1515022B18D99C4100CBA59B /* PageContainerViewController.h */,
+				1515022C18D99C4100CBA59B /* PageContainerViewController.m */,
 				15AE2FA518D73564009378E2 /* UndergroundLinesTableViewController.h */,
 				15AE2FA618D73564009378E2 /* UndergroundLinesTableViewController.m */,
-				15E36C8618D8A3A800598083 /* TubeStatusPageViewController.h */,
-				15E36C8718D8A3A800598083 /* TubeStatusPageViewController.m */,
-				15E36C8818D8A3A800598083 /* TubeStatusPageViewController.xib */,
 				15E36C8B18D8A44F00598083 /* LineStatusViewController.h */,
 				15E36C8C18D8A44F00598083 /* LineStatusViewController.m */,
 				15E36C8D18D8A44F00598083 /* LineStatusViewController.xib */,
+				1515023018D9AA4100CBA59B /* PageContainerViewController.xib */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -352,10 +352,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				15E36C8A18D8A3A800598083 /* TubeStatusPageViewController.xib in Resources */,
 				15AE2FAF18D73E89009378E2 /* LineTableViewCell.xib in Resources */,
 				15AE2F7E18D734E7009378E2 /* InfoPlist.strings in Resources */,
 				15AE2FB118D74544009378E2 /* Mainstoryboard_iPhone.storyboard in Resources */,
+				1515023118D9AA4100CBA59B /* PageContainerViewController.xib in Resources */,
 				15E36C8F18D8A44F00598083 /* LineStatusViewController.xib in Resources */,
 				15AE2F8618D734E7009378E2 /* Images.xcassets in Resources */,
 			);
@@ -383,10 +383,10 @@
 				15E36C6118D847CE00598083 /* Utils.m in Sources */,
 				15AE2FAE18D73E89009378E2 /* LineTableViewCell.m in Sources */,
 				15E36C8518D8684800598083 /* StatusType.m in Sources */,
+				1515022D18D99C4100CBA59B /* PageContainerViewController.m in Sources */,
 				15E36C5B18D8372600598083 /* UIColor+UIColorExtension.m in Sources */,
 				15AE2FA718D73564009378E2 /* UndergroundLinesTableViewController.m in Sources */,
 				15E36C6B18D8612800598083 /* Line.xcdatamodeld in Sources */,
-				15E36C8918D8A3A800598083 /* TubeStatusPageViewController.m in Sources */,
 				15E36C8218D8684700598083 /* Line.m in Sources */,
 				15AE2F8018D734E7009378E2 /* main.m in Sources */,
 				15E36C7F18D8684700598083 /* LineStatus.m in Sources */,

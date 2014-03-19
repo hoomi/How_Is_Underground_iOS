@@ -11,11 +11,13 @@
 #import "UndergroundLinesTableViewController.h"
 #import "LineTableViewCell.h"
 #import "ServerCommunicator.h"
-#import "TubeStatusPageViewController.h"
+#import "PageContainerViewController.h"
 #import "LineStatus.h"
 #import "Line.h"
 #import "Status.h"
 #import "StatusType.h"
+
+@class LineStatusViewController;
 
 @interface UndergroundLinesTableViewController ()
 {
@@ -24,6 +26,10 @@
     NSFetchRequest *fetchRequest;
     NSFetchRequest *checkFetchRequest;
     NSManagedObjectContext *managedObjectContext;
+    
+    LineStatusViewController* (^nextLineController)(void);
+    LineStatusViewController* (^prevLineController)(void);
+    NSInteger (^totalLineNumbers)(void);
     
 }
 @end
@@ -47,8 +53,6 @@
     fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"LineStatus"];
     NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"id" ascending:YES];
     [fetchRequest setSortDescriptors:@[sortDescriptor]];
-    
-    self.tableView.contentInset = UIEdgeInsetsMake(20.0f, 0.0f, 0.0f, 0.0f);
     [ServerCommunicator requestLineStatus:^(NSURLResponse *reponse, NSData *data, NSError *error) {
         if (error != nil) {
             [NSLogger log:@"Failed to download line status"];
@@ -108,7 +112,10 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    TubeStatusPageViewController *nextController = [[TubeStatusPageViewController alloc] init];
+    PageContainerViewController *nextController = [[PageContainerViewController alloc] init];
+    nextController.nextLineBlock = nextLineController;
+    nextController.prevLineBlock = prevLineController;
+    nextController.totalNumberOfLines = totalLineNumbers;
     [self.navigationController pushViewController:nextController animated:YES];
     
 }
@@ -200,6 +207,21 @@
     }
     [self.tableView reloadData];
     
+}
+
+- (void) initBlocks
+{
+    nextLineController = ^LineStatusViewController*{
+        return nil;
+    };
+    prevLineController = ^LineStatusViewController*{
+        return nil;
+    };
+    
+    __weak NSFetchedResultsController *temp = fetchedResultController;
+    totalLineNumbers = ^NSInteger {
+        return [[temp fetchedObjects] count];
+    };
 }
 
 
