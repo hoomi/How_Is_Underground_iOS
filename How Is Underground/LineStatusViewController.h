@@ -7,10 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LineStatus.h"
 
 @interface LineStatusViewController : UIViewController
+@property NSInteger index;
+@property (strong, nonatomic) LineStatus *lineStatus;
 @property (weak, nonatomic) IBOutlet UILabel *lineNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *lineStatusLabel;
-@property (weak, nonatomic) IBOutlet UILabel *lineDescriptions;
+@property (weak, nonatomic) IBOutlet UILabel *lineDescriptionsLabel;
 
+-(void) updateUi;
 @end

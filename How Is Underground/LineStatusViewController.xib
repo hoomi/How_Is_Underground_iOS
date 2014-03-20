@@ -6,10 +6,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LineStatusViewController">
             <connections>
-                <outlet property="lineDescriptions" destination="0na-gv-ddC" id="syt-Ft-MSz"/>
-                <outlet property="lineNameLabel" destination="mDp-AP-08V" id="9nr-2a-AdR"/>
-                <outlet property="lineStatusLabel" destination="hGJ-LE-ihO" id="Ztn-07-i9y"/>
-                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="lineDescriptionsLabel" destination="0na-gv-ddC" id="vJv-Vf-9Qk"/>
+                <outlet property="lineNameLabel" destination="mDp-AP-08V" id="Jhf-ev-A8S"/>
+                <outlet property="lineStatusLabel" destination="hGJ-LE-ihO" id="aiX-kT-iZS"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="cBT-ci-2FK"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -17,42 +17,41 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mDp-AP-08V">
-                    <rect key="frame" x="20" y="20" width="280" height="21"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mDp-AP-08V" userLabel="LineNameLabel">
+                    <rect key="frame" x="20" y="93" width="280" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hGJ-LE-ihO">
-                    <rect key="frame" x="20" y="61" width="280" height="21"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hGJ-LE-ihO" userLabel="LineStatusLabel">
+                    <rect key="frame" x="20" y="149" width="280" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0na-gv-ddC">
-                    <rect key="frame" x="20" y="90" width="300" height="478"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0na-gv-ddC" userLabel="LineDescriptionsLabel">
+                    <rect key="frame" x="20" y="201" width="280" height="347"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="478" id="DfZ-OJ-3mo"/>
-                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="mDp-AP-08V" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" symbolic="YES" id="GaU-lp-sg1"/>
-                <constraint firstAttribute="trailing" secondItem="mDp-AP-08V" secondAttribute="trailing" constant="20" symbolic="YES" id="IGf-V3-Nun"/>
-                <constraint firstAttribute="trailing" secondItem="0na-gv-ddC" secondAttribute="trailing" id="JA6-bu-NB8"/>
-                <constraint firstItem="0na-gv-ddC" firstAttribute="top" secondItem="hGJ-LE-ihO" secondAttribute="bottom" constant="8" symbolic="YES" id="Kq6-BU-a0Z"/>
-                <constraint firstItem="0na-gv-ddC" firstAttribute="leading" secondItem="hGJ-LE-ihO" secondAttribute="leading" id="Rx2-2t-tY5"/>
-                <constraint firstItem="mDp-AP-08V" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" symbolic="YES" id="bed-Qt-ZoJ"/>
-                <constraint firstItem="hGJ-LE-ihO" firstAttribute="top" secondItem="mDp-AP-08V" secondAttribute="bottom" constant="20" id="hTg-6Q-Lwa"/>
-                <constraint firstItem="hGJ-LE-ihO" firstAttribute="trailing" secondItem="mDp-AP-08V" secondAttribute="trailing" id="vxq-aZ-Xnr"/>
-                <constraint firstItem="hGJ-LE-ihO" firstAttribute="leading" secondItem="mDp-AP-08V" secondAttribute="leading" id="xvp-xA-9v2"/>
+                <constraint firstAttribute="trailing" secondItem="mDp-AP-08V" secondAttribute="trailing" constant="20" id="1Ww-yN-gon"/>
+                <constraint firstItem="mDp-AP-08V" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="B8D-k6-Kk3"/>
+                <constraint firstItem="hGJ-LE-ihO" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="Byj-TM-uDO"/>
+                <constraint firstItem="hGJ-LE-ihO" firstAttribute="top" secondItem="mDp-AP-08V" secondAttribute="bottom" constant="35" id="UT6-Ap-UGa"/>
+                <constraint firstItem="0na-gv-ddC" firstAttribute="top" secondItem="hGJ-LE-ihO" secondAttribute="bottom" constant="31" id="cSB-KJ-HiO"/>
+                <constraint firstItem="0na-gv-ddC" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="hVj-vS-85R"/>
+                <constraint firstAttribute="trailing" secondItem="0na-gv-ddC" secondAttribute="trailing" constant="20" id="klT-BW-r5X"/>
+                <constraint firstAttribute="bottom" secondItem="0na-gv-ddC" secondAttribute="bottom" priority="998" constant="20" symbolic="YES" id="pwi-E6-nu1"/>
+                <constraint firstAttribute="trailing" secondItem="hGJ-LE-ihO" secondAttribute="trailing" constant="20" id="xlu-gi-ITT"/>
+                <constraint firstItem="mDp-AP-08V" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="93" id="y2D-ek-UAA"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
     </objects>

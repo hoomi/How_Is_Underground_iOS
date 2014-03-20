@@ -12,6 +12,7 @@
 #import "LineTableViewCell.h"
 #import "ServerCommunicator.h"
 #import "PageContainerViewController.h"
+#import "LineStatusViewController.h"
 #import "LineStatus.h"
 #import "Line.h"
 #import "Status.h"
@@ -27,9 +28,9 @@
     NSFetchRequest *checkFetchRequest;
     NSManagedObjectContext *managedObjectContext;
     
-    LineStatusViewController* (^nextLineController)(void);
-    LineStatusViewController* (^prevLineController)(void);
+    LineStatusViewController* (^getControllerAt)(NSInteger index);
     NSInteger (^totalLineNumbers)(void);
+    LineStatusViewController* (^getSelectedController)();
     
 }
 @end
@@ -112,9 +113,9 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [self initBlocks];
     PageContainerViewController *nextController = [[PageContainerViewController alloc] init];
-    nextController.nextLineBlock = nextLineController;
-    nextController.prevLineBlock = prevLineController;
+    nextController.getControllerAt = getControllerAt;
     nextController.totalNumberOfLines = totalLineNumbers;
     [self.navigationController pushViewController:nextController animated:YES];
     
@@ -137,13 +138,17 @@
         line.name = [attributeDict objectForKey:@"Name"];
         currentLineStatus.line = line;
     } else if ([elementName isEqualToString:@"Status"]) {
-        currentLineStatus.status.id = [attributeDict objectForKey:@"ID"];
-        currentLineStatus.status.cssClass = [attributeDict objectForKey:@"CssClass"];
-        currentLineStatus.status.descriptions = [attributeDict objectForKey:@"Description"];
-        currentLineStatus.status.isActive = [NSNumber numberWithBool:[[attributeDict objectForKey:@"IsActive"] boolValue]];
+        Status *status = [NSEntityDescription insertNewObjectForEntityForName:@"Status" inManagedObjectContext:managedObjectContext];
+        status.id = [attributeDict objectForKey:@"ID"];
+        status.cssClass = [attributeDict objectForKey:@"CssClass"];
+        status.descriptions = [attributeDict objectForKey:@"Description"];
+        status.isActive = [NSNumber numberWithBool:[[attributeDict objectForKey:@"IsActive"] boolValue]];
+        currentLineStatus.status = status;
     } else if ([elementName isEqualToString:@"StatusType"]){
-        currentLineStatus.status.statusType.id = [attributeDict objectForKey:@"ID"];
-        currentLineStatus.status.statusType.descriptions = [attributeDict objectForKey:@"Description"];
+        StatusType *statusType = [NSEntityDescription insertNewObjectForEntityForName:@"StatusType" inManagedObjectContext:managedObjectContext];
+        statusType.id = [NSNumber numberWithInt:[[attributeDict objectForKey:@"ID"] intValue]];
+        statusType.descriptions = [attributeDict objectForKey:@"Description"];
+        currentLineStatus.status.statusType = statusType;
     }
     
 }
@@ -183,8 +188,8 @@
         interMediate = currentLineStatus;
     }
     
-        [managedObjectContext save:nil];
-    }
+    [managedObjectContext save:nil];
+}
 
 
 - (void) reloadData
@@ -209,18 +214,55 @@
     
 }
 
+
+- (NSIndexPath*)indexPathOfPrevious:(NSInteger) index {
+    NSInteger section  = 0;
+    NSInteger row = 0;
+    NSInteger maxSection = [self.tableView numberOfSections] - 1;
+    NSInteger maxRows = [self.tableView numberOfRowsInSection:section];
+    NSInteger totalRows = totalLineNumbers();
+    if (maxSection == 0) {
+        row = index % maxRows;
+    } else {
+        for (NSInteger i = maxSection; i >= 0; i--) {
+            totalRows = totalRows - [self.tableView numberOfRowsInSection:i];
+            if (index > totalRows) {
+                section = i;
+                row = index-totalRows;
+                break;
+            }
+        }
+    }
+    return [NSIndexPath indexPathForRow:row inSection:section];
+}
+
 - (void) initBlocks
 {
-    nextLineController = ^LineStatusViewController*{
-        return nil;
-    };
-    prevLineController = ^LineStatusViewController*{
-        return nil;
+    __weak NSFetchedResultsController *temp = fetchedResultController;
+    __weak UndergroundLinesTableViewController *tempSelf = self;
+    getControllerAt = ^LineStatusViewController*(NSInteger index){
+        LineStatusViewController *nextController = [[LineStatusViewController alloc]initWithNibName:@"LineStatusViewController" bundle:[NSBundle mainBundle]]      ;
+
+        NSInteger count = [[temp fetchedObjects] count];
+        
+        index = index % count;
+        if (index < 0) {
+            index = count + index;
+        }
+        nextController.lineStatus = [temp objectAtIndexPath:[tempSelf indexPathOfPrevious:index]];
+        nextController.index = index;
+        return nextController;
     };
     
-    __weak NSFetchedResultsController *temp = fetchedResultController;
     totalLineNumbers = ^NSInteger {
         return [[temp fetchedObjects] count];
+    };
+    
+    getSelectedController = ^LineStatusViewController* {
+        LineStatusViewController *nextController = [[LineStatusViewController alloc]initWithNibName:@"LineStatusViewController" bundle:[NSBundle mainBundle]]      ;
+        nextController.lineStatus = [temp objectAtIndexPath:[tempSelf.tableView indexPathForSelectedRow]];
+        
+        return nextController;
     };
 }
 

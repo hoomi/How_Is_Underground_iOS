@@ -21,15 +21,15 @@
     UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Mainstoryboard_iPhone" bundle:nil];
     self.pageViewController = [storyboard instantiateViewControllerWithIdentifier:@"PageViewController"];
     self.pageViewController.dataSource = self;
-//    LineStatusViewController *temp = [[LineStatusViewController alloc] init];
-//    [self.pageViewController setViewControllers:@[temp] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
+    LineStatusViewController *temp = self.getControllerAt(1);
+    [self.pageViewController setViewControllers:@[temp] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
     // Change the size of page view controller
     self.pageViewController.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 30);
     
     [self addChildViewController:_pageViewController];
     [self.view addSubview:_pageViewController.view];
     [self.pageViewController didMoveToParentViewController:self];
-
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -38,23 +38,20 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (LineStatusViewController *)viewControllerAtIndex:(NSUInteger)index
-{
-    return nil;
-}
-
 #pragma mark - Page View Controller Data Source
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController
 {
-    
-    
-    return nil;
+    LineStatusViewController* controller = (LineStatusViewController*) viewController;
+    NSInteger index = controller.index;
+    return self.getControllerAt(index - 1);
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController
 {
-    return nil;
+    LineStatusViewController* controller = (LineStatusViewController*) viewController;
+    NSInteger index = controller.index;
+    return self.getControllerAt(index + 1);
 }
 
 - (NSInteger)presentationCountForPageViewController:(UIPageViewController *)pageViewController

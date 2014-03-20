@@ -12,8 +12,7 @@
 @interface PageContainerViewController : UIViewController <UIPageViewControllerDataSource>
 
 @property (strong, nonatomic) UIPageViewController *pageViewController;
-@property (copy,nonatomic) LineStatusViewController* (^nextLineBlock)(void);
-@property (copy,nonatomic) LineStatusViewController* (^prevLineBlock)(void);
+@property (copy,nonatomic) LineStatusViewController* (^getControllerAt)(NSInteger index);
 @property (copy,nonatomic) NSInteger (^totalNumberOfLines)(void);
 
 @end
