@@ -13,23 +13,26 @@
                 <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7hD-8f-zMz">
-                        <rect key="frame" x="20" y="11" width="267" height="21"/>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7hD-8f-zMz">
+                        <rect key="frame" x="20" y="11" width="135" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="normalface" translatesAutoresizingMaskIntoConstraints="NO" id="MTO-38-JGD">
+                        <rect key="frame" x="224" y="0.0" width="43" height="43"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    </imageView>
                 </subviews>
-                <constraints>
-                    <constraint firstItem="7hD-8f-zMz" firstAttribute="centerY" secondItem="gUA-gU-6q2" secondAttribute="centerY" id="OCU-G0-89G"/>
-                    <constraint firstAttribute="trailing" secondItem="7hD-8f-zMz" secondAttribute="trailing" id="S2O-60-nVQ"/>
-                    <constraint firstItem="7hD-8f-zMz" firstAttribute="leading" secondItem="gUA-gU-6q2" secondAttribute="leading" constant="20" symbolic="YES" id="yMO-x3-pHr"/>
-                </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="lineNameLabel" destination="7hD-8f-zMz" id="JIU-Ow-gMv"/>
+                <outlet property="lineStatusImageView" destination="MTO-38-JGD" id="OMJ-M2-Ikb"/>
             </connections>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="normalface" width="99" height="99"/>
+    </resources>
 </document>

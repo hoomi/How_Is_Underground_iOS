@@ -10,8 +10,11 @@
 #import "BaseTableViewCell.h"
 
 @interface LineTableViewCell : BaseTableViewCell
+
 @property (weak, nonatomic) IBOutlet UILabel *lineNameLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *lineStatusImageView;
 
 -(void)setLineName:(NSString*) lineName :(NSInteger) lineId;
+-(void)setLineStatus:(NSString*) lineStatus;
 
 @end

@@ -109,6 +109,7 @@
     }
     LineStatus *lineStatus = [fetchedResultController objectAtIndexPath:indexPath];
     [cell setLineName:lineStatus.line.name :[lineStatus.line.id intValue]];
+    [cell setLineStatus:lineStatus.status.descriptions];
     
     return cell;
 }
