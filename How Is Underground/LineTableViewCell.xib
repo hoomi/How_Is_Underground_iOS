@@ -13,18 +13,30 @@
                 <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7hD-8f-zMz">
-                        <rect key="frame" x="20" y="11" width="135" height="21"/>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7hD-8f-zMz">
+                        <rect key="frame" x="20" y="11" width="42" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="normalface" translatesAutoresizingMaskIntoConstraints="NO" id="MTO-38-JGD">
-                        <rect key="frame" x="224" y="0.0" width="43" height="43"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" verticalHuggingPriority="251" image="normalface" translatesAutoresizingMaskIntoConstraints="NO" id="MTO-38-JGD">
+                        <rect key="frame" x="244" y="0.0" width="43" height="43"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="43" id="96s-aU-xQv"/>
+                            <constraint firstAttribute="height" constant="43" id="w3N-vH-Cke"/>
+                        </constraints>
                     </imageView>
                 </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="MTO-38-JGD" secondAttribute="trailing" id="6UL-QQ-mue"/>
+                    <constraint firstAttribute="bottom" secondItem="7hD-8f-zMz" secondAttribute="bottom" constant="11" id="B4E-IP-NE6"/>
+                    <constraint firstItem="7hD-8f-zMz" firstAttribute="top" secondItem="gUA-gU-6q2" secondAttribute="top" constant="11" id="Jjm-iR-Pqk"/>
+                    <constraint firstItem="MTO-38-JGD" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="7hD-8f-zMz" secondAttribute="trailing" constant="8" id="d1m-hf-Vru"/>
+                    <constraint firstAttribute="centerY" secondItem="MTO-38-JGD" secondAttribute="centerY" id="jpM-Ex-nJp"/>
+                    <constraint firstItem="7hD-8f-zMz" firstAttribute="leading" secondItem="gUA-gU-6q2" secondAttribute="leading" constant="20" id="sgf-dj-B8l"/>
+                </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="lineNameLabel" destination="7hD-8f-zMz" id="JIU-Ow-gMv"/>
