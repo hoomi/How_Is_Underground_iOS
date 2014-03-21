@@ -11,6 +11,7 @@
 @class LineStatusViewController;
 @interface PageContainerViewController : UIViewController <UIPageViewControllerDataSource>
 
+@property NSInteger selectedIndex;
 @property (strong, nonatomic) UIPageViewController *pageViewController;
 @property (copy,nonatomic) LineStatusViewController* (^getControllerAt)(NSInteger index);
 @property (copy,nonatomic) NSInteger (^totalNumberOfLines)(void);

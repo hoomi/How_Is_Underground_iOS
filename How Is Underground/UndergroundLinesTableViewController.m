@@ -117,6 +117,7 @@
     PageContainerViewController *nextController = [[PageContainerViewController alloc] init];
     nextController.getControllerAt = getControllerAt;
     nextController.totalNumberOfLines = totalLineNumbers;
+    nextController.selectedIndex =[self indexFrom:indexPath];
     [self.navigationController pushViewController:nextController animated:YES];
     
 }
@@ -234,6 +235,19 @@
         }
     }
     return [NSIndexPath indexPathForRow:row inSection:section];
+}
+
+-(NSInteger)indexFrom:(NSIndexPath *)indexPath
+{
+    NSInteger section = indexPath.section;
+    NSInteger row = indexPath.row;
+    NSInteger index = 0;
+    for (NSInteger i = 0; i<section; i++) {
+        index += [self.tableView numberOfRowsInSection:i];
+    }
+    index = index > 0 ? index - 1 : index;
+
+    return index + row;
 }
 
 - (void) initBlocks
