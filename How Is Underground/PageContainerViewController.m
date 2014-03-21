@@ -61,7 +61,7 @@
 
 - (NSInteger)presentationIndexForPageViewController:(UIPageViewController *)pageViewController
 {
-    return 0;
+    return self.selectedIndex;
 }
 
 @end
