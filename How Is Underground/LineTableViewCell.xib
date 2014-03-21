@@ -20,31 +20,42 @@
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" verticalHuggingPriority="251" image="normalface" translatesAutoresizingMaskIntoConstraints="NO" id="MTO-38-JGD">
-                        <rect key="frame" x="244" y="0.0" width="43" height="43"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M1T-nz-JK0" userLabel="Border View">
+                        <rect key="frame" x="261" y="10" width="24" height="24"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bWc-6C-qkS" userLabel="Inner Circle">
+                                <rect key="frame" x="3" y="3" width="18" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.50196081400000003" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="18" id="9S7-fW-AFl"/>
+                                    <constraint firstAttribute="height" constant="18" id="HnX-W8-ek3"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="43" id="96s-aU-xQv"/>
-                            <constraint firstAttribute="height" constant="43" id="w3N-vH-Cke"/>
+                            <constraint firstAttribute="centerX" secondItem="bWc-6C-qkS" secondAttribute="centerX" id="W6v-J2-C4f"/>
+                            <constraint firstAttribute="centerY" secondItem="bWc-6C-qkS" secondAttribute="centerY" id="Xeq-tb-9F4"/>
+                            <constraint firstAttribute="width" constant="24" id="mJx-jt-A9u"/>
+                            <constraint firstAttribute="height" constant="24" id="qVH-UR-0tO"/>
                         </constraints>
-                    </imageView>
+                    </view>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="MTO-38-JGD" secondAttribute="trailing" id="6UL-QQ-mue"/>
-                    <constraint firstAttribute="bottom" secondItem="7hD-8f-zMz" secondAttribute="bottom" constant="11" id="B4E-IP-NE6"/>
-                    <constraint firstItem="7hD-8f-zMz" firstAttribute="top" secondItem="gUA-gU-6q2" secondAttribute="top" constant="11" id="Jjm-iR-Pqk"/>
-                    <constraint firstItem="MTO-38-JGD" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="7hD-8f-zMz" secondAttribute="trailing" constant="8" id="d1m-hf-Vru"/>
-                    <constraint firstAttribute="centerY" secondItem="MTO-38-JGD" secondAttribute="centerY" id="jpM-Ex-nJp"/>
-                    <constraint firstItem="7hD-8f-zMz" firstAttribute="leading" secondItem="gUA-gU-6q2" secondAttribute="leading" constant="20" id="sgf-dj-B8l"/>
+                    <constraint firstAttribute="centerY" secondItem="7hD-8f-zMz" secondAttribute="centerY" id="6xD-Wq-OTH"/>
+                    <constraint firstAttribute="centerY" secondItem="M1T-nz-JK0" secondAttribute="centerY" id="SrD-DZ-SeX"/>
+                    <constraint firstItem="7hD-8f-zMz" firstAttribute="leading" secondItem="gUA-gU-6q2" secondAttribute="leading" constant="20" id="ZJ8-U9-QD8"/>
+                    <constraint firstAttribute="trailing" secondItem="M1T-nz-JK0" secondAttribute="trailing" constant="2" id="gew-gg-Xyc"/>
+                    <constraint firstItem="bWc-6C-qkS" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="7hD-8f-zMz" secondAttribute="trailing" constant="8" id="tIv-4d-lea"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="borderView" destination="M1T-nz-JK0" id="Qso-DH-PL9"/>
                 <outlet property="lineNameLabel" destination="7hD-8f-zMz" id="JIU-Ow-gMv"/>
-                <outlet property="lineStatusImageView" destination="MTO-38-JGD" id="OMJ-M2-Ikb"/>
+                <outlet property="lineStatusView" destination="bWc-6C-qkS" id="Tgt-ju-Sr8"/>
             </connections>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="normalface" width="99" height="99"/>
-    </resources>
 </document>

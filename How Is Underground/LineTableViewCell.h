@@ -12,7 +12,8 @@
 @interface LineTableViewCell : BaseTableViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *lineNameLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *lineStatusImageView;
+@property (weak, nonatomic) IBOutlet UIView *lineStatusView;
+@property (weak, nonatomic) IBOutlet UIView *borderView;
 
 -(void)setLineName:(NSString*) lineName :(NSInteger) lineId;
 -(void)setLineStatus:(NSString*) lineStatus;

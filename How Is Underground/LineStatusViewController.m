@@ -12,12 +12,74 @@
 #import "UIColor+UIColorExtension.h"
 
 
+#define GOOD_SERVICE 0
+#define MINOR_DELAYS 1
+#define SEVERE_DELAYS 2
+#define ANIMATION_DURATION 5.0
+
 @interface LineStatusViewController ()
 
 @end
 
 @implementation LineStatusViewController
+
 @synthesize lineNameLabel;
+
+static NSMutableArray* sadImages;
+static NSMutableArray* verySadImages;
+static NSMutableArray* happyImages;
+static CATransition* transition;
+
+
+#pragma mark - Static Functions
+
++ (NSArray *)sadArrayOfImages
+{
+    if (sadImages ==  nil) {
+        sadImages = [NSMutableArray new];
+        NSArray *tempSadImages = @[@"normalface.png",@"sadface.png"];
+        for (NSString* s in tempSadImages) {
+            [sadImages addObject:[UIImage imageNamed:s]];
+        }
+    }
+    return sadImages;
+}
+
++ (NSArray *)happyArrayOfImage
+{
+    if (happyImages == nil) {
+        happyImages = [NSMutableArray new];
+        NSArray *tempHappyImages = @[@"normalface.png",@"smileyface.png",@"smileyface2.png"];
+        for (NSString* s in tempHappyImages) {
+            [happyImages addObject:[UIImage imageNamed:s]];
+        }
+    }
+    return happyImages;
+}
+
++ (NSArray *)verySadArrayOfImage
+{
+    if (verySadImages == nil) {
+        verySadImages = [NSMutableArray new];
+        NSArray *tempVerySadImages = @[@"normalface.png",@"sadface.png",@"sadface2.png"];
+        for (NSString* s in tempVerySadImages) {
+            [verySadImages addObject:[UIImage imageNamed:s]];
+        }
+    }
+    return verySadImages;
+}
+
++(CATransition*) transitionBetweenImages
+{
+    if (transition == nil) {
+        transition = [CATransition animation];
+        transition.duration = 2.0f;
+        transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+        transition.type = kCATransitionFade;
+    }
+    return transition;
+}
+#pragma mark - LineStatusViewController functions
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];

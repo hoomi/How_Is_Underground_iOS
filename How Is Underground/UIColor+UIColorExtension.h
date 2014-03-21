@@ -28,5 +28,9 @@
 + (UIColor *) blueTextLineColor;
 
 
++ (UIColor *) goodService;
++ (UIColor *) minorDelays;
++ (UIColor *) severDelays;
+
 
 @end
