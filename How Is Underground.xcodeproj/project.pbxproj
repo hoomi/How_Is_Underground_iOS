@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1515022D18D99C4100CBA59B /* PageContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1515022C18D99C4100CBA59B /* PageContainerViewController.m */; };
 		1515023118D9AA4100CBA59B /* PageContainerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1515023018D9AA4100CBA59B /* PageContainerViewController.xib */; };
+		15A51CF618DC591400E837C7 /* Mainstoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15A51CF518DC591400E837C7 /* Mainstoryboard_iPad.storyboard */; };
 		15AE2F7418D734E6009378E2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15AE2F7318D734E6009378E2 /* Foundation.framework */; };
 		15AE2F7618D734E6009378E2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15AE2F7518D734E6009378E2 /* CoreGraphics.framework */; };
 		15AE2F7818D734E6009378E2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15AE2F7718D734E6009378E2 /* UIKit.framework */; };
@@ -56,6 +57,7 @@
 		1515022B18D99C4100CBA59B /* PageContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageContainerViewController.h; sourceTree = "<group>"; };
 		1515022C18D99C4100CBA59B /* PageContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageContainerViewController.m; sourceTree = "<group>"; };
 		1515023018D9AA4100CBA59B /* PageContainerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PageContainerViewController.xib; sourceTree = "<group>"; };
+		15A51CF518DC591400E837C7 /* Mainstoryboard_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Mainstoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		15AE2F7018D734E6009378E2 /* How Is Underground.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "How Is Underground.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		15AE2F7318D734E6009378E2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		15AE2F7518D734E6009378E2 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -186,6 +188,7 @@
 				15AE2FB018D74544009378E2 /* Mainstoryboard_iPhone.storyboard */,
 				15E36C5618D7A1AA00598083 /* BaseTableViewCell.h */,
 				15E36C5718D7A1AA00598083 /* BaseTableViewCell.m */,
+				15A51CF518DC591400E837C7 /* Mainstoryboard_iPad.storyboard */,
 			);
 			path = "How Is Underground";
 			sourceTree = "<group>";
@@ -358,6 +361,7 @@
 				1515023118D9AA4100CBA59B /* PageContainerViewController.xib in Resources */,
 				15E36C8F18D8A44F00598083 /* LineStatusViewController.xib in Resources */,
 				15AE2F8618D734E7009378E2 /* Images.xcassets in Resources */,
+				15A51CF618DC591400E837C7 /* Mainstoryboard_iPad.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
