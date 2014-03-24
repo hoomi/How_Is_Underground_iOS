@@ -66,8 +66,7 @@
 
 -(void)refresh
 {
-    LineStatusViewController *temp = self.getControllerAt(self.selectedIndex);
-    [self.pageViewController setViewControllers:@[temp] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
+    [self.pageViewController setViewControllers:@[self.getControllerAt(self.selectedIndex)] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
 
 }
 

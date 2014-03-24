@@ -26,15 +26,12 @@
     LineStatus *currentLineStatus;
     NSFetchedResultsController *fetchedResultController;
     NSFetchRequest *fetchRequest;
-    NSFetchRequest *checkFetchRequest;
     NSManagedObjectContext *managedObjectContext;
     
     LineStatusViewController* (^getControllerAt)(NSInteger index);
     NSInteger (^totalLineNumbers)(void);
     LineStatusViewController* (^getSelectedController)();
     DetailsViewManager *detailsViewManager;
-    
-    NSXMLParser *parser;
 }
 @end
 
@@ -133,44 +130,13 @@
         }
     }
     nextController.totalNumberOfLines = totalLineNumbers;
-    nextController.selectedIndex =[self indexFrom:indexPath];
+    nextController.selectedIndex =[Utils indexFrom:indexPath : self.tableView];
     nextController.getControllerAt = getControllerAt;
     [nextController refresh];
     
 }
 
 #pragma mark - Utility functions
-
-- (void)saveLineStatus
-{
-    if (currentLineStatus == nil)
-    {
-        return;
-    }
-    
-    NSError *error = nil;
-    if (checkFetchRequest == nil) {
-        checkFetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"LineStatus"];
-        NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"id" ascending:YES];
-        [checkFetchRequest setSortDescriptors:@[sortDescriptor]];
-    }
-    NSPredicate *predicate =[NSPredicate predicateWithFormat:@"id == %@", currentLineStatus.id];
-    [checkFetchRequest setPredicate:predicate];
-    NSArray *array = [managedObjectContext executeFetchRequest:checkFetchRequest error:&error];
-    if ([array count] > 1) {
-        for (int i = [array count] - 1; i > 0 ; i--) {
-            [managedObjectContext deleteObject:[array objectAtIndex:i]];
-        }
-    }
-    if ([array count]>0)
-    {
-        NSManagedObject * interMediate = array[0];
-        interMediate = currentLineStatus;
-    }
-    
-    [managedObjectContext save:nil];
-}
-
 
 - (void) reloadData
 {
@@ -194,41 +160,6 @@
     
 }
 
-
-- (NSIndexPath*)indexPathOfPrevious:(NSInteger) index {
-    NSInteger section  = 0;
-    NSInteger row = 0;
-    NSInteger maxSection = [self.tableView numberOfSections] - 1;
-    NSInteger maxRows = [self.tableView numberOfRowsInSection:section];
-    NSInteger totalRows = totalLineNumbers();
-    if (maxSection == 0) {
-        row = index % maxRows;
-    } else {
-        for (NSInteger i = maxSection; i >= 0; i--) {
-            totalRows = totalRows - [self.tableView numberOfRowsInSection:i];
-            if (index > totalRows) {
-                section = i;
-                row = index-totalRows;
-                break;
-            }
-        }
-    }
-    return [NSIndexPath indexPathForRow:row inSection:section];
-}
-
--(NSInteger)indexFrom:(NSIndexPath *)indexPath
-{
-    NSInteger section = indexPath.section;
-    NSInteger row = indexPath.row;
-    NSInteger index = 0;
-    for (NSInteger i = 0; i<section; i++) {
-        index += [self.tableView numberOfRowsInSection:i];
-    }
-    index = index > 0 ? index - 1 : index;
-
-    return index + row;
-}
-
 - (void) initBlocks
 {
     __weak NSFetchedResultsController *temp = fetchedResultController;
@@ -242,7 +173,7 @@
         if (index < 0) {
             index = count + index;
         }
-        nextController.lineStatus = [temp objectAtIndexPath:[tempSelf indexPathOfPrevious:index]];
+        nextController.lineStatus = [temp objectAtIndexPath:[Utils indexPathOf:index :tempSelf.tableView]];
         nextController.index = index;
         return nextController;
     };

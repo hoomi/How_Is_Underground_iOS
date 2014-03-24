@@ -75,12 +75,6 @@
 -(void)parse:(NSURLResponse *)urlResponse :(NSData *)data :(void (^)(NSError *))completeBlock
 {
     if (data != nil) {
-        NSSet *registeredObjects = [managedObjectContext registeredObjects];
-        for (NSManagedObject *object in registeredObjects.allObjects) {
-            [managedObjectContext deleteObject:object];
-            [managedObjectContext save:nil];
-        }
-
         currentCompleteBlock = completeBlock;
         parser = [[NSXMLParser alloc]initWithData:data];
         parser.delegate = self;
