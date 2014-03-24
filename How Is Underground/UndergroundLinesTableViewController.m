@@ -17,6 +17,7 @@
 #import "Line.h"
 #import "Status.h"
 #import "StatusType.h"
+#import "DetailsViewManager.h"
 
 @class LineStatusViewController;
 
@@ -31,7 +32,9 @@
     LineStatusViewController* (^getControllerAt)(NSInteger index);
     NSInteger (^totalLineNumbers)(void);
     LineStatusViewController* (^getSelectedController)();
+    DetailsViewManager *detailsViewManager;
     
+    NSXMLParser *parser;
 }
 @end
 
@@ -65,7 +68,7 @@
             [managedObjectContext save:nil];
         }
         
-        NSXMLParser *parser = [[NSXMLParser alloc]initWithData:data];
+        parser = [[NSXMLParser alloc]initWithData:data];
         [parser setDelegate:self];
         [parser parse];
     }];
@@ -124,11 +127,24 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [self initBlocks];
-    PageContainerViewController *nextController = [[PageContainerViewController alloc] init];
-    nextController.getControllerAt = getControllerAt;
+    PageContainerViewController *nextController;
+    if (!IsIpad()) {
+        nextController = [[PageContainerViewController alloc] init];
+        [self.navigationController setViewControllers:@[nextController] animated:NO];
+    } else {
+        [DetailsViewManager sharedDetailsViewManager].splitViewController = self.splitViewController;
+        UIViewController *temp = [DetailsViewManager sharedDetailsViewManager].currentLineStatusController;
+        if (temp == nil || ![temp isMemberOfClass:[PageContainerViewController class]]) {
+              nextController = [[PageContainerViewController alloc] init];
+            [[DetailsViewManager sharedDetailsViewManager] setCurrentLineStatusController:nextController];
+        } else {
+            nextController = (PageContainerViewController*)temp;
+        }
+    }
     nextController.totalNumberOfLines = totalLineNumbers;
     nextController.selectedIndex =[self indexFrom:indexPath];
-    [self.navigationController pushViewController:nextController animated:YES];
+    nextController.getControllerAt = getControllerAt;
+    [nextController refresh];
     
 }
 

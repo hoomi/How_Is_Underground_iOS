@@ -16,4 +16,6 @@
 @property (copy,nonatomic) LineStatusViewController* (^getControllerAt)(NSInteger index);
 @property (copy,nonatomic) NSInteger (^totalNumberOfLines)(void);
 
+
+- (void) refresh;
 @end

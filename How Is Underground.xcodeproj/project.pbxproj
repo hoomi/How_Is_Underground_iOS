@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1515022D18D99C4100CBA59B /* PageContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1515022C18D99C4100CBA59B /* PageContainerViewController.m */; };
 		1515023118D9AA4100CBA59B /* PageContainerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1515023018D9AA4100CBA59B /* PageContainerViewController.xib */; };
+		156B4CE018E04C5300A2B677 /* DetailsViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 156B4CDF18E04C5300A2B677 /* DetailsViewManager.m */; };
 		15A51CF618DC591400E837C7 /* Mainstoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15A51CF518DC591400E837C7 /* Mainstoryboard_iPad.storyboard */; };
 		15AE2F7418D734E6009378E2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15AE2F7318D734E6009378E2 /* Foundation.framework */; };
 		15AE2F7618D734E6009378E2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15AE2F7518D734E6009378E2 /* CoreGraphics.framework */; };
@@ -57,6 +58,8 @@
 		1515022B18D99C4100CBA59B /* PageContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageContainerViewController.h; sourceTree = "<group>"; };
 		1515022C18D99C4100CBA59B /* PageContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageContainerViewController.m; sourceTree = "<group>"; };
 		1515023018D9AA4100CBA59B /* PageContainerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PageContainerViewController.xib; sourceTree = "<group>"; };
+		156B4CDE18E04C5300A2B677 /* DetailsViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailsViewManager.h; sourceTree = "<group>"; };
+		156B4CDF18E04C5300A2B677 /* DetailsViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsViewManager.m; sourceTree = "<group>"; };
 		15A51CF518DC591400E837C7 /* Mainstoryboard_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Mainstoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		15AE2F7018D734E6009378E2 /* How Is Underground.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "How Is Underground.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		15AE2F7318D734E6009378E2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -132,11 +135,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1515021C18D9822900CBA59B /* Protocols */ = {
+		156B4CDD18E04C4000A2B677 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				156B4CDE18E04C5300A2B677 /* DetailsViewManager.h */,
+				156B4CDF18E04C5300A2B677 /* DetailsViewManager.m */,
 			);
-			name = Protocols;
+			name = Helpers;
 			sourceTree = "<group>";
 		};
 		15AE2F6718D734E6009378E2 = {
@@ -173,7 +178,7 @@
 		15AE2F7918D734E6009378E2 /* How Is Underground */ = {
 			isa = PBXGroup;
 			children = (
-				1515021C18D9822900CBA59B /* Protocols */,
+				156B4CDD18E04C4000A2B677 /* Helpers */,
 				15E36C6818D8610500598083 /* Models */,
 				15AE2FA918D73C9C009378E2 /* Utils */,
 				15AE2FA818D73C6C009378E2 /* Network */,
@@ -395,6 +400,7 @@
 				15AE2F8018D734E7009378E2 /* main.m in Sources */,
 				15E36C7F18D8684700598083 /* LineStatus.m in Sources */,
 				15E36C6418D848E000598083 /* NSLogger.m in Sources */,
+				156B4CE018E04C5300A2B677 /* DetailsViewManager.m in Sources */,
 				15E36C7C18D8684700598083 /* Status.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
