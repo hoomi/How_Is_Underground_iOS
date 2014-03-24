@@ -9,5 +9,5 @@
 #import <Foundation/Foundation.h>
 
 @interface ServerCommunicator : NSObject
-+ (void) requestLineStatus :(void (^)(NSURLResponse*, NSData*, NSError*)) completeBlock;
++ (void) requestLineStatus :(void (^)(NSError*)) completeBlock;
 @end

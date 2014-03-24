@@ -7,19 +7,19 @@
 //
 
 #import "ServerCommunicator.h"
+#import "XmlParser.h"
 
 @implementation ServerCommunicator
 {
-    
 }
 
-+ (void) requestLineStatus :(void (^)(NSURLResponse*, NSData*, NSError*)) completeBlock
++ (void) requestLineStatus :(void (^)(NSError*)) completeBlock
 {
     [self request:UNDERGROUND_STATUS_URL :completeBlock];
     
 }
 
-+ (void) request:(NSString*)url :(void (^)(NSURLResponse*, NSData*, NSError*)) completeBlock
++ (void) request:(NSString*)url :(void (^)(NSError*)) completeBlock
 {
     if(IsEmptyString(url)){
         return;
@@ -27,7 +27,13 @@
     NSURL *transformedUrl = [NSURL URLWithString:url];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:transformedUrl];
     NSOperationQueue *queue = [[NSOperationQueue alloc] init];
-    [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:completeBlock];
+    [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse* urlResponse, NSData* data, NSError *error){
+        if(error == nil){
+            [[[XmlParser alloc] init] parse:urlResponse :data :completeBlock];
+        } else {
+            completeBlock(error);
+        }
+    }];
     
 }
 

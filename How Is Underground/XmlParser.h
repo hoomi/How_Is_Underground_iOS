@@ -1,5 +1,5 @@
 //
-//  Line.h
+//  XmlParser.h
 //  How Is Underground
 //
 //  Created by Hooman Ostovari on 24/03/2014.
@@ -7,12 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <CoreData/CoreData.h>
 
+@interface XmlParser : NSObject<NSXMLParserDelegate>
 
-@interface Line : NSManagedObject
-
-@property (nonatomic, retain) NSNumber * id;
-@property (nonatomic, retain) NSString * name;
+-(void)parse:(NSURLResponse*)urlResponse :(NSData*)data :(void (^)(NSError*)) completeBlock;
 
 @end

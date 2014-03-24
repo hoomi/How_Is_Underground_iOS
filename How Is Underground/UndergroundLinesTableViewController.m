@@ -57,22 +57,13 @@
     fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"LineStatus"];
     NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"id" ascending:YES];
     [fetchRequest setSortDescriptors:@[sortDescriptor]];
-    [ServerCommunicator requestLineStatus:^(NSURLResponse *reponse, NSData *data, NSError *error) {
+    [ServerCommunicator requestLineStatus:^(NSError *error) {
         if (error != nil) {
             [NSLogger log:@"Failed to download line status"];
             return;
         }
-        NSSet *registeredObjects = [managedObjectContext registeredObjects];
-        for (NSManagedObject *object in registeredObjects.allObjects) {
-            [managedObjectContext deleteObject:object];
-            [managedObjectContext save:nil];
-        }
-        
-        parser = [[NSXMLParser alloc]initWithData:data];
-        [parser setDelegate:self];
-        [parser parse];
+        [self reloadData];
     }];
-    [self reloadData];
     UIPageControl *pageControl = [UIPageControl appearance];
     pageControl.pageIndicatorTintColor = [UIColor lightGrayColor];
     pageControl.currentPageIndicatorTintColor = [UIColor blackColor];
@@ -146,44 +137,6 @@
     nextController.getControllerAt = getControllerAt;
     [nextController refresh];
     
-}
-
-#pragma mark - XML Parser delegate
-
--(void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict
-{
-    if ([elementName isEqualToString:@"LineStatus"]) {
-        if (currentLineStatus != nil) {
-            [self saveLineStatus];
-        }
-        currentLineStatus = [NSEntityDescription insertNewObjectForEntityForName:@"LineStatus" inManagedObjectContext:managedObjectContext];
-        currentLineStatus.id = [NSNumber numberWithInt:[[attributeDict objectForKey:@"ID"] intValue]];
-        currentLineStatus.statusDetails = [attributeDict objectForKey:@"StatusDetails"];
-    } else if ([elementName isEqualToString:@"Line"]) {
-        Line *line = [NSEntityDescription insertNewObjectForEntityForName:@"Line" inManagedObjectContext:managedObjectContext];
-        line.id = [NSNumber numberWithInt:[[attributeDict objectForKey:@"ID"] intValue]];
-        line.name = [attributeDict objectForKey:@"Name"];
-        currentLineStatus.line = line;
-    } else if ([elementName isEqualToString:@"Status"]) {
-        Status *status = [NSEntityDescription insertNewObjectForEntityForName:@"Status" inManagedObjectContext:managedObjectContext];
-        status.id = [attributeDict objectForKey:@"ID"];
-        status.cssClass = [attributeDict objectForKey:@"CssClass"];
-        status.descriptions = [attributeDict objectForKey:@"Description"];
-        status.isActive = [NSNumber numberWithBool:[[attributeDict objectForKey:@"IsActive"] boolValue]];
-        currentLineStatus.status = status;
-    } else if ([elementName isEqualToString:@"StatusType"]){
-        StatusType *statusType = [NSEntityDescription insertNewObjectForEntityForName:@"StatusType" inManagedObjectContext:managedObjectContext];
-        statusType.id = [NSNumber numberWithInt:[[attributeDict objectForKey:@"ID"] intValue]];
-        statusType.descriptions = [attributeDict objectForKey:@"Description"];
-        currentLineStatus.status.statusType = statusType;
-    }
-    
-}
-
-- (void)parserDidEndDocument:(NSXMLParser *)parser
-{
-    currentLineStatus = nil;
-    [self reloadData];
 }
 
 #pragma mark - Utility functions

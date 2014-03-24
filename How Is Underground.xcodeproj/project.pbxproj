@@ -10,6 +10,11 @@
 		1515022D18D99C4100CBA59B /* PageContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1515022C18D99C4100CBA59B /* PageContainerViewController.m */; };
 		1515023118D9AA4100CBA59B /* PageContainerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1515023018D9AA4100CBA59B /* PageContainerViewController.xib */; };
 		156B4CE018E04C5300A2B677 /* DetailsViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 156B4CDF18E04C5300A2B677 /* DetailsViewManager.m */; };
+		156B4CE518E062BD00A2B677 /* Status.m in Sources */ = {isa = PBXBuildFile; fileRef = 156B4CE418E062BD00A2B677 /* Status.m */; };
+		156B4CE818E062BD00A2B677 /* Line.m in Sources */ = {isa = PBXBuildFile; fileRef = 156B4CE718E062BD00A2B677 /* Line.m */; };
+		156B4CEB18E062BD00A2B677 /* StatusType.m in Sources */ = {isa = PBXBuildFile; fileRef = 156B4CEA18E062BD00A2B677 /* StatusType.m */; };
+		156B4CEE18E062BE00A2B677 /* LineStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 156B4CED18E062BE00A2B677 /* LineStatus.m */; };
+		156B4CF118E062F400A2B677 /* XmlParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 156B4CF018E062F400A2B677 /* XmlParser.m */; };
 		15A51CF618DC591400E837C7 /* Mainstoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15A51CF518DC591400E837C7 /* Mainstoryboard_iPad.storyboard */; };
 		15AE2F7418D734E6009378E2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15AE2F7318D734E6009378E2 /* Foundation.framework */; };
 		15AE2F7618D734E6009378E2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15AE2F7518D734E6009378E2 /* CoreGraphics.framework */; };
@@ -36,10 +41,6 @@
 		15E36C6718D84D5000598083 /* UtilsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E36C6618D84D5000598083 /* UtilsTest.m */; };
 		15E36C6B18D8612800598083 /* Line.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 15E36C6918D8612800598083 /* Line.xcdatamodeld */; };
 		15E36C7918D865CB00598083 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15E36C7818D865CB00598083 /* CoreData.framework */; };
-		15E36C7C18D8684700598083 /* Status.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E36C7B18D8684700598083 /* Status.m */; };
-		15E36C7F18D8684700598083 /* LineStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E36C7E18D8684700598083 /* LineStatus.m */; };
-		15E36C8218D8684700598083 /* Line.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E36C8118D8684700598083 /* Line.m */; };
-		15E36C8518D8684800598083 /* StatusType.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E36C8418D8684800598083 /* StatusType.m */; };
 		15E36C8E18D8A44F00598083 /* LineStatusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E36C8C18D8A44F00598083 /* LineStatusViewController.m */; };
 		15E36C8F18D8A44F00598083 /* LineStatusViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15E36C8D18D8A44F00598083 /* LineStatusViewController.xib */; };
 /* End PBXBuildFile section */
@@ -60,6 +61,16 @@
 		1515023018D9AA4100CBA59B /* PageContainerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PageContainerViewController.xib; sourceTree = "<group>"; };
 		156B4CDE18E04C5300A2B677 /* DetailsViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailsViewManager.h; sourceTree = "<group>"; };
 		156B4CDF18E04C5300A2B677 /* DetailsViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsViewManager.m; sourceTree = "<group>"; };
+		156B4CE318E062BD00A2B677 /* Status.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Status.h; sourceTree = "<group>"; };
+		156B4CE418E062BD00A2B677 /* Status.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Status.m; sourceTree = "<group>"; };
+		156B4CE618E062BD00A2B677 /* Line.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Line.h; sourceTree = "<group>"; };
+		156B4CE718E062BD00A2B677 /* Line.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Line.m; sourceTree = "<group>"; };
+		156B4CE918E062BD00A2B677 /* StatusType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusType.h; sourceTree = "<group>"; };
+		156B4CEA18E062BD00A2B677 /* StatusType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusType.m; sourceTree = "<group>"; };
+		156B4CEC18E062BE00A2B677 /* LineStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineStatus.h; sourceTree = "<group>"; };
+		156B4CED18E062BE00A2B677 /* LineStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineStatus.m; sourceTree = "<group>"; };
+		156B4CEF18E062F400A2B677 /* XmlParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XmlParser.h; sourceTree = "<group>"; };
+		156B4CF018E062F400A2B677 /* XmlParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XmlParser.m; sourceTree = "<group>"; };
 		15A51CF518DC591400E837C7 /* Mainstoryboard_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Mainstoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		15AE2F7018D734E6009378E2 /* How Is Underground.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "How Is Underground.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		15AE2F7318D734E6009378E2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -97,14 +108,6 @@
 		15E36C6618D84D5000598083 /* UtilsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UtilsTest.m; sourceTree = "<group>"; };
 		15E36C6A18D8612800598083 /* Line.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Line.xcdatamodel; sourceTree = "<group>"; };
 		15E36C7818D865CB00598083 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		15E36C7A18D8684700598083 /* Status.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Status.h; sourceTree = "<group>"; };
-		15E36C7B18D8684700598083 /* Status.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Status.m; sourceTree = "<group>"; };
-		15E36C7D18D8684700598083 /* LineStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineStatus.h; sourceTree = "<group>"; };
-		15E36C7E18D8684700598083 /* LineStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineStatus.m; sourceTree = "<group>"; };
-		15E36C8018D8684700598083 /* Line.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Line.h; sourceTree = "<group>"; };
-		15E36C8118D8684700598083 /* Line.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Line.m; sourceTree = "<group>"; };
-		15E36C8318D8684800598083 /* StatusType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusType.h; sourceTree = "<group>"; };
-		15E36C8418D8684800598083 /* StatusType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusType.m; sourceTree = "<group>"; };
 		15E36C8B18D8A44F00598083 /* LineStatusViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineStatusViewController.h; sourceTree = "<group>"; };
 		15E36C8C18D8A44F00598083 /* LineStatusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineStatusViewController.m; sourceTree = "<group>"; };
 		15E36C8D18D8A44F00598083 /* LineStatusViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LineStatusViewController.xib; sourceTree = "<group>"; };
@@ -144,6 +147,13 @@
 			name = Helpers;
 			sourceTree = "<group>";
 		};
+		156B4CE118E060CC00A2B677 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Protocols;
+			sourceTree = "<group>";
+		};
 		15AE2F6718D734E6009378E2 = {
 			isa = PBXGroup;
 			children = (
@@ -178,6 +188,7 @@
 		15AE2F7918D734E6009378E2 /* How Is Underground */ = {
 			isa = PBXGroup;
 			children = (
+				156B4CE118E060CC00A2B677 /* Protocols */,
 				156B4CDD18E04C4000A2B677 /* Helpers */,
 				15E36C6818D8610500598083 /* Models */,
 				15AE2FA918D73C9C009378E2 /* Utils */,
@@ -248,6 +259,8 @@
 			children = (
 				15E36C5C18D8466C00598083 /* ServerCommunicator.h */,
 				15E36C5D18D8466C00598083 /* ServerCommunicator.m */,
+				156B4CEF18E062F400A2B677 /* XmlParser.h */,
+				156B4CF018E062F400A2B677 /* XmlParser.m */,
 			);
 			name = Network;
 			sourceTree = "<group>";
@@ -270,14 +283,14 @@
 			isa = PBXGroup;
 			children = (
 				15E36C6918D8612800598083 /* Line.xcdatamodeld */,
-				15E36C8318D8684800598083 /* StatusType.h */,
-				15E36C8418D8684800598083 /* StatusType.m */,
-				15E36C8018D8684700598083 /* Line.h */,
-				15E36C8118D8684700598083 /* Line.m */,
-				15E36C7D18D8684700598083 /* LineStatus.h */,
-				15E36C7E18D8684700598083 /* LineStatus.m */,
-				15E36C7A18D8684700598083 /* Status.h */,
-				15E36C7B18D8684700598083 /* Status.m */,
+				156B4CEC18E062BE00A2B677 /* LineStatus.h */,
+				156B4CED18E062BE00A2B677 /* LineStatus.m */,
+				156B4CE918E062BD00A2B677 /* StatusType.h */,
+				156B4CEA18E062BD00A2B677 /* StatusType.m */,
+				156B4CE618E062BD00A2B677 /* Line.h */,
+				156B4CE718E062BD00A2B677 /* Line.m */,
+				156B4CE318E062BD00A2B677 /* Status.h */,
+				156B4CE418E062BD00A2B677 /* Status.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -388,20 +401,21 @@
 				15E36C8E18D8A44F00598083 /* LineStatusViewController.m in Sources */,
 				15E36C5818D7A1AA00598083 /* BaseTableViewCell.m in Sources */,
 				15AE2F8418D734E7009378E2 /* AppDelegate.m in Sources */,
+				156B4CEB18E062BD00A2B677 /* StatusType.m in Sources */,
 				15E36C5E18D8466C00598083 /* ServerCommunicator.m in Sources */,
+				156B4CE518E062BD00A2B677 /* Status.m in Sources */,
 				15E36C6118D847CE00598083 /* Utils.m in Sources */,
 				15AE2FAE18D73E89009378E2 /* LineTableViewCell.m in Sources */,
-				15E36C8518D8684800598083 /* StatusType.m in Sources */,
 				1515022D18D99C4100CBA59B /* PageContainerViewController.m in Sources */,
 				15E36C5B18D8372600598083 /* UIColor+UIColorExtension.m in Sources */,
 				15AE2FA718D73564009378E2 /* UndergroundLinesTableViewController.m in Sources */,
+				156B4CEE18E062BE00A2B677 /* LineStatus.m in Sources */,
+				156B4CF118E062F400A2B677 /* XmlParser.m in Sources */,
 				15E36C6B18D8612800598083 /* Line.xcdatamodeld in Sources */,
-				15E36C8218D8684700598083 /* Line.m in Sources */,
 				15AE2F8018D734E7009378E2 /* main.m in Sources */,
-				15E36C7F18D8684700598083 /* LineStatus.m in Sources */,
+				156B4CE818E062BD00A2B677 /* Line.m in Sources */,
 				15E36C6418D848E000598083 /* NSLogger.m in Sources */,
 				156B4CE018E04C5300A2B677 /* DetailsViewManager.m in Sources */,
-				15E36C7C18D8684700598083 /* Status.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
