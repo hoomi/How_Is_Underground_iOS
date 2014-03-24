@@ -36,34 +36,6 @@
     return UIInterfaceOrientationIsPortrait(orientation);
 }
 
--(void)splitViewController:(UISplitViewController *)svc
-    willHideViewController:(UIViewController *)aViewController
-         withBarButtonItem:(UIBarButtonItem *)barButtonItem
-      forPopoverController:(UIPopoverController *)pc
-{
-    
-    barButtonItem.title = @"Menu";                                          // 2
-    
-    menuPopoverButtonItem = barButtonItem;                                  // 3
-    menuPopoverController = pc;
-    
-    UINavigationItem *detailNavItem =                                       // 4
-    detailsNavigationController.topViewController.navigationItem;
-    detailNavItem.leftBarButtonItem = barButtonItem;
-}
-
-- (void)splitViewController:(UISplitViewController *)svc                    // 5
-     willShowViewController:(UIViewController *)aViewController
-  invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem {
-    menuPopoverButtonItem = nil;                                            // 6
-    menuPopoverController = nil;
-    
-    UINavigationItem *detailNavItem =                                       // 7
-    detailsNavigationController.topViewController.navigationItem;
-    detailNavItem.leftBarButtonItem = nil;
-    
-}
-
 #pragma mark - public functions
 
 - (void)setSplitViewController:(UISplitViewController *)splitViewController {
@@ -71,7 +43,8 @@
         _splitViewController = splitViewController;                         // 2
         detailsNavigationController =                                               // 3
         [splitViewController.viewControllers lastObject];
-        _splitViewController.delegate = self;                               // 4
+        _splitViewController.delegate = self;
+        [detailsNavigationController setNavigationBarHidden:YES animated:YES];// 4
     }
 }
 
