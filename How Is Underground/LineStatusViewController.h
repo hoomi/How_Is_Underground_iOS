@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *lineNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *lineStatusLabel;
 @property (weak, nonatomic) IBOutlet UILabel *lineDescriptionsLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *statusImageView;
 
 -(void) updateUi;
 @end

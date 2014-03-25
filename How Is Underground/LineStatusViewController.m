@@ -15,13 +15,16 @@
 #define GOOD_SERVICE 0
 #define MINOR_DELAYS 1
 #define SEVERE_DELAYS 2
-#define ANIMATION_DURATION 5.0
+#define ANIMATION_DURATION 2.0
 
 @interface LineStatusViewController ()
 
 @end
 
 @implementation LineStatusViewController
+{
+    NSInteger animationType;
+}
 
 @synthesize lineNameLabel;
 
@@ -49,7 +52,7 @@ static CATransition* transition;
 {
     if (happyImages == nil) {
         happyImages = [NSMutableArray new];
-        NSArray *tempHappyImages = @[@"normalface.png",@"smileyface.png",@"smileyface2.png"];
+        NSArray *tempHappyImages = @[@"normalface.png",@"smileyface2.png",@"smileyface.png",@"smileyface2.png"];
         for (NSString* s in tempHappyImages) {
             [happyImages addObject:[UIImage imageNamed:s]];
         }
@@ -61,7 +64,7 @@ static CATransition* transition;
 {
     if (verySadImages == nil) {
         verySadImages = [NSMutableArray new];
-        NSArray *tempVerySadImages = @[@"normalface.png",@"sadface.png",@"sadface2.png"];
+        NSArray *tempVerySadImages = @[@"normalface.png",@"sadface.png",@"sadface2.png",@"sadface.png"];
         for (NSString* s in tempVerySadImages) {
             [verySadImages addObject:[UIImage imageNamed:s]];
         }
@@ -93,6 +96,7 @@ static CATransition* transition;
 {
     [super viewDidLoad];
     [self updateUi];
+    [self setAnimation];
     
 }
 
@@ -104,11 +108,24 @@ static CATransition* transition;
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [self.statusImageView startAnimating];
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self.statusImageView stopAnimating];
 }
 
 -(void)updateUi
 {
+    animationType = SEVERE_DELAYS;
     if (self.lineStatus != nil) {
+        if ([self.lineStatus.status.descriptions isEqualToString:@"Good Service"]) {
+            animationType = GOOD_SERVICE;
+        } else if ([self.lineStatus.status.descriptions isEqualToString:@"Minor Delays"]) {
+            
+        }
         lineNameLabel.text = self.lineStatus.line.name;
         self.lineDescriptionsLabel.text = self.lineStatus.status.descriptions;
         self.lineStatusLabel.text = IsEmptyString(self.lineStatus.statusDetails) ? self.lineStatus.status.descriptions: self.lineStatus.statusDetails;
@@ -117,64 +134,90 @@ static CATransition* transition;
         UIColor *textColor = nil;
         switch ([self.lineStatus.line.id integerValue]) {
             case BAKERLOO:
-                backgroundColor = [UIColor bakerlooColor];
-                textColor = [UIColor whiteTextLineColor];
-                break;
+            backgroundColor = [UIColor bakerlooColor];
+            textColor = [UIColor whiteTextLineColor];
+            break;
             case CENTRAL:
-                backgroundColor = [UIColor centralColor];
-                textColor = [UIColor whiteTextLineColor];
-                break;
+            backgroundColor = [UIColor centralColor];
+            textColor = [UIColor whiteTextLineColor];
+            break;
             case CIRCLE:
-                backgroundColor = [UIColor circleColor];
-                textColor = [UIColor blueTextLineColor];
-                break;
+            backgroundColor = [UIColor circleColor];
+            textColor = [UIColor blueTextLineColor];
+            break;
             case DISTRICT:
-                backgroundColor = [UIColor districtColor];
-                textColor = [UIColor whiteTextLineColor];
-                break;
+            backgroundColor = [UIColor districtColor];
+            textColor = [UIColor whiteTextLineColor];
+            break;
             case DLR:
-                backgroundColor = [UIColor dlrColor];
-                textColor = [UIColor whiteTextLineColor];
-                break;
+            backgroundColor = [UIColor dlrColor];
+            textColor = [UIColor whiteTextLineColor];
+            break;
             case HANDCITY:
-                backgroundColor = [UIColor handcColor];
-                textColor = [UIColor blueTextLineColor];
-                break;
+            backgroundColor = [UIColor handcColor];
+            textColor = [UIColor blueTextLineColor];
+            break;
             case JUBILEE:
-                backgroundColor = [UIColor jubileeColor];
-                textColor = [UIColor whiteTextLineColor];
-                break;
+            backgroundColor = [UIColor jubileeColor];
+            textColor = [UIColor whiteTextLineColor];
+            break;
             case METROPOLITAN:
-                backgroundColor = [UIColor metropolitanColor];
-                textColor = [UIColor whiteTextLineColor];
-                break;
+            backgroundColor = [UIColor metropolitanColor];
+            textColor = [UIColor whiteTextLineColor];
+            break;
             case NORTHERN:
-                backgroundColor = [UIColor northernColor];
-                textColor = [UIColor whiteTextLineColor];
-                break;
+            backgroundColor = [UIColor northernColor];
+            textColor = [UIColor whiteTextLineColor];
+            break;
             case OVERGROUND:
-                backgroundColor = [UIColor overgroundColor];
-                textColor = [UIColor whiteTextLineColor];
-                break;
+            backgroundColor = [UIColor overgroundColor];
+            textColor = [UIColor whiteTextLineColor];
+            break;
             case PICCDILY:
-                backgroundColor = [UIColor piccadilyColor];
-                textColor = [UIColor whiteTextLineColor];
-                break;
+            backgroundColor = [UIColor piccadilyColor];
+            textColor = [UIColor whiteTextLineColor];
+            break;
             case VICTORIA:
-                backgroundColor = [UIColor victoriaColor];
-                textColor = [UIColor whiteTextLineColor];
-                break;
+            backgroundColor = [UIColor victoriaColor];
+            textColor = [UIColor whiteTextLineColor];
+            break;
             default:
-                backgroundColor = [UIColor waterlooColor];
-                textColor = [UIColor blueColor];
-                break;
+            backgroundColor = [UIColor waterlooColor];
+            textColor = [UIColor blueColor];
+            break;
         }
         [self.view setBackgroundColor:backgroundColor];
         [self.lineStatusLabel setTextColor:textColor];
         [self.lineDescriptionsLabel setTextColor:textColor];
         [self.lineNameLabel setTextColor:textColor];
- 
+        
     }
+    
+}
+
+-(void)setAnimation
+{
+    
+    [self.statusImageView stopAnimating];
+    NSArray *images;
+    switch (animationType) {
+        case GOOD_SERVICE:
+        images = [LineStatusViewController happyArrayOfImage];
+        break;
+        case MINOR_DELAYS:
+        images = [LineStatusViewController sadArrayOfImages];
+        break;
+        case SEVERE_DELAYS:
+        images = [LineStatusViewController verySadArrayOfImage];
+        break;
+        default:
+        images = @[@"normalface.png"];
+        break;
+    }
+    self.statusImageView.animationImages = images;
+    self.statusImageView.animationDuration = ANIMATION_DURATION;
+    [self.statusImageView startAnimating];
+    
 }
 
 @end

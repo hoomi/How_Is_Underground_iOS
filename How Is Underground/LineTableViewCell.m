@@ -105,27 +105,6 @@
     self.lineStatusView.backgroundColor = color;
 }
 
-//-(void) setAnimation:(NSInteger) animationType
-//{
-//    [self.lineStatusImageView stopAnimating];
-//    NSArray *images;
-//    switch (animationType) {
-//        case GOOD_SERVICE:
-//            images = [LineTableViewCell happyArrayOfImage];
-//            break;
-//        case MINOR_DELAYS:
-//            images = [LineTableViewCell sadArrayOfImages];
-//            break;
-//        case SEVERE_DELAYS:
-//            images = [LineTableViewCell verySadArrayOfImage];
-//            break;
-//        default:
-//            images = @[@"normalface.png"];
-//            break;
-//    }
-//    self.lineStatusImageView.animationImages = images;
-//    [self.lineStatusImageView startAnimating];
-//}
 - (NSString *)reuseIdentifier
 {
     return @"LineCell";

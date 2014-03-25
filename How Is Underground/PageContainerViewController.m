@@ -29,6 +29,7 @@
     [self addChildViewController:_pageViewController];
     [self.view addSubview:_pageViewController.view];
     [self.pageViewController didMoveToParentViewController:self];
+    self.pageViewController.delegate = self;
     
 }
 
@@ -64,6 +65,7 @@
     return self.selectedIndex;
 }
 
+#pragma mark - Utility functions
 -(void)refresh
 {
     [self.pageViewController setViewControllers:@[self.getControllerAt(self.selectedIndex)] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];

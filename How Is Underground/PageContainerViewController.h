@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @class LineStatusViewController;
-@interface PageContainerViewController : UIViewController <UIPageViewControllerDataSource>
+@interface PageContainerViewController : UIViewController <UIPageViewControllerDataSource,UIPageViewControllerDelegate>
 
 @property NSInteger selectedIndex;
 @property (strong, nonatomic) UIPageViewController *pageViewController;
