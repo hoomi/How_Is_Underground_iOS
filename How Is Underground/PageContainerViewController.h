@@ -15,6 +15,7 @@
 @property (strong, nonatomic) UIPageViewController *pageViewController;
 @property (copy,nonatomic) LineStatusViewController* (^getControllerAt)(NSInteger index);
 @property (copy,nonatomic) NSInteger (^totalNumberOfLines)(void);
+@property (copy,nonatomic) void (^setSelectedRow)(NSInteger index);
 
 
 - (void) refresh;

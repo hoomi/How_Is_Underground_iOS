@@ -27,11 +27,13 @@
     NSFetchedResultsController *fetchedResultController;
     NSFetchRequest *fetchRequest;
     NSManagedObjectContext *managedObjectContext;
+    DetailsViewManager *detailsViewManager;
     
     LineStatusViewController* (^getControllerAt)(NSInteger index);
     NSInteger (^totalLineNumbers)(void);
     LineStatusViewController* (^getSelectedController)();
-    DetailsViewManager *detailsViewManager;
+    void (^setSelectedRow)(NSInteger index);
+    
 }
 @end
 
@@ -60,6 +62,13 @@
             return;
         }
         [self reloadData];
+//        if (currentLineStatus == nil && IsIpad()) {
+//            [self initBlocks];
+//            NSIndexPath *indexPath =[Utils indexPathOf:0 :self.tableView];
+//            if (indexPath != nil) {
+//                [self rowSelected:indexPath];
+//            }
+//        }
     }];
     UIPageControl *pageControl = [UIPageControl appearance];
     pageControl.pageIndicatorTintColor = [UIColor lightGrayColor];
@@ -115,15 +124,23 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [self initBlocks];
+    [self rowSelected:indexPath];
+    
+}
+
+#pragma mark - Utility functions
+
+- (void)rowSelected:(NSIndexPath*)indexPath
+{
     PageContainerViewController *nextController;
     if (!IsIpad()) {
         nextController = [[PageContainerViewController alloc] init];
-        [self.navigationController setViewControllers:@[nextController] animated:NO];
+        [self.navigationController pushViewController:nextController animated:YES];
     } else {
         [DetailsViewManager sharedDetailsViewManager].splitViewController = self.splitViewController;
         UIViewController *temp = [DetailsViewManager sharedDetailsViewManager].currentLineStatusController;
         if (temp == nil || ![temp isMemberOfClass:[PageContainerViewController class]]) {
-              nextController = [[PageContainerViewController alloc] init];
+            nextController = [[PageContainerViewController alloc] init];
             [[DetailsViewManager sharedDetailsViewManager] setCurrentLineStatusController:nextController];
         } else {
             nextController = (PageContainerViewController*)temp;
@@ -132,12 +149,11 @@
     nextController.totalNumberOfLines = totalLineNumbers;
     nextController.selectedIndex =[Utils indexFrom:indexPath : self.tableView];
     nextController.getControllerAt = getControllerAt;
+    nextController.setSelectedRow = setSelectedRow;
     [nextController refresh];
-    
+    currentLineStatus = [fetchedResultController objectAtIndexPath:indexPath];
+
 }
-
-#pragma mark - Utility functions
-
 - (void) reloadData
 {
     if (fetchedResultController == nil) {
@@ -162,17 +178,23 @@
 
 - (void) initBlocks
 {
+    if (getControllerAt != nil) {
+        return;
+    }
     __weak NSFetchedResultsController *temp = fetchedResultController;
     __weak UndergroundLinesTableViewController *tempSelf = self;
     getControllerAt = ^LineStatusViewController*(NSInteger index){
         LineStatusViewController *nextController = [[LineStatusViewController alloc]initWithNibName:@"LineStatusViewController" bundle:[NSBundle mainBundle]]      ;
-
+        
         NSInteger count = [[temp fetchedObjects] count];
         
-        index = index % count;
-        if (index < 0) {
-            index = count + index;
+        if (count > 0) {
+            index = index % count;
+            if (index < 0) {
+                index = count + index;
+            }
         }
+       
         nextController.lineStatus = [temp objectAtIndexPath:[Utils indexPathOf:index :tempSelf.tableView]];
         nextController.index = index;
         return nextController;
@@ -183,10 +205,14 @@
     };
     
     getSelectedController = ^LineStatusViewController* {
-        LineStatusViewController *nextController = [[LineStatusViewController alloc]initWithNibName:@"LineStatusViewController" bundle:[NSBundle mainBundle]]      ;
+        LineStatusViewController *nextController = [[LineStatusViewController alloc]initWithNibName:@"LineStatusViewController" bundle:[NSBundle mainBundle]];
         nextController.lineStatus = [temp objectAtIndexPath:[tempSelf.tableView indexPathForSelectedRow]];
         
         return nextController;
+    };
+    setSelectedRow = ^(NSInteger index){
+        [tempSelf.tableView selectRowAtIndexPath:[Utils indexPathOf:index :tempSelf.tableView] animated:YES scrollPosition:UITableViewScrollPositionNone];
+        
     };
 }
 

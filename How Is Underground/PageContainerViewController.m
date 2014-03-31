@@ -65,6 +65,13 @@
     return self.selectedIndex;
 }
 
+#pragma mark - UIPageViewControllerDelegate
+- (void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray *)previousViewControllers transitionCompleted:(BOOL)completed
+{
+    LineStatusViewController *lineStatusViewController = [self.pageViewController.viewControllers lastObject];
+    self.setSelectedRow(lineStatusViewController.index);
+}
+
 #pragma mark - Utility functions
 -(void)refresh
 {
