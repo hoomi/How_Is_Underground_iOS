@@ -23,7 +23,6 @@
 
 @interface UndergroundLinesTableViewController ()
 {
-    LineStatus *currentLineStatus;
     NSFetchedResultsController *fetchedResultController;
     NSFetchRequest *fetchRequest;
     NSManagedObjectContext *managedObjectContext;
@@ -61,14 +60,17 @@
             [NSLogger log:@"Failed to download line status"];
             return;
         }
-        [self reloadData];
-//        if (currentLineStatus == nil && IsIpad()) {
-//            [self initBlocks];
-//            NSIndexPath *indexPath =[Utils indexPathOf:0 :self.tableView];
-//            if (indexPath != nil) {
-//                [self rowSelected:indexPath];
-//            }
-//        }
+        __weak UndergroundLinesTableViewController *tempSelf = self;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [tempSelf reloadData];
+            if ([tempSelf.tableView indexPathForSelectedRow] == nil && IsIpad()) {
+                [tempSelf initBlocks];
+                NSIndexPath *indexPath =[Utils indexPathOf:0 :tempSelf.tableView];
+                if (indexPath != nil) {
+                    [tempSelf rowSelected:indexPath];
+                }
+            }
+        });
     }];
     UIPageControl *pageControl = [UIPageControl appearance];
     pageControl.pageIndicatorTintColor = [UIColor lightGrayColor];
@@ -151,8 +153,6 @@
     nextController.getControllerAt = getControllerAt;
     nextController.setSelectedRow = setSelectedRow;
     [nextController refresh];
-    currentLineStatus = [fetchedResultController objectAtIndexPath:indexPath];
-
 }
 - (void) reloadData
 {
