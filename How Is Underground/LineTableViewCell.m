@@ -11,7 +11,8 @@
 
 @implementation LineTableViewCell
 {
-    
+    UIColor* lineColor;
+    UIColor* textColor;
 }
 
 #pragma mark - LineTableViewCell functions
@@ -26,71 +27,75 @@
 {
     [super setSelected:selected animated:animated];
     
-    // Configure the view for the selected state
+    if (selected) {
+        [self setBackgroundColor:[UIColor colorWithRed:200.0f/255.0f green:100.0f/255.0f blue:200.0f/255.0f alpha:1.0f]];
+        [self.lineNameLabel setTextColor:[UIColor blackColor]];
+    } else {
+        [self setBackgroundColor:lineColor];
+        [self.lineNameLabel setTextColor:textColor];
+    }
 }
 
 - (void)setLineName:(NSString *)lineName :(NSInteger)lineId
 {
     self.lineNameLabel.text = lineName;
-    UIColor *backgroundColor = nil;
-    UIColor *textColor = nil;
     switch (lineId) {
         case BAKERLOO:
-            backgroundColor = [UIColor bakerlooColor];
+            lineColor = [UIColor bakerlooColor];
             textColor = [UIColor whiteTextLineColor];
             break;
         case CENTRAL:
-            backgroundColor = [UIColor centralColor];
+            lineColor = [UIColor centralColor];
             textColor = [UIColor whiteTextLineColor];
             break;
         case CIRCLE:
-            backgroundColor = [UIColor circleColor];
+            lineColor = [UIColor circleColor];
             textColor = [UIColor blueTextLineColor];
             break;
         case DISTRICT:
-            backgroundColor = [UIColor districtColor];
+            lineColor = [UIColor districtColor];
             textColor = [UIColor whiteTextLineColor];
             break;
         case DLR:
-            backgroundColor = [UIColor dlrColor];
+            lineColor = [UIColor dlrColor];
             textColor = [UIColor whiteTextLineColor];
             break;
         case HANDCITY:
-            backgroundColor = [UIColor handcColor];
+            lineColor = [UIColor handcColor];
             textColor = [UIColor blueTextLineColor];
             break;
         case JUBILEE:
-            backgroundColor = [UIColor jubileeColor];
+            lineColor = [UIColor jubileeColor];
             textColor = [UIColor whiteTextLineColor];
             break;
         case METROPOLITAN:
-            backgroundColor = [UIColor metropolitanColor];
+            lineColor = [UIColor metropolitanColor];
             textColor = [UIColor whiteTextLineColor];
             break;
         case NORTHERN:
-            backgroundColor = [UIColor northernColor];
+            lineColor = [UIColor northernColor];
             textColor = [UIColor whiteTextLineColor];
             break;
         case OVERGROUND:
-            backgroundColor = [UIColor overgroundColor];
+            lineColor = [UIColor overgroundColor];
             textColor = [UIColor whiteTextLineColor];
             break;
         case PICCDILY:
-            backgroundColor = [UIColor piccadilyColor];
+            lineColor = [UIColor piccadilyColor];
             textColor = [UIColor whiteTextLineColor];
             break;
         case VICTORIA:
-            backgroundColor = [UIColor victoriaColor];
+            lineColor = [UIColor victoriaColor];
             textColor = [UIColor whiteTextLineColor];
             break;
         default:
-            backgroundColor = [UIColor waterlooColor];
+            lineColor = [UIColor waterlooColor];
             textColor = [UIColor blueColor];
             break;
     }
     
     [self.lineNameLabel setTextColor:textColor];
-    [self setBackgroundColor: backgroundColor];
+    [self setBackgroundColor: lineColor];
 }
 
 -(void)setLineStatus:(NSString *)lineStatus
@@ -111,6 +116,6 @@
 - (NSString *)reuseIdentifier
 {
     return @"LineCell";
-}
+}   
 
 @end

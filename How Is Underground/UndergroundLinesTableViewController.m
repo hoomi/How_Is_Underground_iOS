@@ -68,6 +68,7 @@
                 NSIndexPath *indexPath =[Utils indexPathOf:0 :tempSelf.tableView];
                 if (indexPath != nil) {
                     [tempSelf rowSelected:indexPath];
+                    setSelectedRow(0);
                 }
             }
         });
