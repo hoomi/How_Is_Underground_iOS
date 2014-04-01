@@ -37,6 +37,14 @@
 
 #pragma mark - Core Data stack
 
+- (void)deleteCoreDataDatabase
+{
+    NSError *error;
+    [[NSFileManager defaultManager]removeItemAtURL:self.storeURL error:&error];
+    if (error)
+        NSLog(@"error deleting: %@", [error localizedDescription]);
+}
+
 - (NSManagedObjectContext *)managedObjectContext
 {
     if (_managedObjectContext != nil) {
@@ -67,11 +75,13 @@
         return _persistentStoreCoordinator;
     }
     
-    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:MySQLDataFileName];
+//    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:MySQLDataFileName];
+    
+    self.storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:MySQLDataFileName];
     
     NSError *error = nil;
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
-    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
+    if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:self.storeURL options:nil error:&error]) {
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }

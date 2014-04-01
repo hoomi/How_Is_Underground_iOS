@@ -36,11 +36,7 @@
 -(void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict
 {
     if ([elementName isEqualToString:@"LineStatus"]) {
-        if (currentLineStatus != nil) {
-            [self saveLineStatus];
-        }
-        currentLineStatus = [NSEntityDescription insertNewObjectForEntityForName:@"LineStatus" inManagedObjectContext:managedObjectContext];
-        currentLineStatus.id = [NSNumber numberWithInt:[[attributeDict objectForKey:@"ID"] intValue]];
+        [self initCurrentLineStatus:[[attributeDict objectForKey:@"ID"] intValue]];
         currentLineStatus.statusDetails = [attributeDict objectForKey:@"StatusDetails"];
     } else if ([elementName isEqualToString:@"Line"]) {
         Line *line = [NSEntityDescription insertNewObjectForEntityForName:@"Line" inManagedObjectContext:managedObjectContext];
@@ -70,6 +66,9 @@
         currentCompleteBlock(nil);
         currentCompleteBlock = nil;
     }
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    [appDelegate saveContext];
+    
 }
 
 -(void)parse:(NSURLResponse *)urlResponse :(NSData *)data :(void (^)(NSError *))completeBlock
@@ -86,34 +85,30 @@
 }
 
 #pragma mark - Utility functions
-- (void)saveLineStatus
+
+-(void) initCurrentLineStatus:(NSInteger)idValue
 {
-    if (currentLineStatus == nil)
-    {
-        return;
-    }
-    
     NSError *error = nil;
     if (checkFetchRequest == nil) {
         checkFetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"LineStatus"];
         NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"id" ascending:YES];
         [checkFetchRequest setSortDescriptors:@[sortDescriptor]];
     }
-    NSPredicate *predicate =[NSPredicate predicateWithFormat:@"id == %@", currentLineStatus.id];
+     NSPredicate *predicate =[NSPredicate predicateWithFormat:@"id == %d", idValue];
     [checkFetchRequest setPredicate:predicate];
     NSArray *array = [managedObjectContext executeFetchRequest:checkFetchRequest error:&error];
-    if ([array count] > 1) {
+    NSInteger count = [array count];
+    if (count > 1) {
         for (int i = [array count] - 1; i > 0 ; i--) {
             [managedObjectContext deleteObject:[array objectAtIndex:i]];
         }
     }
-    if ([array count]>0)
-    {
-        NSManagedObject * interMediate = array[0];
-        interMediate = currentLineStatus;
+    if (count <= 0) {
+        currentLineStatus = [NSEntityDescription insertNewObjectForEntityForName:@"LineStatus" inManagedObjectContext:managedObjectContext];
+    } else {
+        currentLineStatus = array[0];
     }
-    
-    [managedObjectContext save:nil];
+     currentLineStatus.id = [NSNumber numberWithInt:idValue];
 }
 
 
