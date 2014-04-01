@@ -13,7 +13,7 @@
 
 #define MyModelURLFile          @"Line"
 #define MySQLDataFileName       @"Line.sqlite"
-#define REFRESH_INTERVAL        30.0
+#define REFRESH_INTERVAL        120.0
 #define LINE_STATUS_TIMER_ID    1
 
 @implementation AppDelegate

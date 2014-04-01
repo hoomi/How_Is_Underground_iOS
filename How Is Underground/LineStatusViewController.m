@@ -176,9 +176,9 @@ static CATransition* transition;
 {
     animationType = SEVERE_DELAYS;
     if (self.lineStatus != nil) {
-        if ([self.lineStatus.status.descriptions isEqualToString:@"Good Service"]) {
+        if ([self.lineStatus.status.descriptions isEqualToString:GOOD_SERVICE_STRING]) {
             animationType = GOOD_SERVICE;
-        } else if ([self.lineStatus.status.descriptions isEqualToString:@"Minor Delays"]) {
+        } else if ([self.lineStatus.status.descriptions isEqualToString:MINOR_DELAYS_STRING]) {
             
         }
         lineNameLabel.text = self.lineStatus.line.name;

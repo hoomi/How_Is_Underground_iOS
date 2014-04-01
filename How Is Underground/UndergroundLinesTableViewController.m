@@ -53,8 +53,9 @@
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     managedObjectContext = appDelegate.managedObjectContext;
     fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"LineStatus"];
-    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"id" ascending:YES];
-    [fetchRequest setSortDescriptors:@[sortDescriptor]];
+    NSSortDescriptor *alphabeticallDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"line.name" ascending:YES];
+    NSSortDescriptor *delayDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"status.descriptions" ascending:NO];
+    [fetchRequest setSortDescriptors:@[delayDescriptor,alphabeticallDescriptor]];
     [ServerCommunicator requestLineStatus:^(NSError *error) {
         if (error != nil) {
             [NSLogger log:@"Failed to download line status"];
@@ -210,7 +211,7 @@
                 index = count + index;
             }
         }
-       
+        
         nextController.lineStatus = [temp objectAtIndexPath:[Utils indexPathOf:index :tempSelf.tableView]];
         nextController.index = index;
         return nextController;

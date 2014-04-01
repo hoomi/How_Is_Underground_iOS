@@ -26,6 +26,10 @@
 #define OVERGROUND         82
 #define DLR                81
 
+#define GOOD_SERVICE_STRING @"Good Service"
+#define MINOR_DELAYS_STRING @"Minor Delays"
+#define SEVERE_DELAYS_STRING @"Severe Delays"
+
 
 #define LINE_STATUS_UPDATED @"LineStatusUpdated"
 
