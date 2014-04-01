@@ -27,4 +27,7 @@
 #define DLR                81
 
 
+#define LINE_STATUS_UPDATED @"LineStatusUpdated"
+
+
 #endif

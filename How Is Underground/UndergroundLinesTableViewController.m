@@ -77,9 +77,16 @@
     pageControl.pageIndicatorTintColor = [UIColor lightGrayColor];
     pageControl.currentPageIndicatorTintColor = [UIColor blackColor];
     pageControl.backgroundColor = [UIColor whiteColor];
-    
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(lineStatusUpdated) name:LINE_STATUS_UPDATED object:nil];
+}
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 
 - (void)didReceiveMemoryWarning
@@ -129,6 +136,14 @@
     [self initBlocks];
     [self rowSelected:indexPath];
     
+}
+
+#pragma mark- Notification Observer
+
+-(void) lineStatusUpdated
+{
+    [NSLogger log:@"UndergroundLinesTableViewController -> Line Status Updated"];
+    [self reloadData];
 }
 
 #pragma mark - Utility functions
@@ -216,7 +231,5 @@
         
     };
 }
-
-
 
 @end

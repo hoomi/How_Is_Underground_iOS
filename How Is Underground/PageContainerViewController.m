@@ -30,13 +30,29 @@
     [self.view addSubview:_pageViewController.view];
     [self.pageViewController didMoveToParentViewController:self];
     self.pageViewController.delegate = self;
+
     
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(lineStatusUpdated) name:LINE_STATUS_UPDATED object:nil];
+}
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+#pragma mark - LineStatus Notification
+-(void) lineStatusUpdated
+{
+    [NSLogger log:@"PageContainerViewController -> Line Status Updated"];
+    [self refresh];
 }
 
 #pragma mark - Page View Controller Data Source
@@ -69,7 +85,8 @@
 - (void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray *)previousViewControllers transitionCompleted:(BOOL)completed
 {
     LineStatusViewController *lineStatusViewController = [self.pageViewController.viewControllers lastObject];
-    self.setSelectedRow(lineStatusViewController.index);
+    self.selectedIndex = lineStatusViewController.index;
+    self.setSelectedRow(self.selectedIndex);
 }
 
 #pragma mark - Utility functions

@@ -32,6 +32,7 @@
 		15AE2FAE18D73E89009378E2 /* LineTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15AE2FAC18D73E89009378E2 /* LineTableViewCell.m */; };
 		15AE2FAF18D73E89009378E2 /* LineTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15AE2FAD18D73E89009378E2 /* LineTableViewCell.xib */; };
 		15AE2FB118D74544009378E2 /* Mainstoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15AE2FB018D74544009378E2 /* Mainstoryboard_iPhone.storyboard */; };
+		15D46DC318EAF0B70048BAE9 /* TimerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 15D46DC218EAF0B70048BAE9 /* TimerManager.m */; };
 		15E36C5818D7A1AA00598083 /* BaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E36C5718D7A1AA00598083 /* BaseTableViewCell.m */; };
 		15E36C5B18D8372600598083 /* UIColor+UIColorExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E36C5A18D8372600598083 /* UIColor+UIColorExtension.m */; };
 		15E36C5E18D8466C00598083 /* ServerCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E36C5D18D8466C00598083 /* ServerCommunicator.m */; };
@@ -95,6 +96,8 @@
 		15AE2FAC18D73E89009378E2 /* LineTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineTableViewCell.m; sourceTree = "<group>"; };
 		15AE2FAD18D73E89009378E2 /* LineTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LineTableViewCell.xib; sourceTree = "<group>"; };
 		15AE2FB018D74544009378E2 /* Mainstoryboard_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Mainstoryboard_iPhone.storyboard; sourceTree = "<group>"; };
+		15D46DC118EAF0B70048BAE9 /* TimerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimerManager.h; sourceTree = "<group>"; };
+		15D46DC218EAF0B70048BAE9 /* TimerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimerManager.m; sourceTree = "<group>"; };
 		15E36C5618D7A1AA00598083 /* BaseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewCell.h; sourceTree = "<group>"; };
 		15E36C5718D7A1AA00598083 /* BaseTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewCell.m; sourceTree = "<group>"; };
 		15E36C5918D8372600598083 /* UIColor+UIColorExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+UIColorExtension.h"; sourceTree = "<group>"; };
@@ -143,6 +146,8 @@
 			children = (
 				156B4CDE18E04C5300A2B677 /* DetailsViewManager.h */,
 				156B4CDF18E04C5300A2B677 /* DetailsViewManager.m */,
+				15D46DC118EAF0B70048BAE9 /* TimerManager.h */,
+				15D46DC218EAF0B70048BAE9 /* TimerManager.m */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -413,6 +418,7 @@
 				156B4CF118E062F400A2B677 /* XmlParser.m in Sources */,
 				15E36C6B18D8612800598083 /* Line.xcdatamodeld in Sources */,
 				15AE2F8018D734E7009378E2 /* main.m in Sources */,
+				15D46DC318EAF0B70048BAE9 /* TimerManager.m in Sources */,
 				156B4CE818E062BD00A2B677 /* Line.m in Sources */,
 				15E36C6418D848E000598083 /* NSLogger.m in Sources */,
 				156B4CE018E04C5300A2B677 /* DetailsViewManager.m in Sources */,

@@ -8,9 +8,13 @@
 
 #import <CoreData/CoreData.h>
 #import "AppDelegate.h"
+#import "TimerManager.h"
+#import "ServerCommunicator.h"
 
 #define MyModelURLFile          @"Line"
 #define MySQLDataFileName       @"Line.sqlite"
+#define REFRESH_INTERVAL        30.0
+#define LINE_STATUS_TIMER_ID    1
 
 @implementation AppDelegate
 
@@ -20,7 +24,34 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [self requestLineStatusPeriodically];
     return YES;
+}
+
+-(void)applicationWillTerminate:(UIApplication *)application
+{
+    [[TimerManager getInstance] destroyAll];
+}
+
+- (void)invocationMethod:(NSDate *)date {
+    [ServerCommunicator requestLineStatus:^(NSError *error) {
+        if (error != nil) {
+            [NSLogger log:@"Failed to download line status"];
+            return;
+        }
+        [[NSNotificationCenter defaultCenter] postNotificationName:LINE_STATUS_UPDATED object:nil];
+    }];
+
+}
+
+
+-(void) requestLineStatusPeriodically
+{
+      NSMethodSignature *methodSignature = [self methodSignatureForSelector:@selector(invocationMethod:)];
+    NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:methodSignature];
+    [invocation setTarget:self];
+    [invocation setSelector:@selector(invocationMethod:)];
+    [[TimerManager getInstance] scheduledTimerWithTimeInterval:REFRESH_INTERVAL invocation:invocation repeats:YES id:  LINE_STATUS_TIMER_ID];
 }
 
 - (void)saveContext
