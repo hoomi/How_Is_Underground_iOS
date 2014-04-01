@@ -22,8 +22,8 @@
         <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
     </entity>
     <elements>
+        <element name="Line" positionX="171" positionY="-9" width="128" height="75"/>
         <element name="LineStatus" positionX="-27" positionY="18" width="128" height="103"/>
-        <element name="Line" positionX="171" positionY="-9" width="128" height="73"/>
         <element name="Status" positionX="171" positionY="149" width="128" height="118"/>
         <element name="StatusType" positionX="394" positionY="170" width="128" height="73"/>
     </elements>

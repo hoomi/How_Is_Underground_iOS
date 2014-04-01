@@ -10,6 +10,9 @@
 #import "UIColor+UIColorExtension.h"
 
 @implementation LineTableViewCell
+{
+    
+}
 
 #pragma mark - LineTableViewCell functions
 
