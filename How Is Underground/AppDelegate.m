@@ -10,13 +10,19 @@
 #import "AppDelegate.h"
 #import "TimerManager.h"
 #import "ServerCommunicator.h"
+#import "LineStatus.h"
+#import "Line.h"
+#import "Status.h"
 
 #define MyModelURLFile          @"Line"
 #define MySQLDataFileName       @"Line.sqlite"
-#define REFRESH_INTERVAL        120.0
+#define REFRESH_INTERVAL        30.0
 #define LINE_STATUS_TIMER_ID    1
 
 @implementation AppDelegate
+{
+    NSFetchRequest* fetchRequest;
+}
 
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize managedObjectModel = _managedObjectModel;
@@ -25,6 +31,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [self requestLineStatusPeriodically];
+    [application setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalMinimum];
+    [NSLogger log:[NSString stringWithFormat:@"Launched in background %d", UIApplicationStateBackground == application.applicationState]];
     return YES;
 }
 
@@ -33,37 +41,101 @@
     [[TimerManager getInstance] destroyAll];
 }
 
-- (void)invocationMethod:(NSDate *)date {
+-(void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
+{
+    [NSLogger log:@"Doing fetch in the background"];
+    [self invocationMethod];
+    completionHandler(UIBackgroundFetchResultNewData);
+}
+
+-(void)applicationWillEnterForeground:(UIApplication *)application
+{
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber: 0];
+    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+}
+
+
+#pragma mark - Utility functions
+- (void)invocationMethod {
     [ServerCommunicator requestLineStatus:^(NSError *error) {
         if (error != nil) {
             [NSLogger log:@"Failed to download line status"];
             return;
         }
+        if ([[UIApplication sharedApplication]applicationState] ==  UIApplicationStateBackground) {
+            [self showLocalNotification];
+        }
         [[NSNotificationCenter defaultCenter] postNotificationName:LINE_STATUS_UPDATED object:nil];
+        
     }];
-
+    
 }
 
-
+-(void) showLocalNotification
+{
+    if (fetchRequest == nil) {
+        fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"LineStatus"];
+        NSSortDescriptor *lineNamedescriptor = [NSSortDescriptor sortDescriptorWithKey:@"line.name" ascending:YES];
+        NSSortDescriptor *lineStatusDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"status.descriptions" ascending:NO];
+        [fetchRequest setSortDescriptors:@[lineNamedescriptor,lineStatusDescriptor]];
+        NSPredicate *predicate =[NSPredicate predicateWithFormat:@"status.descriptions == %@ OR status.descriptions == %@", SEVERE_DELAYS_STRING, MINOR_DELAYS_STRING];
+        [fetchRequest setPredicate:predicate];
+        
+    }
+    NSError *error;
+    NSArray *array = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    if (error != nil) {
+        [NSLogger log:[error localizedDescription]];
+        return;
+    }
+    NSString *message = @"";
+    if ([array count]> 0) {
+        
+        for (LineStatus *lineStatus in array) {
+            message = [message stringByAppendingFormat:@"%@ : %@ \n",lineStatus.line.name,lineStatus.status.descriptions];
+        }
+    } else {
+        message = @"Good service on all lines";
+    }
+    [NSLogger log:message];
+    UILocalNotification *localNotif = [[UILocalNotification alloc] init];
+    if (localNotif) {
+        localNotif.alertBody = message;
+        localNotif.alertAction = NSLocalizedString(@"Read Message", nil);
+        localNotif.soundName = @"alarmsound.caf";
+        localNotif.applicationIconBadgeNumber = 1;
+        [[UIApplication sharedApplication] presentLocalNotificationNow:localNotif];
+    }
+}
 -(void) requestLineStatusPeriodically
 {
-      NSMethodSignature *methodSignature = [self methodSignatureForSelector:@selector(invocationMethod:)];
+    NSMethodSignature *methodSignature = [self methodSignatureForSelector:@selector(invocationMethod)];
     NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:methodSignature];
     [invocation setTarget:self];
-    [invocation setSelector:@selector(invocationMethod:)];
+    [invocation setSelector:@selector(invocationMethod)];
     [[TimerManager getInstance] scheduledTimerWithTimeInterval:REFRESH_INTERVAL invocation:invocation repeats:YES id:  LINE_STATUS_TIMER_ID];
 }
 
 - (void)saveContext
 {
     NSError *error = nil;
-    NSManagedObjectContext *managedObjectContext = self.managedObjectContext;
-    if (managedObjectContext != nil) {
-        if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error]) {
-            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-            abort();
+    [self.persistentStoreCoordinator lock];
+    @try {
+        NSManagedObjectContext *managedObjectContext = self.managedObjectContext;
+        if (managedObjectContext != nil) {
+            if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error]) {
+                NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+                abort();
+            }
         }
     }
+    @catch (NSException *exception) {
+        [NSLogger log:[NSString stringWithFormat:@"%@",[exception description]]];
+    }
+    @finally {
+        [self.persistentStoreCoordinator unlock];
+    }
+    
 }
 
 #pragma mark - Core Data stack
@@ -105,8 +177,6 @@
     if (_persistentStoreCoordinator != nil) {
         return _persistentStoreCoordinator;
     }
-    
-//    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:MySQLDataFileName];
     
     self.storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:MySQLDataFileName];
     

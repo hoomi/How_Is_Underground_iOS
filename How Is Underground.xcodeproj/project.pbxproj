@@ -349,6 +349,11 @@
 				TargetAttributes = {
 					15AE2F6F18D734E6009378E2 = {
 						DevelopmentTeam = 3UK8CT6CVR;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					15AE2F8A18D734E7009378E2 = {
 						TestTargetID = 15AE2F6F18D734E6009378E2;
