@@ -44,8 +44,19 @@
 -(void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 {
     [NSLogger log:@"Doing fetch in the background"];
-    [self invocationMethod];
-    completionHandler(UIBackgroundFetchResultNewData);
+    [ServerCommunicator requestLineStatus:^(NSError *error) {
+        if (error != nil) {
+            [NSLogger log:@"Failed to download line status"];
+            completionHandler(UIBackgroundFetchResultFailed);
+            return;
+        }
+        if ([[UIApplication sharedApplication]applicationState] ==  UIApplicationStateBackground) {
+            [self showLocalNotification];
+        }
+        [[NSNotificationCenter defaultCenter] postNotificationName:LINE_STATUS_UPDATED object:nil];
+        completionHandler(UIBackgroundFetchResultNewData);
+        
+    }];
 }
 
 -(void)applicationWillEnterForeground:(UIApplication *)application
@@ -57,6 +68,7 @@
 
 #pragma mark - Utility functions
 - (void)invocationMethod {
+    [NSLogger log:@"Timer was fired"];
     [ServerCommunicator requestLineStatus:^(NSError *error) {
         if (error != nil) {
             [NSLogger log:@"Failed to download line status"];
@@ -68,7 +80,6 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:LINE_STATUS_UPDATED object:nil];
         
     }];
-    
 }
 
 -(void) showLocalNotification
@@ -78,7 +89,7 @@
         NSSortDescriptor *lineNamedescriptor = [NSSortDescriptor sortDescriptorWithKey:@"line.name" ascending:YES];
         NSSortDescriptor *lineStatusDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"status.descriptions" ascending:NO];
         [fetchRequest setSortDescriptors:@[lineNamedescriptor,lineStatusDescriptor]];
-        NSPredicate *predicate =[NSPredicate predicateWithFormat:@"status.descriptions == %@ OR status.descriptions == %@", SEVERE_DELAYS_STRING, MINOR_DELAYS_STRING];
+        NSPredicate *predicate =[NSPredicate predicateWithFormat:@"status.descriptions == %@ OR status.descriptions == %@ OR status.descriptions == %@", SEVERE_DELAYS_STRING, MINOR_DELAYS_STRING,PART_SUSPENDED];
         [fetchRequest setPredicate:predicate];
         
     }

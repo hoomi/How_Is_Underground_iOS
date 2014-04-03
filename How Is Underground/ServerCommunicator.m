@@ -9,6 +9,7 @@
 #import "ServerCommunicator.h"
 #import "XmlParser.h"
 
+#define TIMEOUT_INTERVAL 5.0
 @implementation ServerCommunicator
 {
 }
@@ -26,6 +27,7 @@
     }
     NSURL *transformedUrl = [NSURL URLWithString:url];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:transformedUrl];
+    [request setTimeoutInterval:TIMEOUT_INTERVAL];
     NSOperationQueue *queue = [[NSOperationQueue alloc] init];
     [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse* urlResponse, NSData* data, NSError *error){
         if(error == nil){

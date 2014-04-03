@@ -13,13 +13,18 @@
                 <outlet property="scrollView" destination="iGb-Ev-ttr" id="eyU-6y-A6a"/>
                 <outlet property="statusImageView" destination="c2V-9J-X7N" id="qFV-Ma-nK9"/>
                 <outlet property="textWrapperView" destination="abn-6h-JpO" id="LXm-sq-L7Z"/>
-                <outlet property="view" destination="iGb-Ev-ttr" id="dSa-cO-ttD"/>
+                <outlet property="view" destination="iGb-Ev-ttr" id="mJ4-iJ-tb6"/>
                 <outletCollection property="portraitConstraints" destination="hGF-ON-Qry" id="9WI-Vy-II3"/>
                 <outletCollection property="portraitConstraints" destination="cIV-SV-3NQ" id="O5F-ji-Idw"/>
                 <outletCollection property="portraitConstraints" destination="Q84-u6-HwO" id="KMU-5z-1f5"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <scrollView autoresizesSubviews="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" id="iGb-Ev-ttr">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="468"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+        </scrollView>
         <view autoresizesSubviews="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT" userLabel="contentView">
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -85,11 +90,6 @@
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
-        <scrollView autoresizesSubviews="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" id="iGb-Ev-ttr">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-        </scrollView>
     </objects>
     <resources>
         <image name="normalface" width="99" height="99"/>

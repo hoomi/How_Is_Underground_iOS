@@ -16,13 +16,24 @@
     
 }
 
+- (DetailsViewManager* ) init
+{
+    self = [super init];
+    if (!self) {
+        return nil;
+    }
+    UIImage* image3 = [UIImage imageNamed:@"hamburger.png"];
+       menuPopoverButtonItem =[[UIBarButtonItem alloc] initWithImage:image3 style:UIBarButtonItemStylePlain target:self action:@selector(togglePopOver)];
+    return self;
+}
+
 +(DetailsViewManager *)sharedDetailsViewManager
 {
     static DetailsViewManager *sharedDetailsViewManager;
     static dispatch_once_t pred;
     
     dispatch_once(&pred,^{
-        sharedDetailsViewManager = [super new];
+        sharedDetailsViewManager = [[DetailsViewManager alloc ]init];
     });
     return sharedDetailsViewManager;
 }
@@ -33,6 +44,7 @@
   shouldHideViewController:(UIViewController *)vc
              inOrientation:(UIInterfaceOrientation)orientation
 {
+
     return UIInterfaceOrientationIsPortrait(orientation);
 }
 
@@ -44,7 +56,7 @@
         detailsNavigationController =                                               // 3
         [splitViewController.viewControllers lastObject];
         _splitViewController.delegate = self;
-        [detailsNavigationController setNavigationBarHidden:YES animated:YES];// 4
+//        [detailsNavigationController setNavigationBarHidden:YES animated:YES];// 4
     }
 }
 
@@ -74,7 +86,7 @@
     }
     
     if (hidePopover) {
-        [self hidePopover];                                                  // 8
+        [self hidePopover];                                                  
     }
     
     if (newStack != nil) {
@@ -88,8 +100,18 @@
         
         _currentLineStatusController = detailsNavigationController.topViewController;      // 10
         _currentLineStatusController.navigationItem.leftBarButtonItem = menuPopoverButtonItem;
+        
     }
 
+}
+- (void) togglePopOver
+{
+    if (menuPopoverController.popoverVisible) {
+        [self hidePopover];
+    }else {
+        
+        [menuPopoverController presentPopoverFromBarButtonItem:menuPopoverButtonItem permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
+    }
 }
 
 -(void)hidePopover

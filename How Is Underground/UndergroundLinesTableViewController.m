@@ -170,6 +170,9 @@
     nextController.getControllerAt = getControllerAt;
     nextController.setSelectedRow = setSelectedRow;
     [nextController refresh];
+    if (!IsIpad()) {
+        [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
+    }
 }
 - (void) reloadData
 {

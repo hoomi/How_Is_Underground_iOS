@@ -4,12 +4,28 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
-        <!--Underground Lines Table View Controller - Root View Controller-->
+        <!--Navigation Controller - Lines' Status-->
+        <scene sceneID="f2E-IW-DaU">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="S4J-6S-g8C" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" title="Lines' Status" id="CW1-HU-9ld"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="46q-H6-q92">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="PqK-yY-76g" kind="relationship" relationship="rootViewController" id="OBl-Re-Hsr"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Av3-O3-MDd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="143" y="-1543"/>
+        </scene>
+        <!--Underground Lines Table View Controller-->
         <scene sceneID="dXO-aO-cVP">
             <objects>
                 <tableViewController clearsSelectionOnViewWillAppear="NO" id="PqK-yY-76g" customClass="UndergroundLinesTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="v8V-EI-icw">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="768"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="704"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
@@ -28,11 +44,12 @@
                             <outlet property="delegate" destination="PqK-yY-76g" id="gCo-HW-HSy"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="bIW-EM-Ie0"/>
+                    <navigationItem key="navigationItem" id="rsU-Ao-fjh"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nOX-Gp-aaB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="343" y="-1202"/>
+            <point key="canvasLocation" x="1111" y="-1554"/>
         </scene>
         <!--Split View Controller-->
         <scene sceneID="pdh-rg-f6u">
@@ -41,8 +58,8 @@
                     <toolbarItems/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
-                        <segue destination="PqK-yY-76g" kind="relationship" relationship="masterViewController" id="5OZ-k9-rXg"/>
                         <segue destination="HJY-zh-3h8" kind="relationship" relationship="detailViewController" id="XDd-Ab-C5H"/>
+                        <segue destination="S4J-6S-g8C" kind="relationship" relationship="masterViewController" id="REB-Im-oEh"/>
                     </connections>
                 </splitViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UBT-7V-4oP" userLabel="First Responder" sceneMemberID="firstResponder"/>
