@@ -151,4 +151,19 @@
         XCTAssertTrue(true);
     }
 }
+
+- (void) testFormattingDate
+{
+    NSDateComponents *dateComponent = [[NSDateComponents alloc] init];
+    [dateComponent setYear:2014];
+    [dateComponent setMonth:04];
+    [dateComponent setDay:2];
+    [dateComponent setMinute:10];
+    [dateComponent setHour:2];
+    [dateComponent setSecond:30];
+    [dateComponent setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:3600]];
+    NSDate *date = [[NSCalendar currentCalendar]dateFromComponents:dateComponent];
+    NSString* formattedDate = [Utils formatDate:date];
+    XCTAssertEqualObjects(formattedDate, @"Wed, 02 Apr 2014 02:10:30 BST");
+}
 @end

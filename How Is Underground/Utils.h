@@ -35,7 +35,7 @@ static inline BOOL IsNSNumber(id number) {
 }
 
 static inline BOOL IsEmptyString (NSString* string) {
-    return (string != nil && [string length]<=0);
+    return (string == nil || [string length]<=0);
 }
 
 static inline BOOL IsIpad()
@@ -52,6 +52,7 @@ static inline BOOL IsIpad()
 + (NSString *)localizeDateWithYear:(long)year month:(NSInteger)month day:(NSInteger)day;
 + (NSString *)localizeDateWithYear:(long)year month:(NSInteger)month;
 + (NSString *)localizeDateWithYear:(long)year;
++ (NSString *)formatDate:(NSDate*)date;
 + (NSInteger) getYearFromDate: (NSDate*) date;
 + (NSInteger) indexFrom:(NSIndexPath*) indexPath :(UITableView*) tableView;
 + (NSIndexPath*)indexPathOf:(NSInteger) index :(UITableView*) tableView;

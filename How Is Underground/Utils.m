@@ -66,6 +66,22 @@
     return dateComponents.year;
 }
 
++(NSString *)formatDate:(NSDate *)date
+{
+    NSString *formatString = [NSDateFormatter dateFormatFromTemplate:@"E, dd MMM YYYY HH:mm:ss z" options:0
+                                                              locale:[NSLocale currentLocale]];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:formatString];
+    NSString* formattedString = [dateFormatter stringFromDate:date];
+    NSError *error = nil;
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@" [AaPp][Mm] " options:NSRegularExpressionCaseInsensitive error:&error];
+    if (error != nil) {
+        [NSLogger log:[error localizedDescription]];
+    }
+    NSString *modifiedString = [regex stringByReplacingMatchesInString:formattedString options:0 range:NSMakeRange(0, [formattedString length] - 1) withTemplate:@" "];
+    return modifiedString;
+}
+
 #pragma mark - TableView Utils
 +(NSInteger)indexFrom:(NSIndexPath *)indexPath :(UITableView *)tableView
 {
