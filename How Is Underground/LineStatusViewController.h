@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "LineStatus.h"
+#import "BaseViewController.h"
 
-@interface LineStatusViewController : UIViewController
+@interface LineStatusViewController : BaseViewController
 @property NSInteger index;
 @property (strong, nonatomic) LineStatus *lineStatus;
 @property (weak, nonatomic) IBOutlet UILabel *lineNameLabel;

@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseTableViewController.h"
 
-@interface UndergroundLinesTableViewController : UITableViewController <UITableViewDataSource,UITableViewDelegate,NSFetchedResultsControllerDelegate>
+@interface UndergroundLinesTableViewController :  BaseTableViewController<UITableViewDataSource,UITableViewDelegate,NSFetchedResultsControllerDelegate>
 
 @end

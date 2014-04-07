@@ -11,6 +11,8 @@
 		1515023118D9AA4100CBA59B /* PageContainerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1515023018D9AA4100CBA59B /* PageContainerViewController.xib */; };
 		1561CB8B18F283380010BD46 /* ConnectivityUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 1561CB8A18F283380010BD46 /* ConnectivityUtils.m */; };
 		1561CB8E18F291770010BD46 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1561CB8D18F291770010BD46 /* BaseViewController.m */; };
+		1561CB9118F29E7D0010BD46 /* AlertViewHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1561CB9018F29E7D0010BD46 /* AlertViewHelper.m */; };
+		1561CB9418F2A0360010BD46 /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1561CB9318F2A0360010BD46 /* BaseTableViewController.m */; };
 		156B4CE018E04C5300A2B677 /* DetailsViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 156B4CDF18E04C5300A2B677 /* DetailsViewManager.m */; };
 		156B4CE518E062BD00A2B677 /* Status.m in Sources */ = {isa = PBXBuildFile; fileRef = 156B4CE418E062BD00A2B677 /* Status.m */; };
 		156B4CE818E062BD00A2B677 /* Line.m in Sources */ = {isa = PBXBuildFile; fileRef = 156B4CE718E062BD00A2B677 /* Line.m */; };
@@ -66,6 +68,11 @@
 		1561CB8A18F283380010BD46 /* ConnectivityUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectivityUtils.m; sourceTree = "<group>"; };
 		1561CB8C18F291770010BD46 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		1561CB8D18F291770010BD46 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
+		1561CB8F18F29E7D0010BD46 /* AlertViewHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertViewHelper.h; sourceTree = "<group>"; };
+		1561CB9018F29E7D0010BD46 /* AlertViewHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertViewHelper.m; sourceTree = "<group>"; };
+		1561CB9218F2A0360010BD46 /* BaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewController.h; sourceTree = "<group>"; };
+		1561CB9318F2A0360010BD46 /* BaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewController.m; sourceTree = "<group>"; };
+		1561CB9518F2A0540010BD46 /* BaseViewControllerProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseViewControllerProtocol.h; sourceTree = "<group>"; };
 		156B4CDE18E04C5300A2B677 /* DetailsViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailsViewManager.h; sourceTree = "<group>"; };
 		156B4CDF18E04C5300A2B677 /* DetailsViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsViewManager.m; sourceTree = "<group>"; };
 		156B4CE318E062BD00A2B677 /* Status.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Status.h; sourceTree = "<group>"; };
@@ -154,6 +161,8 @@
 				156B4CDF18E04C5300A2B677 /* DetailsViewManager.m */,
 				15D46DC118EAF0B70048BAE9 /* TimerManager.h */,
 				15D46DC218EAF0B70048BAE9 /* TimerManager.m */,
+				1561CB8F18F29E7D0010BD46 /* AlertViewHelper.h */,
+				1561CB9018F29E7D0010BD46 /* AlertViewHelper.m */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -161,6 +170,7 @@
 		156B4CE118E060CC00A2B677 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				1561CB9518F2A0540010BD46 /* BaseViewControllerProtocol.h */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";
@@ -263,6 +273,8 @@
 				1515023018D9AA4100CBA59B /* PageContainerViewController.xib */,
 				1561CB8C18F291770010BD46 /* BaseViewController.h */,
 				1561CB8D18F291770010BD46 /* BaseViewController.m */,
+				1561CB9218F2A0360010BD46 /* BaseTableViewController.h */,
+				1561CB9318F2A0360010BD46 /* BaseTableViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -427,6 +439,7 @@
 				15E36C6118D847CE00598083 /* Utils.m in Sources */,
 				15AE2FAE18D73E89009378E2 /* LineTableViewCell.m in Sources */,
 				1515022D18D99C4100CBA59B /* PageContainerViewController.m in Sources */,
+				1561CB9118F29E7D0010BD46 /* AlertViewHelper.m in Sources */,
 				15E36C5B18D8372600598083 /* UIColor+UIColorExtension.m in Sources */,
 				15AE2FA718D73564009378E2 /* UndergroundLinesTableViewController.m in Sources */,
 				156B4CEE18E062BE00A2B677 /* LineStatus.m in Sources */,
@@ -434,6 +447,7 @@
 				15E36C6B18D8612800598083 /* Line.xcdatamodeld in Sources */,
 				1561CB8B18F283380010BD46 /* ConnectivityUtils.m in Sources */,
 				15AE2F8018D734E7009378E2 /* main.m in Sources */,
+				1561CB9418F2A0360010BD46 /* BaseTableViewController.m in Sources */,
 				15D46DC318EAF0B70048BAE9 /* TimerManager.m in Sources */,
 				156B4CE818E062BD00A2B677 /* Line.m in Sources */,
 				15E36C6418D848E000598083 /* NSLogger.m in Sources */,

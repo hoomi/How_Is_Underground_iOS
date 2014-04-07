@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseViewController.h"
 
 @class LineStatusViewController;
-@interface PageContainerViewController : UIViewController <UIPageViewControllerDataSource,UIPageViewControllerDelegate>
+@interface PageContainerViewController : BaseViewController <UIPageViewControllerDataSource,UIPageViewControllerDelegate>
 
 @property NSInteger selectedIndex;
 @property (strong, nonatomic) UIPageViewController *pageViewController;
