@@ -62,12 +62,17 @@
 
 -(void)applicationWillEnterForeground:(UIApplication *)application
 {
-    [[UIApplication sharedApplication] setApplicationIconBadgeNumber: 0];
-    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+    [self removePreviousNotifications];
+    [[NSNotificationCenter defaultCenter] postNotificationName:LINE_STATUS_UPDATED object:nil];
 }
 
 
 #pragma mark - Utility functions
+-(void)removePreviousNotifications
+{
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber: 0];
+    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+}
 - (void)invocationMethod {
     [NSLogger log:@"Timer was fired"];
     [ServerCommunicator requestLineStatus:^(NSError *error) {
@@ -111,6 +116,7 @@
         message = @"Good service on all lines";
     }
     [NSLogger log:message];
+    [self removePreviousNotifications];
     UILocalNotification *localNotif = [[UILocalNotification alloc] init];
     if (localNotif) {
         localNotif.alertBody = message;
