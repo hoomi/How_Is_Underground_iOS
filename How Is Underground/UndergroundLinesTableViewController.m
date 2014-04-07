@@ -18,6 +18,7 @@
 #import "Status.h"
 #import "StatusType.h"
 #import "DetailsViewManager.h"
+#import "UIColor+UIColorExtension.h"
 
 @class LineStatusViewController;
 
@@ -27,6 +28,7 @@
     NSFetchRequest *fetchRequest;
     NSManagedObjectContext *managedObjectContext;
     DetailsViewManager *detailsViewManager;
+    UIAlertView* alertView;
     
     LineStatusViewController* (^getControllerAt)(NSInteger index);
     NSInteger (^totalLineNumbers)(void);
@@ -56,9 +58,14 @@
     NSSortDescriptor *alphabeticallDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"line.name" ascending:YES];
     NSSortDescriptor *delayDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"status.descriptions" ascending:NO];
     [fetchRequest setSortDescriptors:@[delayDescriptor,alphabeticallDescriptor]];
+    [self showAlertView];
     [ServerCommunicator requestLineStatus:^(NSError *error) {
         if (error != nil) {
             [NSLogger log:@"Failed to download line status"];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self dismissAlertView];
+            });
+
             return;
         }
         __weak UndergroundLinesTableViewController *tempSelf = self;
@@ -72,6 +79,7 @@
                     setSelectedRow(0);
                 }
             }
+             [self dismissAlertView];
         });
     }];
     UIPageControl *pageControl = [UIPageControl appearance];
@@ -83,6 +91,9 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(lineStatusUpdated) name:LINE_STATUS_UPDATED object:nil];
+    NSLog(@"Connected to Wi-Fi: %d", [ConnectivityUtils isConnectedToWifi]);
+    NSLog(@"Connected to Mobile network: %d", [ConnectivityUtils isConnectedtoMobileNetworks]);
+    NSLog(@"Connected to internet: %d", [ConnectivityUtils hasInternetConnection]);
 }
 -(void)viewWillDisappear:(BOOL)animated
 {
@@ -148,6 +159,29 @@
 }
 
 #pragma mark - Utility functions
+
+-(void) showAlertView
+{
+    if (alertView == nil) {
+        alertView = [[UIAlertView alloc] initWithTitle:@"Loading..." message:nil delegate:self cancelButtonTitle:nil otherButtonTitles:nil];
+        UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        
+        // Adjust the indicator so it is up a few pixels from the bottom of the alerT
+        indicator.center = CGPointMake(alertView.bounds.size.width / 2, alertView.bounds.size.height - 50);
+        [indicator startAnimating];
+//        [alertView addSubview:indicator];
+//        [alertView sizeToFit];
+    }
+    [alertView show];
+}
+
+- (void) dismissAlertView
+{
+    if (alertView == nil) {
+        return;
+    }
+    [alertView dismissWithClickedButtonIndex:0 animated:YES];
+}
 
 - (void)rowSelected:(NSIndexPath*)indexPath
 {

@@ -27,6 +27,8 @@
 + (UIColor *) whiteTextLineColor;
 + (UIColor *) blueTextLineColor;
 
++ (UIColor *) progressIndicatorColor;
+
 
 + (UIColor *) goodService;
 + (UIColor *) minorDelays;

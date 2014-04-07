@@ -18,6 +18,7 @@
 
     #import"Defines.h"
     #import "Utils.h"
+    #import "ConnectivityUtils.h"
     #import "NSLogger.h"
 
 #endif

@@ -52,8 +52,9 @@
         }
         if ([[UIApplication sharedApplication]applicationState] ==  UIApplicationStateBackground) {
             [self showLocalNotification];
+        } else {
+            [[NSNotificationCenter defaultCenter] postNotificationName:LINE_STATUS_UPDATED object:nil];
         }
-        [[NSNotificationCenter defaultCenter] postNotificationName:LINE_STATUS_UPDATED object:nil];
         completionHandler(UIBackgroundFetchResultNewData);
         
     }];
@@ -76,8 +77,9 @@
         }
         if ([[UIApplication sharedApplication]applicationState] ==  UIApplicationStateBackground) {
             [self showLocalNotification];
+        } else {
+            [[NSNotificationCenter defaultCenter] postNotificationName:LINE_STATUS_UPDATED object:nil];
         }
-        [[NSNotificationCenter defaultCenter] postNotificationName:LINE_STATUS_UPDATED object:nil];
         
     }];
 }

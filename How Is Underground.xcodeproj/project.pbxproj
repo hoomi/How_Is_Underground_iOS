@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		1515022D18D99C4100CBA59B /* PageContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1515022C18D99C4100CBA59B /* PageContainerViewController.m */; };
 		1515023118D9AA4100CBA59B /* PageContainerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1515023018D9AA4100CBA59B /* PageContainerViewController.xib */; };
+		1561CB8B18F283380010BD46 /* ConnectivityUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 1561CB8A18F283380010BD46 /* ConnectivityUtils.m */; };
+		1561CB8E18F291770010BD46 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1561CB8D18F291770010BD46 /* BaseViewController.m */; };
 		156B4CE018E04C5300A2B677 /* DetailsViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 156B4CDF18E04C5300A2B677 /* DetailsViewManager.m */; };
 		156B4CE518E062BD00A2B677 /* Status.m in Sources */ = {isa = PBXBuildFile; fileRef = 156B4CE418E062BD00A2B677 /* Status.m */; };
 		156B4CE818E062BD00A2B677 /* Line.m in Sources */ = {isa = PBXBuildFile; fileRef = 156B4CE718E062BD00A2B677 /* Line.m */; };
@@ -60,6 +62,10 @@
 		1515022B18D99C4100CBA59B /* PageContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageContainerViewController.h; sourceTree = "<group>"; };
 		1515022C18D99C4100CBA59B /* PageContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageContainerViewController.m; sourceTree = "<group>"; };
 		1515023018D9AA4100CBA59B /* PageContainerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PageContainerViewController.xib; sourceTree = "<group>"; };
+		1561CB8918F283380010BD46 /* ConnectivityUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectivityUtils.h; sourceTree = "<group>"; };
+		1561CB8A18F283380010BD46 /* ConnectivityUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectivityUtils.m; sourceTree = "<group>"; };
+		1561CB8C18F291770010BD46 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
+		1561CB8D18F291770010BD46 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		156B4CDE18E04C5300A2B677 /* DetailsViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailsViewManager.h; sourceTree = "<group>"; };
 		156B4CDF18E04C5300A2B677 /* DetailsViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsViewManager.m; sourceTree = "<group>"; };
 		156B4CE318E062BD00A2B677 /* Status.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Status.h; sourceTree = "<group>"; };
@@ -255,6 +261,8 @@
 				15E36C8C18D8A44F00598083 /* LineStatusViewController.m */,
 				15E36C8D18D8A44F00598083 /* LineStatusViewController.xib */,
 				1515023018D9AA4100CBA59B /* PageContainerViewController.xib */,
+				1561CB8C18F291770010BD46 /* BaseViewController.h */,
+				1561CB8D18F291770010BD46 /* BaseViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -280,6 +288,8 @@
 				15E36C5A18D8372600598083 /* UIColor+UIColorExtension.m */,
 				15E36C6218D848E000598083 /* NSLogger.h */,
 				15E36C6318D848E000598083 /* NSLogger.m */,
+				1561CB8918F283380010BD46 /* ConnectivityUtils.h */,
+				1561CB8A18F283380010BD46 /* ConnectivityUtils.m */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -422,10 +432,12 @@
 				156B4CEE18E062BE00A2B677 /* LineStatus.m in Sources */,
 				156B4CF118E062F400A2B677 /* XmlParser.m in Sources */,
 				15E36C6B18D8612800598083 /* Line.xcdatamodeld in Sources */,
+				1561CB8B18F283380010BD46 /* ConnectivityUtils.m in Sources */,
 				15AE2F8018D734E7009378E2 /* main.m in Sources */,
 				15D46DC318EAF0B70048BAE9 /* TimerManager.m in Sources */,
 				156B4CE818E062BD00A2B677 /* Line.m in Sources */,
 				15E36C6418D848E000598083 /* NSLogger.m in Sources */,
+				1561CB8E18F291770010BD46 /* BaseViewController.m in Sources */,
 				156B4CE018E04C5300A2B677 /* DetailsViewManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
