@@ -16,6 +16,7 @@
 +(DetailsViewManager *) sharedDetailsViewManager;
 
 -(void)hidePopover;
+-(void)setShowPopoverButton:(BOOL)show;
 -(void)setCurrentLineStatusController:(UIViewController *)lineStatusController :(BOOL)hidePopover;
 
 @end

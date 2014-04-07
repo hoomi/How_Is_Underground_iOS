@@ -17,6 +17,8 @@
 		1561CBC018F2D5850010BD46 /* Line.m in Sources */ = {isa = PBXBuildFile; fileRef = 1561CBBF18F2D5850010BD46 /* Line.m */; };
 		1561CBC318F2D5850010BD46 /* Status.m in Sources */ = {isa = PBXBuildFile; fileRef = 1561CBC218F2D5850010BD46 /* Status.m */; };
 		1561CBC618F2D5850010BD46 /* StatusType.m in Sources */ = {isa = PBXBuildFile; fileRef = 1561CBC518F2D5850010BD46 /* StatusType.m */; };
+		1561CBCC18F2F9270010BD46 /* standard-tube-map.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1561CBCB18F2F9270010BD46 /* standard-tube-map.gif */; };
+		1561CBCF18F2FAA30010BD46 /* TubeMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1561CBCE18F2FAA30010BD46 /* TubeMapViewController.m */; };
 		156B4CE018E04C5300A2B677 /* DetailsViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 156B4CDF18E04C5300A2B677 /* DetailsViewManager.m */; };
 		156B4CF118E062F400A2B677 /* XmlParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 156B4CF018E062F400A2B677 /* XmlParser.m */; };
 		15A51CF618DC591400E837C7 /* Mainstoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15A51CF518DC591400E837C7 /* Mainstoryboard_iPad.storyboard */; };
@@ -82,6 +84,9 @@
 		1561CBC218F2D5850010BD46 /* Status.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Status.m; sourceTree = "<group>"; };
 		1561CBC418F2D5850010BD46 /* StatusType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusType.h; sourceTree = "<group>"; };
 		1561CBC518F2D5850010BD46 /* StatusType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusType.m; sourceTree = "<group>"; };
+		1561CBCB18F2F9270010BD46 /* standard-tube-map.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "standard-tube-map.gif"; sourceTree = "<group>"; };
+		1561CBCD18F2FAA30010BD46 /* TubeMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TubeMapViewController.h; sourceTree = "<group>"; };
+		1561CBCE18F2FAA30010BD46 /* TubeMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TubeMapViewController.m; sourceTree = "<group>"; };
 		156B4CDE18E04C5300A2B677 /* DetailsViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailsViewManager.h; sourceTree = "<group>"; };
 		156B4CDF18E04C5300A2B677 /* DetailsViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsViewManager.m; sourceTree = "<group>"; };
 		156B4CEF18E062F400A2B677 /* XmlParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XmlParser.h; sourceTree = "<group>"; };
@@ -155,6 +160,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1561CBCA18F2F9130010BD46 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				1561CBCB18F2F9270010BD46 /* standard-tube-map.gif */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
 		156B4CDD18E04C4000A2B677 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -210,6 +223,7 @@
 		15AE2F7918D734E6009378E2 /* How Is Underground */ = {
 			isa = PBXGroup;
 			children = (
+				1561CBCA18F2F9130010BD46 /* Images */,
 				156B4CE118E060CC00A2B677 /* Protocols */,
 				156B4CDD18E04C4000A2B677 /* Helpers */,
 				15E36C6818D8610500598083 /* Models */,
@@ -276,6 +290,8 @@
 				1561CB8D18F291770010BD46 /* BaseViewController.m */,
 				1561CB9218F2A0360010BD46 /* BaseTableViewController.h */,
 				1561CB9318F2A0360010BD46 /* BaseTableViewController.m */,
+				1561CBCD18F2FAA30010BD46 /* TubeMapViewController.h */,
+				1561CBCE18F2FAA30010BD46 /* TubeMapViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -408,6 +424,7 @@
 			files = (
 				15AE2FAF18D73E89009378E2 /* LineTableViewCell.xib in Resources */,
 				15AE2F7E18D734E7009378E2 /* InfoPlist.strings in Resources */,
+				1561CBCC18F2F9270010BD46 /* standard-tube-map.gif in Resources */,
 				15AE2FB118D74544009378E2 /* Mainstoryboard_iPhone.storyboard in Resources */,
 				1515023118D9AA4100CBA59B /* PageContainerViewController.xib in Resources */,
 				15E36C8F18D8A44F00598083 /* LineStatusViewController.xib in Resources */,
@@ -454,6 +471,7 @@
 				15E36C6418D848E000598083 /* NSLogger.m in Sources */,
 				1561CB8E18F291770010BD46 /* BaseViewController.m in Sources */,
 				156B4CE018E04C5300A2B677 /* DetailsViewManager.m in Sources */,
+				1561CBCF18F2FAA30010BD46 /* TubeMapViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

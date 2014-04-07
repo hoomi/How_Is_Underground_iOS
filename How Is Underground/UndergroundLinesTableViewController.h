@@ -7,8 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreData/CoreData.h>
 #import "BaseTableViewController.h"
+#import "PageContainerViewController.h"
 
-@interface UndergroundLinesTableViewController :  BaseTableViewController<UITableViewDataSource,UITableViewDelegate,NSFetchedResultsControllerDelegate>
+//@class PageContainerViewController;
+
+@interface UndergroundLinesTableViewController :  BaseTableViewController <UITableViewDataSource,UITableViewDelegate,NSFetchedResultsControllerDelegate>
 
 @end

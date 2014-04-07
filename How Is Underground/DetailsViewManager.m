@@ -56,7 +56,6 @@
         detailsNavigationController =                                               // 3
         [splitViewController.viewControllers lastObject];
         _splitViewController.delegate = self;
-//        [detailsNavigationController setNavigationBarHidden:YES animated:YES];// 4
     }
 }
 
@@ -86,8 +85,9 @@
     }
     
     if (hidePopover) {
-        [self hidePopover];                                                  
+        [self hidePopover];
     }
+    [self setShowPopoverButton:UIInterfaceOrientationIsPortrait([[UIDevice currentDevice] orientation])];
     
     if (newStack != nil) {
         CATransition *transition = [CATransition animation];
@@ -111,6 +111,17 @@
     }else {
         
         [menuPopoverController presentPopoverFromBarButtonItem:menuPopoverButtonItem permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
+    }
+}
+
+-(void)setShowPopoverButton:(BOOL)show
+{
+    if (show) {
+        _currentLineStatusController.navigationItem.leftBarButtonItem.enabled=YES;
+        _currentLineStatusController.navigationItem.leftBarButtonItem = menuPopoverButtonItem;
+    } else {
+        _currentLineStatusController.navigationItem.leftBarButtonItem = nil;
+        [detailsNavigationController.navigationItem setHidesBackButton:YES animated:YES];
     }
 }
 

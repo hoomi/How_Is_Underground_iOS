@@ -17,7 +17,6 @@
 #import "Line.h"
 #import "Status.h"
 #import "StatusType.h"
-#import "DetailsViewManager.h"
 #import "UIColor+UIColorExtension.h"
 
 @class LineStatusViewController;
@@ -27,7 +26,6 @@
     NSFetchedResultsController *fetchedResultController;
     NSFetchRequest *fetchRequest;
     NSManagedObjectContext *managedObjectContext;
-    DetailsViewManager *detailsViewManager;
     
     LineStatusViewController* (^initControllerAt)(NSInteger index);
     NSInteger (^totalLineNumbers)(void);
@@ -70,14 +68,6 @@
         __weak UndergroundLinesTableViewController *tempSelf = self;
         dispatch_async(dispatch_get_main_queue(), ^{
             [tempSelf reloadData];
-            if ([tempSelf.tableView indexPathForSelectedRow] == nil && IsIpad()) {
-                [tempSelf initBlocks];
-                NSIndexPath *indexPath =[Utils indexPathOf:0 :tempSelf.tableView];
-                if (indexPath != nil) {
-                    [tempSelf rowSelected:indexPath];
-                    setSelectedRow(0);
-                }
-            }
             [self dismissLoadingView];
         });
     }];
@@ -165,28 +155,16 @@
 - (void)rowSelected:(NSIndexPath*)indexPath
 {
     PageContainerViewController *nextController;
-    if (!IsIpad()) {
-        nextController = [[PageContainerViewController alloc] init];
-        [self.navigationController pushViewController:nextController animated:YES];
-    } else {
-        [DetailsViewManager sharedDetailsViewManager].splitViewController = self.splitViewController;
-        UIViewController *temp = [DetailsViewManager sharedDetailsViewManager].currentLineStatusController;
-        if (temp == nil || ![temp isMemberOfClass:[PageContainerViewController class]]) {
-            nextController = [[PageContainerViewController alloc] init];
-            [[DetailsViewManager sharedDetailsViewManager] setCurrentLineStatusController:nextController];
-        } else {
-            nextController = (PageContainerViewController*)temp;
-        }
-    }
+    // It means that it is an iPhone
+    nextController = [[PageContainerViewController alloc] init];
+    [self.navigationController pushViewController:nextController animated:YES];
     nextController.totalNumberOfLines = totalLineNumbers;
     nextController.selectedIndex =[Utils indexFrom:indexPath : self.tableView];
     nextController.initControllerAt = initControllerAt;
     nextController.getLineStatusAt = getLineStatusAt;
     nextController.setSelectedRow = setSelectedRow;
     [nextController refresh];
-    if (!IsIpad()) {
-        [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
-    }
+    [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 
 -(NSInteger)validateGivenIndex:(NSInteger)index
