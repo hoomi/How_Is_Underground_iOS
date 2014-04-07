@@ -39,7 +39,7 @@
 
 -(void)scheduledTimerWithTimeInterval:(NSTimeInterval)seconds invocation:(NSInvocation *)invocation repeats:(BOOL)repeats id:(NSInteger)id
 {
-        NSString* stringId = [NSString stringWithFormat:@"%ld",id];
+        NSString* stringId = [NSString stringWithFormat:@"%ld",(long)id];
     if (dictionaryOfTimers != nil && [dictionaryOfTimers count] < 10 && [dictionaryOfTimers objectForKey:stringId] == nil) {
         NSTimer* timer = [NSTimer scheduledTimerWithTimeInterval:seconds invocation:invocation repeats:repeats];
         [timer setTolerance:TIMER_TOLERANCE];
@@ -55,7 +55,7 @@
 
 - (void)destroyTimer:(NSInteger)id
 {
-    NSString* stringId = [NSString stringWithFormat:@"%ld",id];
+    NSString* stringId = [NSString stringWithFormat:@"%ld",(long)id];
     if (dictionaryOfTimers != nil) {
         NSTimer *timer = [dictionaryOfTimers objectForKey:stringId];
         if (timer != nil){

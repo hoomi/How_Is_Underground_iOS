@@ -13,11 +13,11 @@
 		1561CB8E18F291770010BD46 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1561CB8D18F291770010BD46 /* BaseViewController.m */; };
 		1561CB9118F29E7D0010BD46 /* AlertViewHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1561CB9018F29E7D0010BD46 /* AlertViewHelper.m */; };
 		1561CB9418F2A0360010BD46 /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1561CB9318F2A0360010BD46 /* BaseTableViewController.m */; };
+		1561CBBD18F2D5840010BD46 /* LineStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 1561CBBC18F2D5840010BD46 /* LineStatus.m */; };
+		1561CBC018F2D5850010BD46 /* Line.m in Sources */ = {isa = PBXBuildFile; fileRef = 1561CBBF18F2D5850010BD46 /* Line.m */; };
+		1561CBC318F2D5850010BD46 /* Status.m in Sources */ = {isa = PBXBuildFile; fileRef = 1561CBC218F2D5850010BD46 /* Status.m */; };
+		1561CBC618F2D5850010BD46 /* StatusType.m in Sources */ = {isa = PBXBuildFile; fileRef = 1561CBC518F2D5850010BD46 /* StatusType.m */; };
 		156B4CE018E04C5300A2B677 /* DetailsViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 156B4CDF18E04C5300A2B677 /* DetailsViewManager.m */; };
-		156B4CE518E062BD00A2B677 /* Status.m in Sources */ = {isa = PBXBuildFile; fileRef = 156B4CE418E062BD00A2B677 /* Status.m */; };
-		156B4CE818E062BD00A2B677 /* Line.m in Sources */ = {isa = PBXBuildFile; fileRef = 156B4CE718E062BD00A2B677 /* Line.m */; };
-		156B4CEB18E062BD00A2B677 /* StatusType.m in Sources */ = {isa = PBXBuildFile; fileRef = 156B4CEA18E062BD00A2B677 /* StatusType.m */; };
-		156B4CEE18E062BE00A2B677 /* LineStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 156B4CED18E062BE00A2B677 /* LineStatus.m */; };
 		156B4CF118E062F400A2B677 /* XmlParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 156B4CF018E062F400A2B677 /* XmlParser.m */; };
 		15A51CF618DC591400E837C7 /* Mainstoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15A51CF518DC591400E837C7 /* Mainstoryboard_iPad.storyboard */; };
 		15AE2F7418D734E6009378E2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15AE2F7318D734E6009378E2 /* Foundation.framework */; };
@@ -73,16 +73,17 @@
 		1561CB9218F2A0360010BD46 /* BaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewController.h; sourceTree = "<group>"; };
 		1561CB9318F2A0360010BD46 /* BaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewController.m; sourceTree = "<group>"; };
 		1561CB9518F2A0540010BD46 /* BaseViewControllerProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseViewControllerProtocol.h; sourceTree = "<group>"; };
+		1561CBBA18F2D4BD0010BD46 /* Line 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Line 2.xcdatamodel"; sourceTree = "<group>"; };
+		1561CBBB18F2D5840010BD46 /* LineStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineStatus.h; sourceTree = "<group>"; };
+		1561CBBC18F2D5840010BD46 /* LineStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineStatus.m; sourceTree = "<group>"; };
+		1561CBBE18F2D5850010BD46 /* Line.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Line.h; sourceTree = "<group>"; };
+		1561CBBF18F2D5850010BD46 /* Line.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Line.m; sourceTree = "<group>"; };
+		1561CBC118F2D5850010BD46 /* Status.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Status.h; sourceTree = "<group>"; };
+		1561CBC218F2D5850010BD46 /* Status.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Status.m; sourceTree = "<group>"; };
+		1561CBC418F2D5850010BD46 /* StatusType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusType.h; sourceTree = "<group>"; };
+		1561CBC518F2D5850010BD46 /* StatusType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusType.m; sourceTree = "<group>"; };
 		156B4CDE18E04C5300A2B677 /* DetailsViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailsViewManager.h; sourceTree = "<group>"; };
 		156B4CDF18E04C5300A2B677 /* DetailsViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsViewManager.m; sourceTree = "<group>"; };
-		156B4CE318E062BD00A2B677 /* Status.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Status.h; sourceTree = "<group>"; };
-		156B4CE418E062BD00A2B677 /* Status.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Status.m; sourceTree = "<group>"; };
-		156B4CE618E062BD00A2B677 /* Line.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Line.h; sourceTree = "<group>"; };
-		156B4CE718E062BD00A2B677 /* Line.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Line.m; sourceTree = "<group>"; };
-		156B4CE918E062BD00A2B677 /* StatusType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusType.h; sourceTree = "<group>"; };
-		156B4CEA18E062BD00A2B677 /* StatusType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusType.m; sourceTree = "<group>"; };
-		156B4CEC18E062BE00A2B677 /* LineStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineStatus.h; sourceTree = "<group>"; };
-		156B4CED18E062BE00A2B677 /* LineStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineStatus.m; sourceTree = "<group>"; };
 		156B4CEF18E062F400A2B677 /* XmlParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XmlParser.h; sourceTree = "<group>"; };
 		156B4CF018E062F400A2B677 /* XmlParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XmlParser.m; sourceTree = "<group>"; };
 		15A51CF518DC591400E837C7 /* Mainstoryboard_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Mainstoryboard_iPad.storyboard; sourceTree = "<group>"; };
@@ -310,14 +311,14 @@
 			isa = PBXGroup;
 			children = (
 				15E36C6918D8612800598083 /* Line.xcdatamodeld */,
-				156B4CEC18E062BE00A2B677 /* LineStatus.h */,
-				156B4CED18E062BE00A2B677 /* LineStatus.m */,
-				156B4CE918E062BD00A2B677 /* StatusType.h */,
-				156B4CEA18E062BD00A2B677 /* StatusType.m */,
-				156B4CE618E062BD00A2B677 /* Line.h */,
-				156B4CE718E062BD00A2B677 /* Line.m */,
-				156B4CE318E062BD00A2B677 /* Status.h */,
-				156B4CE418E062BD00A2B677 /* Status.m */,
+				1561CBBB18F2D5840010BD46 /* LineStatus.h */,
+				1561CBBC18F2D5840010BD46 /* LineStatus.m */,
+				1561CBBE18F2D5850010BD46 /* Line.h */,
+				1561CBBF18F2D5850010BD46 /* Line.m */,
+				1561CBC118F2D5850010BD46 /* Status.h */,
+				1561CBC218F2D5850010BD46 /* Status.m */,
+				1561CBC418F2D5850010BD46 /* StatusType.h */,
+				1561CBC518F2D5850010BD46 /* StatusType.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -433,23 +434,23 @@
 				15E36C8E18D8A44F00598083 /* LineStatusViewController.m in Sources */,
 				15E36C5818D7A1AA00598083 /* BaseTableViewCell.m in Sources */,
 				15AE2F8418D734E7009378E2 /* AppDelegate.m in Sources */,
-				156B4CEB18E062BD00A2B677 /* StatusType.m in Sources */,
 				15E36C5E18D8466C00598083 /* ServerCommunicator.m in Sources */,
-				156B4CE518E062BD00A2B677 /* Status.m in Sources */,
 				15E36C6118D847CE00598083 /* Utils.m in Sources */,
 				15AE2FAE18D73E89009378E2 /* LineTableViewCell.m in Sources */,
 				1515022D18D99C4100CBA59B /* PageContainerViewController.m in Sources */,
+				1561CBC318F2D5850010BD46 /* Status.m in Sources */,
+				1561CBC618F2D5850010BD46 /* StatusType.m in Sources */,
 				1561CB9118F29E7D0010BD46 /* AlertViewHelper.m in Sources */,
 				15E36C5B18D8372600598083 /* UIColor+UIColorExtension.m in Sources */,
 				15AE2FA718D73564009378E2 /* UndergroundLinesTableViewController.m in Sources */,
-				156B4CEE18E062BE00A2B677 /* LineStatus.m in Sources */,
+				1561CBC018F2D5850010BD46 /* Line.m in Sources */,
 				156B4CF118E062F400A2B677 /* XmlParser.m in Sources */,
 				15E36C6B18D8612800598083 /* Line.xcdatamodeld in Sources */,
+				1561CBBD18F2D5840010BD46 /* LineStatus.m in Sources */,
 				1561CB8B18F283380010BD46 /* ConnectivityUtils.m in Sources */,
 				15AE2F8018D734E7009378E2 /* main.m in Sources */,
 				1561CB9418F2A0360010BD46 /* BaseTableViewController.m in Sources */,
 				15D46DC318EAF0B70048BAE9 /* TimerManager.m in Sources */,
-				156B4CE818E062BD00A2B677 /* Line.m in Sources */,
 				15E36C6418D848E000598083 /* NSLogger.m in Sources */,
 				1561CB8E18F291770010BD46 /* BaseViewController.m in Sources */,
 				156B4CE018E04C5300A2B677 /* DetailsViewManager.m in Sources */,
@@ -676,9 +677,10 @@
 		15E36C6918D8612800598083 /* Line.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				1561CBBA18F2D4BD0010BD46 /* Line 2.xcdatamodel */,
 				15E36C6A18D8612800598083 /* Line.xcdatamodel */,
 			);
-			currentVersion = 15E36C6A18D8612800598083 /* Line.xcdatamodel */;
+			currentVersion = 1561CBBA18F2D4BD0010BD46 /* Line 2.xcdatamodel */;
 			path = Line.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

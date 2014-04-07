@@ -56,7 +56,6 @@ static inline BOOL IsIpad()
 + (NSInteger) getYearFromDate: (NSDate*) date;
 + (NSInteger) indexFrom:(NSIndexPath*) indexPath :(UITableView*) tableView;
 + (NSIndexPath*)indexPathOf:(NSInteger) index :(UITableView*) tableView;
-+ (NSInteger)totalNumberOfRows:(UITableView*)tableView;
 + (NSInteger)numberOfRowsInTotal:(UITableView*)tableView;
 
 @end
