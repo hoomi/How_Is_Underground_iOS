@@ -22,9 +22,9 @@
 @implementation AppDelegate
 {
     NSFetchRequest* fetchRequest;
+    NSMutableDictionary* threadsmanagedObjectCotextDic;
 }
 
-@synthesize managedObjectContext = _managedObjectContext;
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 
@@ -33,6 +33,7 @@
     [self requestLineStatusPeriodically];
     [application setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalMinimum];
     [NSLogger log:[NSString stringWithFormat:@"Launched in background %d", UIApplicationStateBackground == application.applicationState]];
+    threadsmanagedObjectCotextDic = [[NSMutableDictionary alloc]init];
     return YES;
 }
 
@@ -101,7 +102,7 @@
         
     }
     NSError *error;
-    NSArray *array = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    NSArray *array = [[self managedObjectContext:@"notification"] executeFetchRequest:fetchRequest error:&error];
     if (error != nil) {
         [NSLogger log:[error localizedDescription]];
         return;
@@ -135,12 +136,12 @@
     [[TimerManager getInstance] scheduledTimerWithTimeInterval:REFRESH_INTERVAL invocation:invocation repeats:YES id:  LINE_STATUS_TIMER_ID];
 }
 
-- (void)saveContext
+- (void)saveContext:(NSString*)name
 {
     NSError *error = nil;
     [self.persistentStoreCoordinator lock];
     @try {
-        NSManagedObjectContext *managedObjectContext = self.managedObjectContext;
+        NSManagedObjectContext *managedObjectContext = [self managedObjectContext:name];
         if (managedObjectContext != nil) {
             if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error]) {
                 NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
@@ -167,18 +168,20 @@
         NSLog(@"error deleting: %@", [error localizedDescription]);
 }
 
-- (NSManagedObjectContext *)managedObjectContext
+- (NSManagedObjectContext *)managedObjectContext:(NSString*)name
 {
-    if (_managedObjectContext != nil) {
-        return _managedObjectContext;
+    NSManagedObjectContext* managedObject = [threadsmanagedObjectCotextDic objectForKey:name];
+    if ( managedObject != nil) {
+        return managedObject;
     }
     
     NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
     if (coordinator != nil) {
-        _managedObjectContext = [[NSManagedObjectContext alloc] init];
-        [_managedObjectContext setPersistentStoreCoordinator:coordinator];
+        managedObject = [[NSManagedObjectContext alloc] init];
+        [managedObject setPersistentStoreCoordinator:coordinator];
+        [threadsmanagedObjectCotextDic setObject:managedObject forKey:name];
     }
-    return _managedObjectContext;
+    return managedObject;
 }
 
 - (NSManagedObjectModel *)managedObjectModel

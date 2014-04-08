@@ -50,7 +50,7 @@
 {
     [super viewDidLoad];
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-    managedObjectContext = appDelegate.managedObjectContext;
+    managedObjectContext = [appDelegate managedObjectContext:@"MainThread"];
     fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"LineStatus"];
     NSSortDescriptor *alphabeticallDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"line.name" ascending:YES];
     NSSortDescriptor *delayDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"status.descriptions" ascending:NO];

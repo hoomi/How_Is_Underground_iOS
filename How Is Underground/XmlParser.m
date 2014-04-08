@@ -28,7 +28,7 @@
     self = [super init];
     if (self != nil) {
         AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-        managedObjectContext = appDelegate.managedObjectContext;
+        managedObjectContext = [appDelegate managedObjectContext:@"xmlParser"];
     }
     return self;
 }
@@ -67,7 +67,7 @@
         currentCompleteBlock = nil;
     }
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-    [appDelegate saveContext];
+    [appDelegate saveContext:@"xmlParser"];
     
 }
 

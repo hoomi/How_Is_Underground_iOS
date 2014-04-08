@@ -134,7 +134,7 @@
                                 <rect key="frame" x="0.0" y="44" width="654" height="696"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <subviews>
-                                    <imageView multipleTouchEnabled="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="standard-tube-map.gif" translatesAutoresizingMaskIntoConstraints="NO" id="bQO-SK-kug">
+                                    <imageView multipleTouchEnabled="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="standard-tube-map.gif" translatesAutoresizingMaskIntoConstraints="NO" id="bQO-SK-kug">
                                         <rect key="frame" x="0.0" y="0.0" width="2483" height="1765"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     </imageView>

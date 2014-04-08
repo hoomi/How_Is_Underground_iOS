@@ -25,7 +25,7 @@
 {
     NSInteger animationType;
     IBOutletCollection(NSLayoutConstraint)NSArray *portraitConstraints;
-    IBOutletCollection(NSLayoutConstraint)NSArray *landscapeConstraints;
+    NSArray *landscapeConstraints;
     __weak IBOutlet UIView *textWrapperView;
 }
 
@@ -100,6 +100,7 @@ static CATransition* transition;
     [super viewDidLoad];
     [self updateUi];
     [self setAnimation];
+    [self setLayoutConstraints:[[UIApplication sharedApplication] statusBarOrientation]];
     self.scrollView.contentSize = self.contentView.bounds.size;
     [self.scrollView addSubview:self.contentView];
 }
@@ -121,54 +122,60 @@ static CATransition* transition;
     [self.statusImageView stopAnimating];
 }
 
+-(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+    [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
+    [self setLayoutConstraints:[[UIApplication sharedApplication] statusBarOrientation]];
+}
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
     [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
-      [self setLayoutConstraints];
     self.scrollView.contentSize = self.contentView.bounds.size;
 }
 
 #pragma mark - Utility functions
 
-- (void) removeSubViews
+-(void) setLayoutConstraints:(UIInterfaceOrientation)orientation
 {
-    for (UIView* subview in [self.scrollView subviews]) {
-        [subview removeFromSuperview];
-    }
-}
-
--(void) setLayoutConstraints
-{
-    if (!IsIpad()) {
-        [self initLayoutConstraints];
-        if (UIInterfaceOrientationIsLandscape([[UIDevice currentDevice]orientation])) {
-            [self.contentView removeConstraints:portraitConstraints];
-            [self.contentView addConstraints:landscapeConstraints];
-        } else {
+    [self initLayoutConstraints];
+    if (IsIpad()) {
+        if (UIInterfaceOrientationIsLandscape(orientation)) {
             [self.contentView removeConstraints:landscapeConstraints];
             [self.contentView addConstraints:portraitConstraints];
+        } else {
+            [self.contentView removeConstraints:portraitConstraints];
+            [self.contentView addConstraints:landscapeConstraints];
         }
+        
+        return;
+    }
+    if (UIInterfaceOrientationIsLandscape([[UIDevice currentDevice]orientation])) {
+        [self.contentView removeConstraints:portraitConstraints];
+        [self.contentView addConstraints:landscapeConstraints];
+    } else {
+        [self.contentView removeConstraints:landscapeConstraints];
+        [self.contentView addConstraints:portraitConstraints];
     }
     
 }
 
 -(void) initLayoutConstraints
 {
-    id topGuide = self.topLayoutGuide;
-    id bottomGuide = self.bottomLayoutGuide;
-    id contentView = self.contentView, statusImageView = self.statusImageView;
-    
-    NSMutableArray *tempRootLayoutConstraints;
-    NSArray *generatedLayoutConstraints;
     if (landscapeConstraints == nil) {
-        NSDictionary *views = NSDictionaryOfVariableBindings(contentView,topGuide,bottomGuide,statusImageView,textWrapperView);
+        id statusImageView = self.statusImageView;
+        
+        NSMutableArray *tempRootLayoutConstraints;
+        NSArray *generatedLayoutConstraints;
+        NSDictionary *views = NSDictionaryOfVariableBindings(statusImageView,textWrapperView);
         tempRootLayoutConstraints = [NSMutableArray new];
         generatedLayoutConstraints = [NSLayoutConstraint
-                                      constraintsWithVisualFormat:@"H:|-[textWrapperView]-[statusImageView]-|" options:0 metrics:nil views:views];
+                                      constraintsWithVisualFormat:@"H:|-[textWrapperView]-20-[statusImageView]-|" options:0 metrics:nil views:views];
         [tempRootLayoutConstraints addObjectsFromArray:generatedLayoutConstraints];
         generatedLayoutConstraints = [NSLayoutConstraint
-                                      constraintsWithVisualFormat:@"V:|-[statusImageView]-|" options:0 metrics:nil views:views];
+                                      constraintsWithVisualFormat:@"V:|-[textWrapperView]-|" options:0 metrics:nil views:views];
         [tempRootLayoutConstraints addObjectsFromArray:generatedLayoutConstraints];
+        NSLayoutConstraint *yCenterConstraint = [NSLayoutConstraint constraintWithItem:statusImageView attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0];
+        [tempRootLayoutConstraints addObject:yCenterConstraint];
         landscapeConstraints = [NSArray arrayWithArray:tempRootLayoutConstraints];
     }
 }
