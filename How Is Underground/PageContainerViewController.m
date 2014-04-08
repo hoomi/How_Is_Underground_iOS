@@ -52,7 +52,11 @@
 -(void) lineStatusUpdated
 {
     [NSLogger log:@"PageContainerViewController -> Line Status Updated"];
-    [self refresh];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self refresh];
+        [self dismissLoadingView];
+        
+    });
 }
 
 #pragma mark - Page View Controller Data Source

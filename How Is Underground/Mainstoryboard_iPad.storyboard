@@ -96,6 +96,7 @@
                         <outletCollection property="tubeLinesLandscapeConstraints" destination="lmG-6B-eP8" id="E9G-yc-0PG"/>
                         <outletCollection property="rootViewLandscapeConstraints" destination="koM-le-i7q" id="ev0-sD-3Dw"/>
                         <outletCollection property="rootViewLandscapeConstraints" destination="aQq-g3-qj5" id="TV0-hD-ku5"/>
+                        <outletCollection property="rootViewLandscapeConstraints" destination="Zie-ML-m03" id="eQm-mU-eXk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oVl-Ay-gRv" userLabel="First Responder" sceneMemberID="firstResponder"/>

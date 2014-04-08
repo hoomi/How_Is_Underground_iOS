@@ -80,7 +80,7 @@
     [tempRootViewConstraints addObjectsFromArray:generateConstraints];
     
     generateConstraints = [NSLayoutConstraint
-                           constraintsWithVisualFormat:@"V:[topGuide]-[tubeMapContainer]-[tubeLinesContainer]-[bottomGuide]"
+                           constraintsWithVisualFormat:@"V:[topGuide]-[tubeLinesContainer]-[tubeMapContainer]-[bottomGuide]"
                            options:0
                            metrics:nil
                            views:views];

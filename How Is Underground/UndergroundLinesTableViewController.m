@@ -65,11 +65,7 @@
             
             return;
         }
-        __weak UndergroundLinesTableViewController *tempSelf = self;
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [tempSelf reloadData];
-            [self dismissLoadingView];
-        });
+        [self lineStatusUpdated];
     }];
     UIPageControl *pageControl = [UIPageControl appearance];
     pageControl.pageIndicatorTintColor = [UIColor lightGrayColor];
@@ -146,6 +142,7 @@
     [NSLogger log:@"UndergroundLinesTableViewController -> Line Status Updated"];
     dispatch_async(dispatch_get_main_queue(), ^{
         [self reloadData];
+        [self dismissLoadingView];
     });
     
 }

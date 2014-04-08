@@ -36,6 +36,7 @@
     self.scrollView.maximumZoomScale=6.0;
     self.scrollView.contentSize=self.view.bounds.size;
     self.scrollView.delegate=self;
+    self.navigationController.navigationBarHidden=UIInterfaceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation]);
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -51,6 +52,7 @@
 {
     [super willAnimateRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];
     [self setupScrollContent];
+    self.navigationController.navigationBarHidden = UIInterfaceOrientationIsPortrait(toInterfaceOrientation);
 }
 
 
