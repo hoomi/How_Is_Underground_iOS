@@ -23,21 +23,27 @@
 {
     [super viewDidLoad];
     [self initPortraitConstraints];
-    [self setConstraints];
+    [self setConstraints:[[UIApplication sharedApplication] statusBarOrientation]];
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+}
 
 -(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
     [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
-    [self setConstraints];
 }
-
+-(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+    [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
+    [self setConstraints:toInterfaceOrientation];
+}
 #pragma mark - Utility functions
 
--(void) setConstraints
+-(void) setConstraints:(UIInterfaceOrientation) orientation
 {
-    if (UIInterfaceOrientationIsLandscape([[UIDevice currentDevice] orientation])) {
+    if (UIInterfaceOrientationIsLandscape(orientation)) {
         [self.view removeConstraints:rootViewPortraitConstraints];
         [tubeLinesContainer removeConstraints:tubeLinesPortraitConstraints];
         [self.view addConstraints:rootViewLandscapeConstraints];
