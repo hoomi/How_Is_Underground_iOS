@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="QKD-Vd-1ZD">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="By0-9L-rdv">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -18,14 +18,14 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Av3-O3-MDd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="143" y="-1543"/>
+            <point key="canvasLocation" x="-497" y="129"/>
         </scene>
         <!--Underground Lines Table View Controller-->
         <scene sceneID="dXO-aO-cVP">
             <objects>
                 <tableViewController clearsSelectionOnViewWillAppear="NO" id="PqK-yY-76g" customClass="UndergroundLinesTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="v8V-EI-icw">
-                        <rect key="frame" x="0.0" y="64" width="320" height="704"/>
+                        <rect key="frame" x="0.0" y="44" width="350" height="696"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
@@ -39,22 +39,83 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nOX-Gp-aaB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1111" y="-1554"/>
+            <point key="canvasLocation" x="967" y="129"/>
         </scene>
-        <!--Split View Controller-->
-        <scene sceneID="pdh-rg-f6u">
+        <!--Ipad Root View Controller-->
+        <scene sceneID="8nS-kG-a26">
             <objects>
-                <splitViewController id="QKD-Vd-1ZD" sceneMemberID="viewController">
-                    <toolbarItems/>
+                <viewController id="By0-9L-rdv" customClass="IpadRootViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="uGq-3X-p44"/>
+                        <viewControllerLayoutGuide type="bottom" id="8Vp-3S-CT5"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Dh5-fH-bOZ">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9WK-F3-FNe" userLabel="tubeLinesContainer">
+                                <rect key="frame" x="0.0" y="20" width="350" height="740"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="350" id="lmG-6B-eP8"/>
+                                </constraints>
+                                <connections>
+                                    <segue destination="S4J-6S-g8C" kind="embed" id="rRU-Y9-0KJ"/>
+                                </connections>
+                            </containerView>
+                            <containerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eDn-qf-bJe" userLabel="tubeMapContainer">
+                                <rect key="frame" x="350" y="20" width="654" height="740"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <connections>
+                                    <segue destination="s3g-bi-KDF" kind="embed" id="ICy-VJ-LKk"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="9WK-F3-FNe" firstAttribute="top" secondItem="Dh5-fH-bOZ" secondAttribute="top" constant="20" symbolic="YES" id="4Qo-WS-p8v"/>
+                            <constraint firstItem="eDn-qf-bJe" firstAttribute="top" secondItem="9WK-F3-FNe" secondAttribute="top" id="M5w-iq-cdo"/>
+                            <constraint firstItem="eDn-qf-bJe" firstAttribute="leading" secondItem="9WK-F3-FNe" secondAttribute="trailing" id="Noi-cY-N5E"/>
+                            <constraint firstItem="8Vp-3S-CT5" firstAttribute="top" secondItem="eDn-qf-bJe" secondAttribute="bottom" constant="20" symbolic="YES" id="V1d-Fo-J92"/>
+                            <constraint firstItem="8Vp-3S-CT5" firstAttribute="top" secondItem="9WK-F3-FNe" secondAttribute="bottom" constant="20" symbolic="YES" id="Zie-ML-m03"/>
+                            <constraint firstItem="9WK-F3-FNe" firstAttribute="leading" secondItem="Dh5-fH-bOZ" secondAttribute="leading" id="aQq-g3-qj5"/>
+                            <constraint firstAttribute="trailing" secondItem="eDn-qf-bJe" secondAttribute="trailing" constant="20" symbolic="YES" id="koM-le-i7q"/>
+                        </constraints>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
-                        <segue destination="S4J-6S-g8C" kind="relationship" relationship="masterViewController" id="REB-Im-oEh"/>
-                        <segue destination="hyL-Kb-dYo" kind="relationship" relationship="detailViewController" id="UVe-t9-PeD"/>
+                        <outlet property="tubeLinesContainer" destination="9WK-F3-FNe" id="qMW-gz-pzS"/>
+                        <outlet property="tubeMapContainer" destination="eDn-qf-bJe" id="Knx-bG-ePk"/>
+                        <outletCollection property="rootViewLandscapeConstraints" destination="4Qo-WS-p8v" id="q04-M1-F7V"/>
+                        <outletCollection property="rootViewLandscapeConstraints" destination="M5w-iq-cdo" id="SGX-GQ-pBD"/>
+                        <outletCollection property="rootViewLandscapeConstraints" destination="V1d-Fo-J92" id="qr5-Sv-UZL"/>
+                        <outletCollection property="rootViewLandscapeConstraints" destination="Noi-cY-N5E" id="R8d-Kt-NUK"/>
+                        <outletCollection property="tubeLinesLandscapeConstraints" destination="lmG-6B-eP8" id="E9G-yc-0PG"/>
+                        <outletCollection property="rootViewLandscapeConstraints" destination="koM-le-i7q" id="ev0-sD-3Dw"/>
+                        <outletCollection property="rootViewLandscapeConstraints" destination="aQq-g3-qj5" id="TV0-hD-ku5"/>
                     </connections>
-                </splitViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="UBT-7V-4oP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oVl-Ay-gRv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1173" y="-733"/>
+            <point key="canvasLocation" x="-1998" y="903"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="E1c-9m-Bq5">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="s3g-bi-KDF" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="xt6-cM-mNE">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="hyL-Kb-dYo" kind="relationship" relationship="rootViewController" id="Yh5-mb-gJv"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bhG-qe-DJe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1605" y="2252"/>
         </scene>
         <!--Tube Map View Controller-->
         <scene sceneID="sQE-lh-dHv">
@@ -65,23 +126,23 @@
                         <viewControllerLayoutGuide type="bottom" id="mEW-7A-gwz"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Vif-oK-lOn">
-                        <rect key="frame" x="0.0" y="0.0" width="703" height="768"/>
+                        <rect key="frame" x="0.0" y="0.0" width="654" height="740"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="evD-mL-P7o">
-                                <rect key="frame" x="20" y="28" width="663" height="732"/>
+                                <rect key="frame" x="0.0" y="44" width="654" height="696"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <subviews>
                                     <imageView multipleTouchEnabled="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="standard-tube-map.gif" translatesAutoresizingMaskIntoConstraints="NO" id="bQO-SK-kug">
-                                        <rect key="frame" x="20" y="20" width="2483" height="1765"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="2483" height="1765"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     </imageView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="bQO-SK-kug" firstAttribute="leading" secondItem="evD-mL-P7o" secondAttribute="leading" constant="20" symbolic="YES" id="3oO-EN-Tf3"/>
-                                    <constraint firstAttribute="trailing" secondItem="bQO-SK-kug" secondAttribute="trailing" constant="20" symbolic="YES" id="AsS-ym-EP6"/>
-                                    <constraint firstItem="bQO-SK-kug" firstAttribute="top" secondItem="evD-mL-P7o" secondAttribute="top" constant="20" symbolic="YES" id="FuY-yO-kv6"/>
-                                    <constraint firstAttribute="bottom" secondItem="bQO-SK-kug" secondAttribute="bottom" constant="20" symbolic="YES" id="hNh-hb-bRK"/>
+                                    <constraint firstItem="bQO-SK-kug" firstAttribute="leading" secondItem="evD-mL-P7o" secondAttribute="leading" id="DAz-c9-bfA"/>
+                                    <constraint firstAttribute="trailing" secondItem="bQO-SK-kug" secondAttribute="trailing" id="Hyk-Hh-pmh"/>
+                                    <constraint firstItem="bQO-SK-kug" firstAttribute="top" secondItem="evD-mL-P7o" secondAttribute="top" id="RLI-py-4Ng"/>
+                                    <constraint firstAttribute="bottom" secondItem="bQO-SK-kug" secondAttribute="bottom" id="nx1-BS-OqA"/>
                                 </constraints>
                                 <connections>
                                     <outlet property="delegate" destination="hyL-Kb-dYo" id="3em-oO-vSV"/>
@@ -90,10 +151,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="mEW-7A-gwz" firstAttribute="top" secondItem="evD-mL-P7o" secondAttribute="bottom" constant="20" symbolic="YES" id="FOM-t7-Gg7"/>
-                            <constraint firstItem="evD-mL-P7o" firstAttribute="top" secondItem="NPS-dq-lic" secondAttribute="bottom" constant="20" symbolic="YES" id="G3a-mJ-QRD"/>
-                            <constraint firstAttribute="trailing" secondItem="evD-mL-P7o" secondAttribute="trailing" constant="20" symbolic="YES" id="LjA-3Z-Ymz"/>
-                            <constraint firstItem="evD-mL-P7o" firstAttribute="leading" secondItem="Vif-oK-lOn" secondAttribute="leading" constant="20" symbolic="YES" id="nwG-Tk-kLd"/>
+                            <constraint firstItem="mEW-7A-gwz" firstAttribute="top" secondItem="evD-mL-P7o" secondAttribute="bottom" id="FOM-t7-Gg7"/>
+                            <constraint firstItem="evD-mL-P7o" firstAttribute="top" secondItem="NPS-dq-lic" secondAttribute="bottom" id="G3a-mJ-QRD"/>
+                            <constraint firstAttribute="trailing" secondItem="evD-mL-P7o" secondAttribute="trailing" id="LjA-3Z-Ymz"/>
+                            <constraint firstItem="evD-mL-P7o" firstAttribute="leading" secondItem="Vif-oK-lOn" secondAttribute="leading" id="nwG-Tk-kLd"/>
                         </constraints>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
@@ -105,7 +166,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uPZ-zR-8rD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="768" y="-135"/>
+            <point key="canvasLocation" x="848" y="1529"/>
         </scene>
     </scenes>
     <resources>

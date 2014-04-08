@@ -30,7 +30,8 @@
     [super viewDidLoad];
     [self setupScrollContent];
 
-    self.scrollView.minimumZoomScale= 0.3;
+    self.scrollView.minimumZoomScale= 0.3
+    ;
     self.scrollView.zoomScale = self.view.bounds.size.width / self.tubeMapImage.bounds.size.width;
     self.scrollView.maximumZoomScale=6.0;
     self.scrollView.contentSize=self.view.bounds.size;

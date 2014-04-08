@@ -19,6 +19,7 @@
 		1561CBC618F2D5850010BD46 /* StatusType.m in Sources */ = {isa = PBXBuildFile; fileRef = 1561CBC518F2D5850010BD46 /* StatusType.m */; };
 		1561CBCC18F2F9270010BD46 /* standard-tube-map.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1561CBCB18F2F9270010BD46 /* standard-tube-map.gif */; };
 		1561CBCF18F2FAA30010BD46 /* TubeMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1561CBCE18F2FAA30010BD46 /* TubeMapViewController.m */; };
+		1561CBD218F30BBB0010BD46 /* IpadRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1561CBD118F30BBB0010BD46 /* IpadRootViewController.m */; };
 		156B4CE018E04C5300A2B677 /* DetailsViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 156B4CDF18E04C5300A2B677 /* DetailsViewManager.m */; };
 		156B4CF118E062F400A2B677 /* XmlParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 156B4CF018E062F400A2B677 /* XmlParser.m */; };
 		15A51CF618DC591400E837C7 /* Mainstoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15A51CF518DC591400E837C7 /* Mainstoryboard_iPad.storyboard */; };
@@ -87,6 +88,8 @@
 		1561CBCB18F2F9270010BD46 /* standard-tube-map.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "standard-tube-map.gif"; sourceTree = "<group>"; };
 		1561CBCD18F2FAA30010BD46 /* TubeMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TubeMapViewController.h; sourceTree = "<group>"; };
 		1561CBCE18F2FAA30010BD46 /* TubeMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TubeMapViewController.m; sourceTree = "<group>"; };
+		1561CBD018F30BBB0010BD46 /* IpadRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IpadRootViewController.h; sourceTree = "<group>"; };
+		1561CBD118F30BBB0010BD46 /* IpadRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IpadRootViewController.m; sourceTree = "<group>"; };
 		156B4CDE18E04C5300A2B677 /* DetailsViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailsViewManager.h; sourceTree = "<group>"; };
 		156B4CDF18E04C5300A2B677 /* DetailsViewManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsViewManager.m; sourceTree = "<group>"; };
 		156B4CEF18E062F400A2B677 /* XmlParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XmlParser.h; sourceTree = "<group>"; };
@@ -292,6 +295,8 @@
 				1561CB9318F2A0360010BD46 /* BaseTableViewController.m */,
 				1561CBCD18F2FAA30010BD46 /* TubeMapViewController.h */,
 				1561CBCE18F2FAA30010BD46 /* TubeMapViewController.m */,
+				1561CBD018F30BBB0010BD46 /* IpadRootViewController.h */,
+				1561CBD118F30BBB0010BD46 /* IpadRootViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -462,6 +467,7 @@
 				15AE2FA718D73564009378E2 /* UndergroundLinesTableViewController.m in Sources */,
 				1561CBC018F2D5850010BD46 /* Line.m in Sources */,
 				156B4CF118E062F400A2B677 /* XmlParser.m in Sources */,
+				1561CBD218F30BBB0010BD46 /* IpadRootViewController.m in Sources */,
 				15E36C6B18D8612800598083 /* Line.xcdatamodeld in Sources */,
 				1561CBBD18F2D5840010BD46 /* LineStatus.m in Sources */,
 				1561CB8B18F283380010BD46 /* ConnectivityUtils.m in Sources */,
