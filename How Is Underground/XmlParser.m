@@ -99,7 +99,7 @@
     NSArray *array = [managedObjectContext executeFetchRequest:checkFetchRequest error:&error];
     NSInteger count = [array count];
     if (count > 1) {
-        for (int i = [array count] - 1; i > 0 ; i--) {
+        for (int i = (unsigned)[array count] - 1; i > 0 ; i--) {
             [managedObjectContext deleteObject:[array objectAtIndex:i]];
         }
     }

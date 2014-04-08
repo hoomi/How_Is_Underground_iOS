@@ -100,8 +100,6 @@ static CATransition* transition;
     [super viewDidLoad];
     [self updateUi];
     [self setAnimation];
-    [self setLayoutConstraints:[[UIApplication sharedApplication] statusBarOrientation]];
-    self.scrollView.contentSize = self.contentView.bounds.size;
     [self.scrollView addSubview:self.contentView];
 }
 
@@ -113,7 +111,10 @@ static CATransition* transition;
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [self setLayoutConstraints:[[UIApplication sharedApplication] statusBarOrientation]];
+    self.scrollView.contentSize = self.contentView.bounds.size;
     [self.statusImageView startAnimating];
+    
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -125,11 +126,7 @@ static CATransition* transition;
 -(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
     [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
-    [self setLayoutConstraints:[[UIApplication sharedApplication] statusBarOrientation]];
-}
-- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
-{
-    [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
+    [self setLayoutConstraints:toInterfaceOrientation];
     self.scrollView.contentSize = self.contentView.bounds.size;
 }
 
@@ -146,15 +143,14 @@ static CATransition* transition;
             [self.contentView removeConstraints:portraitConstraints];
             [self.contentView addConstraints:landscapeConstraints];
         }
-        
-        return;
-    }
-    if (UIInterfaceOrientationIsLandscape([[UIDevice currentDevice]orientation])) {
-        [self.contentView removeConstraints:portraitConstraints];
-        [self.contentView addConstraints:landscapeConstraints];
     } else {
-        [self.contentView removeConstraints:landscapeConstraints];
-        [self.contentView addConstraints:portraitConstraints];
+        if (UIInterfaceOrientationIsLandscape(orientation)) {
+            [self.contentView removeConstraints:portraitConstraints];
+            [self.contentView addConstraints:landscapeConstraints];
+        } else {
+            [self.contentView removeConstraints:landscapeConstraints];
+            [self.contentView addConstraints:portraitConstraints];
+        }
     }
     
 }
@@ -174,8 +170,12 @@ static CATransition* transition;
         generatedLayoutConstraints = [NSLayoutConstraint
                                       constraintsWithVisualFormat:@"V:|-[textWrapperView]-|" options:0 metrics:nil views:views];
         [tempRootLayoutConstraints addObjectsFromArray:generatedLayoutConstraints];
-        NSLayoutConstraint *yCenterConstraint = [NSLayoutConstraint constraintWithItem:statusImageView attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0];
-        [tempRootLayoutConstraints addObject:yCenterConstraint];
+        generatedLayoutConstraints = [NSLayoutConstraint
+                                      constraintsWithVisualFormat:@"V:|-[statusImageView]" options:0 metrics:nil views:views];
+        [tempRootLayoutConstraints addObjectsFromArray:generatedLayoutConstraints];
+//To centre it vertically in the parent view
+//        NSLayoutConstraint *yCenterConstraint = [NSLayoutConstraint constraintWithItem:statusImageView attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0];
+//        [tempRootLayoutConstraints addObject:yCenterConstraint];
         landscapeConstraints = [NSArray arrayWithArray:tempRootLayoutConstraints];
     }
 }
