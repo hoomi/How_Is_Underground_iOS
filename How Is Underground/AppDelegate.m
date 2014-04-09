@@ -30,20 +30,24 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [self requestLineStatusPeriodically];
-    [application setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalMinimum];
+   
     [NSLogger log:[NSString stringWithFormat:@"Launched in background %d", UIApplicationStateBackground == application.applicationState]];
     threadsmanagedObjectCotextDic = [[NSMutableDictionary alloc]init];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userSettingsChanged) name:NSUserDefaultsDidChangeNotification object:nil];
     return YES;
 }
 
 -(void)applicationWillTerminate:(UIApplication *)application
 {
-    [[TimerManager getInstance] destroyAll];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 -(void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 {
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:NOTIFICATION_ENABLED]) {
+        [NSLogger log:@"Showing the notifications is disabled"];
+        completionHandler(UIBackgroundFetchResultNoData);
+    }
     [NSLogger log:@"Doing fetch in the background"];
     [ServerCommunicator requestLineStatus:^(NSError *error) {
         if (error != nil) {
@@ -63,12 +67,29 @@
 
 -(void)applicationWillEnterForeground:(UIApplication *)application
 {
+    [self requestLineStatusPeriodically];
     [self removePreviousNotifications];
     [[NSNotificationCenter defaultCenter] postNotificationName:LINE_STATUS_UPDATED object:nil];
 }
 
+-(void)applicationWillResignActive:(UIApplication *)application
+{
+    [[TimerManager getInstance] destroyAll];
+    [application setMinimumBackgroundFetchInterval:([[NSUserDefaults standardUserDefaults] boolForKey:NOTIFICATION_ENABLED]?UIApplicationBackgroundFetchIntervalMinimum:UIApplicationBackgroundFetchIntervalNever)];
+}
+
 
 #pragma mark - Utility functions
+-(void)userSettingsChanged
+{
+    BOOL enabled = [[NSUserDefaults standardUserDefaults] boolForKey:NOTIFICATION_ENABLED];
+    [NSLogger log:[NSString stringWithFormat:@"Show notifications: %d",enabled]];
+    if (enabled) {
+        [[UIApplication sharedApplication] setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalMinimum];
+    } else {
+        [[UIApplication sharedApplication] setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalNever];
+    }
+}
 -(void)removePreviousNotifications
 {
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber: 0];
@@ -92,6 +113,13 @@
 
 -(void) showLocalNotification
 {
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:NOTIFICATION_ENABLED]) {
+        return;
+    }
+    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+    NSInteger currentTime = [[NSDate date] timeIntervalSince1970];
+    NSInteger lastMessageTime = [userDefaults integerForKey:LAST_NOTIF_TIME];
+    NSString* lastMessage = [userDefaults stringForKey:LAST_NOTIF_MESSAGE];
     if (fetchRequest == nil) {
         fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"LineStatus"];
         NSSortDescriptor *lineNamedescriptor = [NSSortDescriptor sortDescriptorWithKey:@"line.name" ascending:YES];
@@ -117,6 +145,13 @@
         message = @"Good service on all lines";
     }
     [NSLogger log:message];
+    if ([lastMessage isEqualToString:message]) {
+        if (currentTime - lastMessageTime < NOTIFICATION_SHOW_INTERVAL) {
+            return;
+        }
+    }
+    [userDefaults setInteger:currentTime forKey:LAST_NOTIF_TIME];
+    [userDefaults setObject:message forKey:LAST_NOTIF_MESSAGE];
     [self removePreviousNotifications];
     UILocalNotification *localNotif = [[UILocalNotification alloc] init];
     if (localNotif) {

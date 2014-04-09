@@ -35,9 +35,15 @@
 #pragma mark - Defaults Keys
 #define LAST_UPDATED_AT         @"LastUpdated"
 #define IF_MODIFIED_SINCE       @"If-Modified-Since"
+#define LAST_NOTIF_MESSAGE      @"last-_notification_message"
+#define LAST_NOTIF_TIME         @"last-_notification_time"
+#define NOTIFICATION_ENABLED    @"show_notification_preference"
 
-
+#pragma mark - Notification messages
 #define LINE_STATUS_UPDATED     @"LineStatusUpdated"
+
+#pragma mark - Settings
+#define NOTIFICATION_SHOW_INTERVAL 3600
 
 
 #endif

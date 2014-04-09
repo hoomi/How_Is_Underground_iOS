@@ -60,6 +60,7 @@
         if (error != nil) {
             [NSLogger log:@"Failed to download line status"];
             dispatch_async(dispatch_get_main_queue(), ^{
+                [self reloadData];
                 [self dismissLoadingView];
             });
             
@@ -76,9 +77,6 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(lineStatusUpdated) name:LINE_STATUS_UPDATED object:nil];
-    NSLog(@"Connected to Wi-Fi: %d", [ConnectivityUtils isConnectedToWifi]);
-    NSLog(@"Connected to Mobile network: %d", [ConnectivityUtils isConnectedtoMobileNetworks]);
-    NSLog(@"Connected to internet: %d", [ConnectivityUtils hasInternetConnection]);
 }
 -(void)viewWillDisappear:(BOOL)animated
 {
