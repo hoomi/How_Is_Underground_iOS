@@ -20,7 +20,7 @@
             </objects>
             <point key="canvasLocation" x="-497" y="129"/>
         </scene>
-        <!--Underground Lines Table View Controller-->
+        <!--Underground Lines Table View Controller - Tube Lines-->
         <scene sceneID="dXO-aO-cVP">
             <objects>
                 <tableViewController clearsSelectionOnViewWillAppear="NO" id="PqK-yY-76g" customClass="UndergroundLinesTableViewController" sceneMemberID="viewController">
@@ -34,7 +34,7 @@
                             <outlet property="delegate" destination="PqK-yY-76g" id="gCo-HW-HSy"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="rsU-Ao-fjh"/>
+                    <navigationItem key="navigationItem" title="Tube Lines" id="rsU-Ao-fjh"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nOX-Gp-aaB" userLabel="First Responder" sceneMemberID="firstResponder"/>

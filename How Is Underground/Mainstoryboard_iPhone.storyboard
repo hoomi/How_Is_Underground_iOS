@@ -19,7 +19,7 @@
             </objects>
             <point key="canvasLocation" x="-368" y="-170"/>
         </scene>
-        <!--Underground Lines Table View Controller - Lines-->
+        <!--Underground Lines Table View Controller - Tube Lines-->
         <scene sceneID="gF1-kY-a3D">
             <objects>
                 <tableViewController id="x1Z-3g-h3w" customClass="UndergroundLinesTableViewController" sceneMemberID="viewController">
@@ -32,7 +32,7 @@
                             <outlet property="delegate" destination="x1Z-3g-h3w" id="xO2-qz-SI8"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Lines" id="ZHQ-DP-UfY">
+                    <navigationItem key="navigationItem" title="Tube Lines" id="ZHQ-DP-UfY">
                         <barButtonItem key="rightBarButtonItem" title="Map" id="efa-kc-gEI">
                             <connections>
                                 <action selector="mapButtonClicked:" destination="x1Z-3g-h3w" id="mFR-OY-NCN"/>

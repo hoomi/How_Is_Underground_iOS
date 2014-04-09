@@ -35,7 +35,9 @@
     [self.pageViewController didMoveToParentViewController:self];
     self.pageViewController.delegate = self;
 
-    self.navigationItem.rightBarButtonItem = mapButton;
+    if (!IsIpad()) {
+        self.navigationItem.rightBarButtonItem = mapButton;
+    }
     
 }
 

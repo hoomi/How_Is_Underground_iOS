@@ -8,6 +8,8 @@
             <connections>
                 <outlet property="backButton" destination="5JM-iy-dlE" id="L6u-dR-JSv"/>
                 <outlet property="myNavigationItem" destination="LKx-9h-xur" id="Itt-Gp-Jwn"/>
+                <outlet property="navigationBarHeight" destination="JUh-XD-ScZ" id="GGp-7u-UcF"/>
+                <outlet property="resetZoomButton" destination="rhD-Xf-mwM" id="HhS-SM-PJs"/>
                 <outlet property="scrollView" destination="daH-JH-4kI" id="l49-rR-dDX"/>
                 <outlet property="tubeMapImage" destination="0G6-2j-Dhe" id="Zrs-fq-cdv"/>
                 <outlet property="view" destination="G27-30-KrJ" id="cSK-iU-fJi"/>
@@ -21,6 +23,9 @@
                 <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xCj-Ch-xIg">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="JUh-XD-ScZ"/>
+                    </constraints>
                     <items>
                         <navigationItem title="Tube Map" id="LKx-9h-xur">
                             <barButtonItem key="rightBarButtonItem" title="Reset" id="rhD-Xf-mwM" userLabel="Reset Button">
