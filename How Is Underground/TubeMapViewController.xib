@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TubeMapViewController">
+            <connections>
+                <outlet property="backButton" destination="5JM-iy-dlE" id="L6u-dR-JSv"/>
+                <outlet property="myNavigationItem" destination="LKx-9h-xur" id="Itt-Gp-Jwn"/>
+                <outlet property="scrollView" destination="daH-JH-4kI" id="l49-rR-dDX"/>
+                <outlet property="tubeMapImage" destination="0G6-2j-Dhe" id="Zrs-fq-cdv"/>
+                <outlet property="view" destination="G27-30-KrJ" id="cSK-iU-fJi"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="G27-30-KrJ">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xCj-Ch-xIg">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                    <items>
+                        <navigationItem title="Tube Map" id="LKx-9h-xur">
+                            <barButtonItem key="rightBarButtonItem" title="Reset" id="rhD-Xf-mwM" userLabel="Reset Button">
+                                <connections>
+                                    <action selector="resetZoom:" destination="-1" id="UuE-Y3-4ZC"/>
+                                </connections>
+                            </barButtonItem>
+                        </navigationItem>
+                    </items>
+                </navigationBar>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="daH-JH-4kI">
+                    <rect key="frame" x="0.0" y="44" width="320" height="524"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <subviews>
+                        <imageView multipleTouchEnabled="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="standard-tube-map.gif" translatesAutoresizingMaskIntoConstraints="NO" id="0G6-2j-Dhe">
+                            <rect key="frame" x="0.0" y="0.0" width="2483" height="1765"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        </imageView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="0G6-2j-Dhe" firstAttribute="top" secondItem="daH-JH-4kI" secondAttribute="top" id="E2Y-5M-epP"/>
+                        <constraint firstItem="0G6-2j-Dhe" firstAttribute="leading" secondItem="daH-JH-4kI" secondAttribute="leading" id="MPW-zV-0kt"/>
+                        <constraint firstAttribute="bottom" secondItem="0G6-2j-Dhe" secondAttribute="bottom" id="Q6V-j0-VwT"/>
+                        <constraint firstAttribute="trailing" secondItem="0G6-2j-Dhe" secondAttribute="trailing" id="aXo-cC-D1c"/>
+                    </constraints>
+                </scrollView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="daH-JH-4kI" secondAttribute="bottom" id="Bxj-YG-gLS"/>
+                <constraint firstItem="xCj-Ch-xIg" firstAttribute="leading" secondItem="G27-30-KrJ" secondAttribute="leading" id="I9V-Cr-1Ll"/>
+                <constraint firstAttribute="trailing" secondItem="xCj-Ch-xIg" secondAttribute="trailing" id="IJs-77-djb"/>
+                <constraint firstItem="xCj-Ch-xIg" firstAttribute="top" secondItem="G27-30-KrJ" secondAttribute="top" id="Yq5-et-vU8"/>
+                <constraint firstAttribute="trailing" secondItem="daH-JH-4kI" secondAttribute="trailing" id="dRI-bg-XqQ"/>
+                <constraint firstItem="daH-JH-4kI" firstAttribute="leading" secondItem="G27-30-KrJ" secondAttribute="leading" id="eyg-Qp-cdJ"/>
+                <constraint firstItem="daH-JH-4kI" firstAttribute="top" secondItem="xCj-Ch-xIg" secondAttribute="bottom" id="jZn-Zq-DQW"/>
+            </constraints>
+        </view>
+        <barButtonItem title="Back" id="5JM-iy-dlE" userLabel="Back Button">
+            <connections>
+                <action selector="backPressed:" destination="-1" id="o9p-mg-LuD"/>
+            </connections>
+        </barButtonItem>
+    </objects>
+    <resources>
+        <image name="standard-tube-map.gif" width="2483" height="1765"/>
+    </resources>
+</document>

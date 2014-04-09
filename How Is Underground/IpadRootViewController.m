@@ -7,6 +7,7 @@
 //
 
 #import "IpadRootViewController.h"
+#import "TubeMapViewController.h"
 
 @implementation IpadRootViewController
 {
@@ -16,6 +17,7 @@
     IBOutletCollection(NSLayoutConstraint)NSArray *rootViewLandscapeConstraints;
     __weak IBOutlet UIView *tubeMapContainer;
     __weak IBOutlet UIView *tubeLinesContainer;
+    TubeMapViewController* tubeMapViewController;
 }
 
 
@@ -24,6 +26,13 @@
     [super viewDidLoad];
     [self initPortraitConstraints];
     [self setConstraints:[[UIApplication sharedApplication] statusBarOrientation]];
+    tubeMapViewController = [[TubeMapViewController alloc] initWithNibName:@"TubeMapViewController" bundle:[NSBundle mainBundle]];
+    [self addChildViewController:tubeMapViewController];
+    tubeMapViewController.view.frame = [self initTubeMapFrame];
+    [tubeMapContainer addSubview:tubeMapViewController.view];
+    [tubeMapViewController didMoveToParentViewController:self];
+
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -38,8 +47,17 @@
 {
     [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
     [self setConstraints:toInterfaceOrientation];
+    tubeMapViewController.view.frame = [self initTubeMapFrame];
 }
 #pragma mark - Utility functions
+
+-(CGRect)initTubeMapFrame
+{
+    CGRect tubeMapFrame = tubeMapContainer.bounds;
+    tubeMapFrame.origin.x = 0.0;
+    tubeMapFrame.origin.y = 0.0;
+    return tubeMapFrame;
+}
 
 -(void) setConstraints:(UIInterfaceOrientation) orientation
 {
@@ -80,7 +98,7 @@
     [tempRootViewConstraints addObjectsFromArray:generateConstraints];
     
     generateConstraints = [NSLayoutConstraint
-                           constraintsWithVisualFormat:@"V:[topGuide]-[tubeLinesContainer]-[tubeMapContainer]-[bottomGuide]"
+                           constraintsWithVisualFormat:@"V:[topGuide]-[tubeLinesContainer]-(0)-[tubeMapContainer]-[bottomGuide]"
                            options:0
                            metrics:nil
                            views:views];

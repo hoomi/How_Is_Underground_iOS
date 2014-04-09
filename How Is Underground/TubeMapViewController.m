@@ -9,6 +9,11 @@
 #import "TubeMapViewController.h"
 
 @implementation TubeMapViewController
+{
+    __weak IBOutlet UINavigationItem *myNavigationItem;
+    __weak IBOutlet UIBarButtonItem *backButton;
+    
+}
 
 - (void) setupScrollContent
 {
@@ -36,7 +41,9 @@
     self.scrollView.maximumZoomScale=6.0;
     self.scrollView.contentSize=self.view.bounds.size;
     self.scrollView.delegate=self;
-    self.navigationController.navigationBarHidden=UIInterfaceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation]);
+    if (!IsIpad()) {
+        myNavigationItem.leftBarButtonItem = backButton;
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -65,6 +72,12 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     [self.view layoutIfNeeded];
+}
+- (IBAction)resetZoom:(id)sender {
+    
+}
+- (IBAction)backPressed:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

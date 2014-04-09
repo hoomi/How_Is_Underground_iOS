@@ -18,6 +18,7 @@
 #import "Status.h"
 #import "StatusType.h"
 #import "UIColor+UIColorExtension.h"
+#import "TubeMapViewController.h"
 
 @class LineStatusViewController;
 
@@ -227,6 +228,13 @@
         index = [tempSelf validateGivenIndex:index];
         return [tempFetchResultController objectAtIndexPath:[Utils indexPathOf:index :tempSelf.tableView]];
     };
+}
+
+#pragma mark - IBActions
+- (IBAction)mapButtonClicked:(id)sender {
+    TubeMapViewController* tubeMapViewController = [[TubeMapViewController alloc] initWithNibName:@"TubeMapViewController" bundle:[NSBundle mainBundle]];
+    [tubeMapViewController setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
+    [self.navigationController presentViewController:tubeMapViewController animated:YES completion:nil];
 }
 
 @end

@@ -23,6 +23,7 @@
 		156B4CE018E04C5300A2B677 /* DetailsViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 156B4CDF18E04C5300A2B677 /* DetailsViewManager.m */; };
 		156B4CF118E062F400A2B677 /* XmlParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 156B4CF018E062F400A2B677 /* XmlParser.m */; };
 		1573359418F527A900821740 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1573359318F527A900821740 /* Settings.bundle */; };
+		1573359818F5420B00821740 /* TubeMapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1573359718F5420B00821740 /* TubeMapViewController.xib */; };
 		15A51CF618DC591400E837C7 /* Mainstoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15A51CF518DC591400E837C7 /* Mainstoryboard_iPad.storyboard */; };
 		15AE2F7418D734E6009378E2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15AE2F7318D734E6009378E2 /* Foundation.framework */; };
 		15AE2F7618D734E6009378E2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15AE2F7518D734E6009378E2 /* CoreGraphics.framework */; };
@@ -96,6 +97,7 @@
 		156B4CEF18E062F400A2B677 /* XmlParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XmlParser.h; sourceTree = "<group>"; };
 		156B4CF018E062F400A2B677 /* XmlParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XmlParser.m; sourceTree = "<group>"; };
 		1573359318F527A900821740 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		1573359718F5420B00821740 /* TubeMapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TubeMapViewController.xib; sourceTree = "<group>"; };
 		15A51CF518DC591400E837C7 /* Mainstoryboard_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Mainstoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		15AE2F7018D734E6009378E2 /* How Is Underground.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "How Is Underground.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		15AE2F7318D734E6009378E2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -300,6 +302,7 @@
 				1561CBCE18F2FAA30010BD46 /* TubeMapViewController.m */,
 				1561CBD018F30BBB0010BD46 /* IpadRootViewController.h */,
 				1561CBD118F30BBB0010BD46 /* IpadRootViewController.m */,
+				1573359718F5420B00821740 /* TubeMapViewController.xib */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -439,6 +442,7 @@
 				15AE2F8618D734E7009378E2 /* Images.xcassets in Resources */,
 				1573359418F527A900821740 /* Settings.bundle in Resources */,
 				15A51CF618DC591400E837C7 /* Mainstoryboard_iPad.storyboard in Resources */,
+				1573359818F5420B00821740 /* TubeMapViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
