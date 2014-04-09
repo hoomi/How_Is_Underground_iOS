@@ -8,6 +8,7 @@
 
 #import "BaseTableViewController.h"
 #import "AlertViewHelper.h"
+#import "TubeMapViewController.h"
 
 @interface BaseTableViewController ()
 
@@ -56,6 +57,13 @@
 -(void)dismissLoadingView
 {
     [[AlertViewHelper getInstance] dismissLoadingView];
+}
+
+-(void)showMap
+{
+    TubeMapViewController* tubeMapViewController = [[TubeMapViewController alloc] initWithNibName:@"TubeMapViewController" bundle:[NSBundle mainBundle]];
+    [tubeMapViewController setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
+    [self.navigationController presentViewController:tubeMapViewController animated:YES completion:nil];
 }
 
 @end

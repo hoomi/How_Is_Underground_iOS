@@ -6,6 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PageContainerViewController">
             <connections>
+                <outlet property="mapButton" destination="4Ot-9X-tY5" id="Yaq-Xf-JNP"/>
                 <outlet property="view" destination="iN0-l3-epB" id="VwC-m9-HRQ"/>
             </connections>
         </placeholder>
@@ -17,5 +18,10 @@
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
+        <barButtonItem title="Map" id="4Ot-9X-tY5" userLabel="mapButton">
+            <connections>
+                <action selector="mapButtonClicked:" destination="-1" id="iFE-wJ-FcS"/>
+            </connections>
+        </barButtonItem>
     </objects>
 </document>

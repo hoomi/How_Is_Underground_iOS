@@ -13,5 +13,6 @@
 -(void)showConnectivityAlert;
 -(void)showLoadingView;
 -(void)dismissLoadingView;
+-(void)showMap;
 
 @end

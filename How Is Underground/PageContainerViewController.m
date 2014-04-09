@@ -14,6 +14,10 @@
 @end
 
 @implementation PageContainerViewController
+{
+    
+    IBOutlet UIBarButtonItem *mapButton;
+}
 
 - (void)viewDidLoad
 {
@@ -31,6 +35,7 @@
     [self.pageViewController didMoveToParentViewController:self];
     self.pageViewController.delegate = self;
 
+    self.navigationItem.rightBarButtonItem = mapButton;
     
 }
 
@@ -110,5 +115,9 @@
 
 }
 
+#pragma mark - IBActions
+- (IBAction)mapButtonClicked:(id)sender {
+    [self showMap];
+}
 
 @end

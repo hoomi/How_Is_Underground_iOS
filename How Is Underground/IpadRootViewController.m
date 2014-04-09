@@ -26,12 +26,14 @@
     [super viewDidLoad];
     [self initPortraitConstraints];
     [self setConstraints:[[UIApplication sharedApplication] statusBarOrientation]];
+    if (UIInterfaceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation])) {
+        [tubeMapContainer layoutIfNeeded];
+    }
     tubeMapViewController = [[TubeMapViewController alloc] initWithNibName:@"TubeMapViewController" bundle:[NSBundle mainBundle]];
     [self addChildViewController:tubeMapViewController];
     tubeMapViewController.view.frame = [self initTubeMapFrame];
     [tubeMapContainer addSubview:tubeMapViewController.view];
     [tubeMapViewController didMoveToParentViewController:self];
-
     
 }
 
@@ -42,18 +44,19 @@
 -(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
     [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
+    tubeMapViewController.view.frame = [self initTubeMapFrame];
 }
 -(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
     [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
     [self setConstraints:toInterfaceOrientation];
-    tubeMapViewController.view.frame = [self initTubeMapFrame];
 }
 #pragma mark - Utility functions
 
 -(CGRect)initTubeMapFrame
 {
     CGRect tubeMapFrame = tubeMapContainer.bounds;
+    [NSLogger log:[NSString stringWithFormat:@"x:%0.2f\t y:%0.2f\n width:%0.2f\t height:%0.2f",tubeMapFrame.origin.x,tubeMapFrame.origin.y,tubeMapFrame.size.width, tubeMapFrame.size.height]];
     tubeMapFrame.origin.x = 0.0;
     tubeMapFrame.origin.y = 0.0;
     return tubeMapFrame;

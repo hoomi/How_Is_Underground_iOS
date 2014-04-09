@@ -232,9 +232,7 @@
 
 #pragma mark - IBActions
 - (IBAction)mapButtonClicked:(id)sender {
-    TubeMapViewController* tubeMapViewController = [[TubeMapViewController alloc] initWithNibName:@"TubeMapViewController" bundle:[NSBundle mainBundle]];
-    [tubeMapViewController setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
-    [self.navigationController presentViewController:tubeMapViewController animated:YES completion:nil];
+    [self showMap];
 }
 
 @end
