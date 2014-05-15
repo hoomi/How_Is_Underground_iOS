@@ -28,6 +28,8 @@
     NSFetchedResultsController *fetchedResultController;
     NSFetchRequest *fetchRequest;
     NSManagedObjectContext *managedObjectContext;
+    IBOutletCollection(NSLayoutConstraint) NSArray *verticalSpacingAdTable;
+    NSArray *hideAdBannerConstraints;
     
     LineStatusViewController* (^initControllerAt)(NSInteger index);
     NSInteger (^totalLineNumbers)(void);
@@ -91,8 +93,23 @@
     fetchedResultController.delegate = self;
 }
 
+-(void) initHideBannerConstraints
+{
+    if (hideAdBannerConstraints == nil) {
+        
+        id tableView = self.tableView;
+        NSDictionary *views = NSDictionaryOfVariableBindings(tableView);
+        hideAdBannerConstraints = [NSLayoutConstraint
+                                   constraintsWithVisualFormat:@"V:[tableView]-0-|"
+                                   options:0
+                                   metrics:nil
+                                   views:views];
+    }
+}
+
 
 #pragma mark - ViewController Callbacks
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -102,7 +119,9 @@
     self.navigationItem.title = @"Tube Lines";
     if (!IsIpad()) {
         [self showMapButton];
-        self.adBannerView.hidden = NO;
+        self.adBannerView.delegate = self;
+    } else {
+        [self removeAdBanner];
     }
     [self showLoadingView];
     [ServerCommunicator requestLineStatus:^(NSError *error) {
@@ -178,7 +197,20 @@
     [self rowSelected:indexPath];
 }
 
+#pragma mark - ADBannerViewDelegate
+- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error
+{
+    [NSLogger log:[NSString stringWithFormat:@"didFailToReceiveAdWithError: error %@ %@",error,[error userInfo]]];
+}
+
+- (void) bannerViewDidLoadAd:(ADBannerView *)banner
+{
+    [NSLogger log:(@"bannerViewDidLoadAd")];
+    
+}
+
 #pragma mark - User Interaction functions
+
 - (void)rowSelected:(NSIndexPath*)indexPath
 {
     PageContainerViewController *nextController;
@@ -233,6 +265,15 @@
     NSIndexPath *ipath = [self.tableView indexPathForSelectedRow];
     [self.tableView reloadData];
     [self.tableView selectRowAtIndexPath:ipath animated:NO scrollPosition:UITableViewScrollPositionNone];
+}
+
+
+-(void) removeAdBanner
+{
+    [self.view removeConstraints:verticalSpacingAdTable];
+    [self.adBannerView removeFromSuperview];
+    [self initHideBannerConstraints];
+    [self.view addConstraints:hideAdBannerConstraints];
 }
 
 

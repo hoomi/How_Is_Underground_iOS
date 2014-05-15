@@ -54,9 +54,7 @@
 
 
 
-- (void)bannerView:(ADBannerView *)
-
-banner didFailToReceiveAdWithError:(NSError *)error
+- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error
 
 {
     

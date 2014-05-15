@@ -9,6 +9,7 @@
                 <outlet property="adBannerView" destination="euA-Ao-rCb" id="eec-vw-dZm"/>
                 <outlet property="tableView" destination="c15-oU-Eca" id="Uoj-D4-zs5"/>
                 <outlet property="view" destination="iN0-l3-epB" id="XbE-lA-Hff"/>
+                <outletCollection property="verticalSpacingAdTable" destination="DSE-xv-h1H" id="SFg-d1-7Lf"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -21,7 +22,7 @@
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
-                <adBannerView hidden="YES" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="euA-Ao-rCb">
+                <adBannerView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="euA-Ao-rCb">
                     <rect key="frame" x="0.0" y="518" width="320" height="50"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                     <constraints>
