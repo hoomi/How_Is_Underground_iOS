@@ -13,9 +13,10 @@
 @property (strong, nonatomic) UIWindow *window;
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+@property (readonly, strong, nonatomic) NSManagedObjectContext* parentManagedObjectContext;
+@property (readonly, strong, nonatomic) NSManagedObjectContext* childManagedObjectContext;
 @property (nonatomic, strong) NSURL *storeURL;
 
-- (void)saveContext:(NSString*)name;
-- (NSManagedObjectContext*) managedObjectContext:(NSString*)name;
+- (void)saveContext;
 
 @end
