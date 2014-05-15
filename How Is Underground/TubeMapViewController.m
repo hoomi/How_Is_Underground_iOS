@@ -12,6 +12,7 @@
 {
     __weak IBOutlet UINavigationItem *myNavigationItem;
     __weak IBOutlet UIBarButtonItem *backButton;
+    __weak IBOutlet ADBannerView *adBannerView;
     
     __weak IBOutlet UIBarButtonItem *resetZoomButton;
     __weak IBOutlet NSLayoutConstraint *navigationBarHeight;
@@ -39,6 +40,7 @@
         myNavigationItem.leftBarButtonItem = backButton;
         navigationBarHeight.constant = 64   ;
     }
+    adBannerView.delegate = self;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -82,9 +84,22 @@
 - (IBAction)resetZoom:(id)sender {
     [self setZoomScale];
     resetZoomButton.enabled = NO;
+}
+
+#pragma mark - ADBannerViewDelegate
+- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error
+{
+    [NSLogger log:[NSString stringWithFormat:@"didFailToReceiveAdWithError: error %@ %@",error,[error userInfo]]];
+}
+
+- (void) bannerViewDidLoadAd:(ADBannerView *)banner
+{
+    [NSLogger log:(@"bannerViewDidLoadAd")];
+    
+}
 
 #pragma mark - IBActions
-}
+
 - (IBAction)backPressed:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -113,7 +128,7 @@
     CGFloat scale = MAX(self.view.bounds.size.width / self.tubeMapImage.bounds.size.width, 0.2);
     [self.scrollView setZoomScale:scale animated:YES];
     [NSLogger log:[NSString stringWithFormat:@"%f",scale]];
-
+    
     
 }
 
