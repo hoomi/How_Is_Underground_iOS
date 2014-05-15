@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <iAd/iAd.h>
 #import "BaseViewControllerProtocol.h"
-@interface BaseViewController : UIViewController <BaseViewControllerProtocol>
+@interface BaseViewController : UIViewController <BaseViewControllerProtocol,ADBannerViewDelegate>
 
 @end

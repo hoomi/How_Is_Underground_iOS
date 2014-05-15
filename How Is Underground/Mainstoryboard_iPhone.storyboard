@@ -1,48 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="PHa-uj-5rJ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="PHa-uj-5rJ">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
-        <!--Navigation Controller-->
+        <!--Root Navigation Controller-->
         <scene sceneID="HUR-XQ-sW2">
             <objects>
-                <navigationController definesPresentationContext="YES" id="PHa-uj-5rJ" sceneMemberID="viewController">
+                <navigationController definesPresentationContext="YES" id="PHa-uj-5rJ" customClass="RootNavigationController" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="kxi-vI-5et">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
-                    <connections>
-                        <segue destination="x1Z-3g-h3w" kind="relationship" relationship="rootViewController" id="W5D-i6-wlZ"/>
-                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LYY-Ot-n83" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-368" y="-170"/>
-        </scene>
-        <!--Underground Lines Table View Controller - Tube Lines-->
-        <scene sceneID="gF1-kY-a3D">
-            <objects>
-                <tableViewController id="x1Z-3g-h3w" customClass="UndergroundLinesTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="7xu-5U-paB">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <connections>
-                            <outlet property="dataSource" destination="x1Z-3g-h3w" id="WOr-Sh-1qL"/>
-                            <outlet property="delegate" destination="x1Z-3g-h3w" id="xO2-qz-SI8"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Tube Lines" id="ZHQ-DP-UfY">
-                        <barButtonItem key="rightBarButtonItem" title="Map" id="efa-kc-gEI">
-                            <connections>
-                                <action selector="mapButtonClicked:" destination="x1Z-3g-h3w" id="mFR-OY-NCN"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="H9G-sc-egF" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="65" y="-170"/>
         </scene>
         <!--Page View Controller - Lines-->
         <scene sceneID="ZcH-EV-cPi">
@@ -52,60 +24,7 @@
             </objects>
             <point key="canvasLocation" x="981" y="-753"/>
         </scene>
-        <!--Tube Map View Controller-->
-        <scene sceneID="Kkv-41-Ulu">
-            <objects>
-                <viewController id="Oz5-e7-7to" customClass="TubeMapViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="DeK-wt-On6"/>
-                        <viewControllerLayoutGuide type="bottom" id="BUK-mu-dpe"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="pvb-LC-nKU">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aap-sb-pVU">
-                                <rect key="frame" x="0.0" y="-128" width="320" height="696"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <subviews>
-                                    <imageView multipleTouchEnabled="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="standard-tube-map.gif" translatesAutoresizingMaskIntoConstraints="NO" id="qu0-4b-tJY">
-                                        <rect key="frame" x="0.0" y="0.0" width="2483" height="1765"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    </imageView>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstItem="qu0-4b-tJY" firstAttribute="top" secondItem="aap-sb-pVU" secondAttribute="top" id="8RR-85-o1f"/>
-                                    <constraint firstItem="qu0-4b-tJY" firstAttribute="leading" secondItem="aap-sb-pVU" secondAttribute="leading" id="Dfs-O3-LiU"/>
-                                    <constraint firstAttribute="trailing" secondItem="qu0-4b-tJY" secondAttribute="trailing" id="Ypo-q8-vqq"/>
-                                    <constraint firstAttribute="bottom" secondItem="qu0-4b-tJY" secondAttribute="bottom" id="rpR-N6-gzm"/>
-                                </constraints>
-                                <connections>
-                                    <outlet property="delegate" destination="Oz5-e7-7to" id="Tqv-ck-NaL"/>
-                                </connections>
-                            </scrollView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="BUK-mu-dpe" firstAttribute="top" secondItem="aap-sb-pVU" secondAttribute="bottom" id="LMC-Ao-hW8"/>
-                            <constraint firstAttribute="trailing" secondItem="aap-sb-pVU" secondAttribute="trailing" id="X2c-6L-gTx"/>
-                            <constraint firstItem="aap-sb-pVU" firstAttribute="top" secondItem="DeK-wt-On6" secondAttribute="bottom" id="j7f-hY-nsk"/>
-                            <constraint firstItem="aap-sb-pVU" firstAttribute="leading" secondItem="pvb-LC-nKU" secondAttribute="leading" id="lNz-Gn-uai"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="rxu-2N-pn8"/>
-                    <connections>
-                        <outlet property="scrollView" destination="aap-sb-pVU" id="3Zd-ZW-7mi"/>
-                        <outlet property="tubeMapImage" destination="qu0-4b-tJY" id="Iaf-ch-mm0"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="IPp-oK-9au" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="848" y="1529"/>
-        </scene>
     </scenes>
-    <resources>
-        <image name="standard-tube-map.gif" width="2483" height="1765"/>
-    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

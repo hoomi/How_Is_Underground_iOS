@@ -20,38 +20,7 @@
     TubeMapViewController* tubeMapViewController;
 }
 
-
--(void)viewDidLoad
-{
-    [super viewDidLoad];
-    [self initPortraitConstraints];
-    [self setConstraints:[[UIApplication sharedApplication] statusBarOrientation]];
-    if (UIInterfaceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation])) {
-        [tubeMapContainer layoutIfNeeded];
-    }
-    tubeMapViewController = [[TubeMapViewController alloc] initWithNibName:@"TubeMapViewController" bundle:[NSBundle mainBundle]];
-    [self addChildViewController:tubeMapViewController];
-    tubeMapViewController.view.frame = [self initTubeMapFrame];
-    [tubeMapContainer addSubview:tubeMapViewController.view];
-    [tubeMapViewController didMoveToParentViewController:self];
-    
-}
-
--(void)viewWillAppear:(BOOL)animated
-{
-}
-
--(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
-{
-    [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
-    tubeMapViewController.view.frame = [self initTubeMapFrame];
-}
--(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
-{
-    [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
-    [self setConstraints:toInterfaceOrientation];
-}
-#pragma mark - Utility functions
+#pragma mark - Init Functions
 
 -(CGRect)initTubeMapFrame
 {
@@ -62,20 +31,6 @@
     return tubeMapFrame;
 }
 
--(void) setConstraints:(UIInterfaceOrientation) orientation
-{
-    if (UIInterfaceOrientationIsLandscape(orientation)) {
-        [self.view removeConstraints:rootViewPortraitConstraints];
-        [tubeLinesContainer removeConstraints:tubeLinesPortraitConstraints];
-        [self.view addConstraints:rootViewLandscapeConstraints];
-        [tubeLinesContainer addConstraints:tubeLinesLandscapeConstraints];
-    } else {
-        [self.view removeConstraints:rootViewLandscapeConstraints];
-        [tubeLinesContainer removeConstraints:tubeLinesLandscapeConstraints];
-        [self.view addConstraints:rootViewPortraitConstraints];
-        [tubeLinesContainer addConstraints:tubeLinesPortraitConstraints];
-    }
-}
 -(void)initPortraitConstraints
 {
     if (rootViewPortraitConstraints != nil) {
@@ -109,11 +64,62 @@
     
     rootViewPortraitConstraints = [NSArray arrayWithArray:tempRootViewConstraints];
     tubeLinesPortraitConstraints = [NSLayoutConstraint
-                                      constraintsWithVisualFormat:@"V:[tubeLinesContainer(400)]"
-                                      options:0
-                                      metrics:nil
-                                      views:views];
+                                    constraintsWithVisualFormat:@"V:[tubeLinesContainer(400)]"
+                                    options:0
+                                    metrics:nil
+                                    views:views];
+    
+}
 
+#pragma mark - ViewController Callbacks
+
+
+-(void)viewDidLoad
+{
+    [super viewDidLoad];
+    [self initPortraitConstraints];
+    [self setConstraints:[[UIApplication sharedApplication] statusBarOrientation]];
+    if (UIInterfaceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation])) {
+        [tubeMapContainer layoutIfNeeded];
+    }
+    tubeMapViewController = [[TubeMapViewController alloc] initWithNibName:@"TubeMapViewController" bundle:[NSBundle mainBundle]];
+    [self addChildViewController:tubeMapViewController];
+    tubeMapViewController.view.frame = [self initTubeMapFrame];
+    [tubeMapContainer addSubview:tubeMapViewController.view];
+    [tubeMapViewController didMoveToParentViewController:self];
+    
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+}
+
+-(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{
+    [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
+    tubeMapViewController.view.frame = [self initTubeMapFrame];
+}
+-(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+    [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
+    [self setConstraints:toInterfaceOrientation];
+}
+
+#pragma mark - Utility functions
+
+-(void) setConstraints:(UIInterfaceOrientation) orientation
+{
+    if (UIInterfaceOrientationIsLandscape(orientation)) {
+        [self.view removeConstraints:rootViewPortraitConstraints];
+        [tubeLinesContainer removeConstraints:tubeLinesPortraitConstraints];
+        [self.view addConstraints:rootViewLandscapeConstraints];
+        [tubeLinesContainer addConstraints:tubeLinesLandscapeConstraints];
+    } else {
+        [self.view removeConstraints:rootViewLandscapeConstraints];
+        [tubeLinesContainer removeConstraints:tubeLinesLandscapeConstraints];
+        [self.view addConstraints:rootViewPortraitConstraints];
+        [tubeLinesContainer addConstraints:tubeLinesPortraitConstraints];
+    }
 }
 
 @end

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -37,7 +37,7 @@
                     </items>
                 </navigationBar>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="daH-JH-4kI">
-                    <rect key="frame" x="0.0" y="44" width="320" height="524"/>
+                    <rect key="frame" x="0.0" y="44" width="320" height="474"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <subviews>
                         <imageView multipleTouchEnabled="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="standard-tube-map.gif" translatesAutoresizingMaskIntoConstraints="NO" id="0G6-2j-Dhe">
@@ -52,16 +52,26 @@
                         <constraint firstAttribute="trailing" secondItem="0G6-2j-Dhe" secondAttribute="trailing" id="aXo-cC-D1c"/>
                     </constraints>
                 </scrollView>
+                <adBannerView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="Ixz-wn-t2X">
+                    <rect key="frame" x="0.0" y="518" width="320" height="50"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="hhZ-i8-gop"/>
+                    </constraints>
+                </adBannerView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="daH-JH-4kI" secondAttribute="bottom" id="Bxj-YG-gLS"/>
+                <constraint firstAttribute="bottom" secondItem="Ixz-wn-t2X" secondAttribute="bottom" id="38k-ln-9Qi"/>
+                <constraint firstItem="Ixz-wn-t2X" firstAttribute="top" secondItem="daH-JH-4kI" secondAttribute="bottom" id="CdR-Mp-RJR"/>
                 <constraint firstItem="xCj-Ch-xIg" firstAttribute="leading" secondItem="G27-30-KrJ" secondAttribute="leading" id="I9V-Cr-1Ll"/>
                 <constraint firstAttribute="trailing" secondItem="xCj-Ch-xIg" secondAttribute="trailing" id="IJs-77-djb"/>
                 <constraint firstItem="xCj-Ch-xIg" firstAttribute="top" secondItem="G27-30-KrJ" secondAttribute="top" id="Yq5-et-vU8"/>
                 <constraint firstAttribute="trailing" secondItem="daH-JH-4kI" secondAttribute="trailing" id="dRI-bg-XqQ"/>
                 <constraint firstItem="daH-JH-4kI" firstAttribute="leading" secondItem="G27-30-KrJ" secondAttribute="leading" id="eyg-Qp-cdJ"/>
                 <constraint firstItem="daH-JH-4kI" firstAttribute="top" secondItem="xCj-Ch-xIg" secondAttribute="bottom" id="jZn-Zq-DQW"/>
+                <constraint firstItem="Ixz-wn-t2X" firstAttribute="leading" secondItem="G27-30-KrJ" secondAttribute="leading" id="k6z-YT-8Vs"/>
+                <constraint firstAttribute="trailing" secondItem="Ixz-wn-t2X" secondAttribute="trailing" id="zIl-oM-V8B"/>
             </constraints>
         </view>
         <barButtonItem title="Back" id="5JM-iy-dlE" userLabel="Back Button">

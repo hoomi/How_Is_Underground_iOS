@@ -1,45 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="By0-9L-rdv">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="By0-9L-rdv">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
-        <!--Navigation Controller - Lines' Status-->
+        <!--Root Navigation Controller - Lines' Status-->
         <scene sceneID="f2E-IW-DaU">
             <objects>
-                <navigationController definesPresentationContext="YES" id="S4J-6S-g8C" sceneMemberID="viewController">
+                <navigationController definesPresentationContext="YES" id="S4J-6S-g8C" customClass="RootNavigationController" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" title="Lines' Status" id="CW1-HU-9ld"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="46q-H6-q92">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
-                    <connections>
-                        <segue destination="PqK-yY-76g" kind="relationship" relationship="rootViewController" id="OBl-Re-Hsr"/>
-                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Av3-O3-MDd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-497" y="129"/>
-        </scene>
-        <!--Underground Lines Table View Controller - Tube Lines-->
-        <scene sceneID="dXO-aO-cVP">
-            <objects>
-                <tableViewController clearsSelectionOnViewWillAppear="NO" id="PqK-yY-76g" customClass="UndergroundLinesTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="v8V-EI-icw">
-                        <rect key="frame" x="0.0" y="44" width="350" height="704"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
-                        <connections>
-                            <outlet property="dataSource" destination="PqK-yY-76g" id="Ojw-VB-L4Q"/>
-                            <outlet property="delegate" destination="PqK-yY-76g" id="gCo-HW-HSy"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Tube Lines" id="rsU-Ao-fjh"/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="nOX-Gp-aaB" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="967" y="129"/>
         </scene>
         <!--Ipad Root View Controller-->
         <scene sceneID="8nS-kG-a26">

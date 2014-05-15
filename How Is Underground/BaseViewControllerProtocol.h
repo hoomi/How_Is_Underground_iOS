@@ -15,4 +15,9 @@
 -(void)dismissLoadingView;
 -(void)showMap;
 
+@optional
+-(void)showMapButton;
+-(void)hideMapButton;
+
+
 @end

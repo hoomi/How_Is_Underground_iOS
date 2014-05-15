@@ -12,9 +12,13 @@
 
 @interface BaseViewController ()
 
+-(void)showMapButton;
+
 @end
 
-@implementation BaseViewController
+@implementation BaseViewController {
+        UIBarButtonItem *mapButton;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -27,13 +31,43 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - ADBannerViewDelegate
+
+-(void)bannerViewDidLoadAd:(ADBannerView *)banner {
+    
+    [UIView beginAnimations:nil context:NULL];
+    
+    [UIView setAnimationDuration:1];
+    
+    [banner setAlpha:1];
+    
+    [UIView commitAnimations];
+    
+}
+
+
+
+- (void)bannerView:(ADBannerView *)
+
+banner didFailToReceiveAdWithError:(NSError *)error
+
+{
+    
+    [UIView beginAnimations:nil context:NULL];
+    
+    [UIView setAnimationDuration:1];
+    
+    [banner setAlpha:0];
+    
+    [UIView commitAnimations];
+    
 }
 
 #pragma mark - BaseViewControllerProtocol functions
@@ -59,5 +93,25 @@
     [tubeMapViewController setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
     [self.navigationController presentViewController:tubeMapViewController animated:YES completion:nil];
 }
+
+#pragma mark - Utility Functions
+
+-(void)showMapButton
+{
+    if (mapButton == nil) {
+        mapButton = [[UIBarButtonItem alloc]
+                     initWithTitle:@"Map"
+                     style:UIBarButtonItemStyleBordered
+                     target:self
+                     action:@selector(showMap)];
+    }
+    self.navigationItem.rightBarButtonItem = mapButton;
+}
+
+-(void)hideMapButton
+{
+    self.navigationItem.rightBarButtonItem =  nil;
+}
+
 
 @end

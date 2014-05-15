@@ -1,14 +1,13 @@
 //
-//  UndergroundLinesTableViewController.m
+//  UndergroundLineStatusViewController.m
 //  How Is Underground
 //
-//  Created by Hooman Ostovari on 17/03/2014.
+//  Created by Hooman Ostovari on 15/05/2014.
 //  Copyright (c) 2014 Hooman Ostovari. All rights reserved.
 //
 
-#import <CoreData/CoreData.h>
+#import "UndergroundLineStatusViewController.h"
 #import "AppDelegate.h"
-#import "UndergroundLinesTableViewController.h"
 #import "LineTableViewCell.h"
 #import "ServerCommunicator.h"
 #import "PageContainerViewController.h"
@@ -20,10 +19,12 @@
 #import "UIColor+UIColorExtension.h"
 #import "TubeMapViewController.h"
 
-@class LineStatusViewController;
+@interface UndergroundLineStatusViewController ()
 
-@interface UndergroundLinesTableViewController ()
-{
+@end
+
+@implementation UndergroundLineStatusViewController {
+    
     NSFetchedResultsController *fetchedResultController;
     NSFetchRequest *fetchRequest;
     NSManagedObjectContext *managedObjectContext;
@@ -32,173 +33,17 @@
     NSInteger (^totalLineNumbers)(void);
     LineStatus* (^getLineStatusAt)(NSInteger index);
     void (^setSelectedRow)(NSInteger index);
-    
 }
-@end
 
-@implementation UndergroundLinesTableViewController
+#pragma mark - Init Functions
 
-- (id)initWithStyle:(UITableViewStyle)style
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    self = [super initWithStyle:style];
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        [self initFetchController];
     }
     return self;
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-    managedObjectContext = [appDelegate parentManagedObjectContext];
-    fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"LineStatus"];
-    NSSortDescriptor *alphabeticallDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"line.name" ascending:YES];
-    NSSortDescriptor *delayDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"status.descriptions" ascending:NO];
-    [fetchRequest setSortDescriptors:@[delayDescriptor,alphabeticallDescriptor]];
-    [self showLoadingView];
-    [ServerCommunicator requestLineStatus:^(NSError *error) {
-        if (error != nil) {
-            [NSLogger log:@"Failed to download line status"];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self reloadData];
-                [self dismissLoadingView];
-            });
-            
-            return;
-        }
-        [self lineStatusUpdated];
-    }];
-    UIPageControl *pageControl = [UIPageControl appearance];
-    pageControl.pageIndicatorTintColor = [UIColor lightGrayColor];
-    pageControl.currentPageIndicatorTintColor = [UIColor blackColor];
-    pageControl.backgroundColor = [UIColor whiteColor];
-}
-
--(void)viewWillAppear:(BOOL)animated
-{
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(lineStatusUpdated) name:LINE_STATUS_UPDATED object:nil];
-}
--(void)viewWillDisappear:(BOOL)animated
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    // Return the number of sections.
-    return [[fetchedResultController sections] count];
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    id <NSFetchedResultsSectionInfo> sectionInfo = [fetchedResultController sections][section];
-    // Return the number of rows in the section.
-    return [sectionInfo numberOfObjects];
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *CellIdentifier = @"LineCell";
-    LineTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = (LineTableViewCell *)[LineTableViewCell cellFromNibNamed:@"LineTableViewCell"];
-    }
-    LineStatus *lineStatus = [fetchedResultController objectAtIndexPath:indexPath];
-    [cell setLineName:lineStatus.line.name :[lineStatus.line.id intValue]];
-    [cell setLineStatus:lineStatus.status.descriptions];
-    
-    return cell;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 70.0f;
-}
-
-#pragma mark - TableViewDelegate
-
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [self initBlocks];
-    [self rowSelected:indexPath];
-    
-}
-
-#pragma mark- Notification Observer
-
--(void) lineStatusUpdated
-{
-    [NSLogger log:@"UndergroundLinesTableViewController -> Line Status Updated"];
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self reloadData];
-        [self dismissLoadingView];
-    });
-    
-}
-
-#pragma mark - Utility functions
-
-- (void)rowSelected:(NSIndexPath*)indexPath
-{
-    PageContainerViewController *nextController;
-    // It means that it is an iPhone
-    nextController = [[PageContainerViewController alloc] init];
-    [self.navigationController pushViewController:nextController animated:YES];
-    nextController.totalNumberOfLines = totalLineNumbers;
-    nextController.selectedIndex =[Utils indexFrom:indexPath : self.tableView];
-    nextController.initControllerAt = initControllerAt;
-    nextController.getLineStatusAt = getLineStatusAt;
-    nextController.setSelectedRow = setSelectedRow;
-    [nextController refresh];
-    [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
-}
-
--(NSInteger)validateGivenIndex:(NSInteger)index
-{
-    NSInteger count = [[fetchedResultController fetchedObjects] count];
-    
-    if (count > 0) {
-        index = index % count;
-        if (index < 0) {
-            index = count + index;
-        }
-    } else {
-        index = 0;
-    }
-    return index;
-}
-
-- (void) reloadData
-{
-    if (fetchedResultController == nil) {
-        fetchedResultController = [[NSFetchedResultsController alloc]
-                                   initWithFetchRequest:fetchRequest
-                                   managedObjectContext:managedObjectContext
-                                   sectionNameKeyPath:nil
-                                   cacheName:nil];
-        fetchedResultController.delegate = self;
-    }
-    
-    NSError *error = nil;
-    [fetchedResultController performFetch:&error];
-    
-    if (error != nil) {
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        abort();
-    }
-    NSIndexPath *ipath = [self.tableView indexPathForSelectedRow];
-    [self.tableView reloadData];
-    [self.tableView selectRowAtIndexPath:ipath animated:NO scrollPosition:UITableViewScrollPositionNone];
 }
 
 - (void) initBlocks
@@ -207,7 +52,7 @@
         return;
     }
     __weak NSFetchedResultsController *tempFetchResultController = fetchedResultController;
-    __weak UndergroundLinesTableViewController *tempSelf = self;
+    __weak UndergroundLineStatusViewController *tempSelf = self;
     initControllerAt = ^LineStatusViewController*(NSInteger index){
         LineStatusViewController *nextController = [[LineStatusViewController alloc]initWithNibName:@"LineStatusViewController" bundle:[NSBundle mainBundle]]      ;
         index = [tempSelf validateGivenIndex:index];
@@ -230,9 +75,165 @@
     };
 }
 
-#pragma mark - IBActions
-- (IBAction)mapButtonClicked:(id)sender {
-    [self showMap];
+-(void) initFetchController
+{
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    managedObjectContext = [appDelegate parentManagedObjectContext];
+    fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"LineStatus"];
+    NSSortDescriptor *alphabeticallDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"line.name" ascending:YES];
+    NSSortDescriptor *delayDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"status.descriptions" ascending:NO];
+    [fetchRequest setSortDescriptors:@[delayDescriptor,alphabeticallDescriptor]];
+    fetchedResultController = [[NSFetchedResultsController alloc]
+                               initWithFetchRequest:fetchRequest
+                               managedObjectContext:managedObjectContext
+                               sectionNameKeyPath:nil
+                               cacheName:nil];
+    fetchedResultController.delegate = self;
 }
+
+
+#pragma mark - ViewController Callbacks
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    [self initBlocks];
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
+    self.navigationItem.title = @"Tube Lines";
+    if (!IsIpad()) {
+        [self showMapButton];
+        self.adBannerView.hidden = NO;
+    }
+    [self showLoadingView];
+    [ServerCommunicator requestLineStatus:^(NSError *error) {
+        if (error != nil) {
+            [NSLogger log:@"Failed to download line status"];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self reloadData];
+                [self dismissLoadingView];
+            });
+            
+            return;
+        }
+        [self lineStatusUpdated];
+    }];
+    UIPageControl *pageControl = [UIPageControl appearance];
+    pageControl.pageIndicatorTintColor = [UIColor lightGrayColor];
+    pageControl.currentPageIndicatorTintColor = [UIColor blackColor];
+    pageControl.backgroundColor = [UIColor whiteColor];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(lineStatusUpdated) name:LINE_STATUS_UPDATED object:nil];
+}
+
+- (void) viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+}
+
+#pragma mark - UITableViewDataSource
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return [[fetchedResultController sections] count];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    id <NSFetchedResultsSectionInfo> sectionInfo = [fetchedResultController sections][section];
+    return [sectionInfo numberOfObjects];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier = @"LineCell";
+    LineTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = (LineTableViewCell *)[LineTableViewCell cellFromNibNamed:@"LineTableViewCell"];
+    }
+    LineStatus *lineStatus = [fetchedResultController objectAtIndexPath:indexPath];
+    [cell setLineName:lineStatus.line.name :[lineStatus.line.id intValue]];
+    [cell setLineStatus:lineStatus.status.descriptions];
+    return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 70.0f;
+}
+
+#pragma mark - UITableViewDelegate
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self rowSelected:indexPath];
+}
+
+#pragma mark - User Interaction functions
+- (void)rowSelected:(NSIndexPath*)indexPath
+{
+    PageContainerViewController *nextController;
+    nextController = [[PageContainerViewController alloc] init];
+    [self.navigationController pushViewController:nextController animated:YES];
+    nextController.totalNumberOfLines = totalLineNumbers;
+    nextController.selectedIndex =[Utils indexFrom:indexPath : self.tableView];
+    nextController.initControllerAt = initControllerAt;
+    nextController.getLineStatusAt = getLineStatusAt;
+    nextController.setSelectedRow = setSelectedRow;
+    [nextController refresh];
+    [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
+}
+
+#pragma mark- Notification Observer
+
+-(void) lineStatusUpdated
+{
+    [NSLogger log:@"UndergroundLinesTableViewController -> Line Status Updated"];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self reloadData];
+        [self dismissLoadingView];
+    });
+    
+}
+
+
+-(NSInteger)validateGivenIndex:(NSInteger)index
+{
+    NSInteger count = [[fetchedResultController fetchedObjects] count];
+    
+    if (count > 0) {
+        index = index % count;
+        if (index < 0) {
+            index = count + index;
+        }
+    } else {
+        index = 0;
+    }
+    return index;
+}
+
+- (void) reloadData
+{
+    NSError *error = nil;
+    [fetchedResultController performFetch:&error];
+    
+    if (error != nil) {
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        abort();
+    }
+    NSIndexPath *ipath = [self.tableView indexPathForSelectedRow];
+    [self.tableView reloadData];
+    [self.tableView selectRowAtIndexPath:ipath animated:NO scrollPosition:UITableViewScrollPositionNone];
+}
+
 
 @end
