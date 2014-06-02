@@ -8,11 +8,11 @@
 
 #import "BaseViewController.h"
 #import "AlertViewHelper.h"
-#import "TubeMapViewController.h"
+#import "JourneyPlannerViewController.h"
 
 @interface BaseViewController ()
 
--(void)showMapButton;
+-(void)showJourneyPlannerButton;
 
 @end
 
@@ -87,18 +87,18 @@
 
 -(void)showMap
 {
-    TubeMapViewController* tubeMapViewController = [[TubeMapViewController alloc] initWithNibName:@"TubeMapViewController" bundle:[NSBundle mainBundle]];
-    [tubeMapViewController setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
-    [self.navigationController presentViewController:tubeMapViewController animated:YES completion:nil];
+    JourneyPlannerViewController* journeyPlannerViewController = [[JourneyPlannerViewController alloc] initWithNibName:@"JourneyPlannerViewController" bundle:[NSBundle mainBundle]];
+    [journeyPlannerViewController setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
+    [self.navigationController presentViewController:journeyPlannerViewController animated:YES completion:nil];
 }
 
 #pragma mark - Utility Functions
 
--(void)showMapButton
+-(void)showJourneyPlannerButton
 {
     if (mapButton == nil) {
         mapButton = [[UIBarButtonItem alloc]
-                     initWithTitle:@"Map"
+                     initWithTitle:@"Joruney Planner"
                      style:UIBarButtonItemStyleBordered
                      target:self
                      action:@selector(showMap)];
@@ -106,7 +106,7 @@
     self.navigationItem.rightBarButtonItem = mapButton;
 }
 
--(void)hideMapButton
+-(void)hideJourneyPlannerButton
 {
     self.navigationItem.rightBarButtonItem =  nil;
 }

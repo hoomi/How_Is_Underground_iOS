@@ -8,7 +8,7 @@
 
 #import "RootNavigationController.h"
 #import "UndergroundLineStatusViewController.h"
-#import "TubeMapViewController.h"
+#import "JourneyPlannerViewController.h"
 
 @interface RootNavigationController ()
 
@@ -43,11 +43,11 @@
 
 #pragma mark - User Interactions
 
--(void)showMap
+-(void)showJourneyPlanner
 {
-    TubeMapViewController* tubeMapViewController = [[TubeMapViewController alloc] initWithNibName:@"TubeMapViewController" bundle:[NSBundle mainBundle]];
-    [tubeMapViewController setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
-    [self.navigationController presentViewController:tubeMapViewController animated:YES completion:nil];
+    JourneyPlannerViewController* journeyPlannerViewController = [[JourneyPlannerViewController alloc] initWithNibName:@"JourneyPlannerViewController" bundle:[NSBundle mainBundle]];
+    [journeyPlannerViewController setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
+    [self.navigationController presentViewController:journeyPlannerViewController animated:YES completion:nil];
 }
 
 

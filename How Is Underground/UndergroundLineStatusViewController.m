@@ -118,7 +118,7 @@
     self.tableView.delegate = self;
     self.navigationItem.title = @"Tube Lines";
     if (!IsIpad()) {
-        [self showMapButton];
+        [self showJourneyPlannerButton];
         self.adBannerView.delegate = self;
     } else {
         [self removeAdBanner];

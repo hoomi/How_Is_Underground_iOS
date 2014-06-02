@@ -7,7 +7,7 @@
 //
 
 #import "IpadRootViewController.h"
-#import "TubeMapViewController.h"
+#import "JourneyPlannerViewController.h"
 
 @implementation IpadRootViewController
 {
@@ -15,16 +15,17 @@
     NSArray *tubeLinesPortraitConstraints;
     IBOutletCollection(NSLayoutConstraint)NSArray *tubeLinesLandscapeConstraints;
     IBOutletCollection(NSLayoutConstraint)NSArray *rootViewLandscapeConstraints;
-    __weak IBOutlet UIView *tubeMapContainer;
+    __weak IBOutlet UIView *viewContainer;
     __weak IBOutlet UIView *tubeLinesContainer;
-    TubeMapViewController* tubeMapViewController;
+//    TubeMapViewController* tubeMapViewController;
+    JourneyPlannerViewController* journeyPlannerViewController;
 }
 
 #pragma mark - Init Functions
 
 -(CGRect)initTubeMapFrame
 {
-    CGRect tubeMapFrame = tubeMapContainer.bounds;
+    CGRect tubeMapFrame = viewContainer.bounds;
     [NSLogger log:[NSString stringWithFormat:@"x:%0.2f\t y:%0.2f\n width:%0.2f\t height:%0.2f",tubeMapFrame.origin.x,tubeMapFrame.origin.y,tubeMapFrame.size.width, tubeMapFrame.size.height]];
     tubeMapFrame.origin.x = 0.0;
     tubeMapFrame.origin.y = 0.0;
@@ -39,11 +40,11 @@
     id topGuide = self.topLayoutGuide;
     id bottomGuide = self.bottomLayoutGuide;
     
-    NSDictionary *views = NSDictionaryOfVariableBindings(tubeLinesContainer,tubeMapContainer,topGuide,bottomGuide);
+    NSDictionary *views = NSDictionaryOfVariableBindings(tubeLinesContainer,viewContainer,topGuide,bottomGuide);
     NSMutableArray *tempRootViewConstraints = [NSMutableArray new];
     
     NSArray *generateConstraints = [NSLayoutConstraint
-                                    constraintsWithVisualFormat:@"H:|-(0)-[tubeMapContainer]-(0)-|"
+                                    constraintsWithVisualFormat:@"H:|-(0)-[viewContainer]-(0)-|"
                                     options:0
                                     metrics:nil
                                     views:views];
@@ -56,7 +57,7 @@
     [tempRootViewConstraints addObjectsFromArray:generateConstraints];
     
     generateConstraints = [NSLayoutConstraint
-                           constraintsWithVisualFormat:@"V:[topGuide]-[tubeLinesContainer]-(0)-[tubeMapContainer]-[bottomGuide]"
+                           constraintsWithVisualFormat:@"V:[topGuide]-[tubeLinesContainer]-(0)-[viewContainer]-[bottomGuide]"
                            options:0
                            metrics:nil
                            views:views];
@@ -80,13 +81,19 @@
     [self initPortraitConstraints];
     [self setConstraints:[[UIApplication sharedApplication] statusBarOrientation]];
     if (UIInterfaceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation])) {
-        [tubeMapContainer layoutIfNeeded];
+        [viewContainer layoutIfNeeded];
     }
-    tubeMapViewController = [[TubeMapViewController alloc] initWithNibName:@"TubeMapViewController" bundle:[NSBundle mainBundle]];
-    [self addChildViewController:tubeMapViewController];
-    tubeMapViewController.view.frame = [self initTubeMapFrame];
-    [tubeMapContainer addSubview:tubeMapViewController.view];
-    [tubeMapViewController didMoveToParentViewController:self];
+    
+    journeyPlannerViewController  = [[JourneyPlannerViewController alloc] initWithNibName:@"JourneyPlannerViewController" bundle:[NSBundle mainBundle]];
+    [self addChildViewController:journeyPlannerViewController];
+    [viewContainer addSubview:journeyPlannerViewController.view];
+    [journeyPlannerViewController didMoveToParentViewController:self];
+    
+//    tubeMapViewController = [[TubeMapViewController alloc] initWithNibName:@"TubeMapViewController" bundle:[NSBundle mainBundle]];
+//    [self addChildViewController:tubeMapViewController];
+//    tubeMapViewController.view.frame = [self initTubeMapFrame];
+//    [tubeMapContainer addSubview:tubeMapViewController.view];
+//    [tubeMapViewController didMoveToParentViewController:self];
     
 }
 
@@ -97,7 +104,7 @@
 -(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
     [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
-    tubeMapViewController.view.frame = [self initTubeMapFrame];
+
 }
 -(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {

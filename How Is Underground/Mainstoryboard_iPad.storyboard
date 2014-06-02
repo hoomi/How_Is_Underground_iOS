@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="By0-9L-rdv">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="By0-9L-rdv">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -61,7 +61,7 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
                         <outlet property="tubeLinesContainer" destination="9WK-F3-FNe" id="qMW-gz-pzS"/>
-                        <outlet property="tubeMapContainer" destination="eDn-qf-bJe" id="Knx-bG-ePk"/>
+                        <outlet property="viewContainer" destination="eDn-qf-bJe" id="REe-mJ-aZy"/>
                         <outletCollection property="rootViewLandscapeConstraints" destination="4Qo-WS-p8v" id="q04-M1-F7V"/>
                         <outletCollection property="rootViewLandscapeConstraints" destination="M5w-iq-cdo" id="SGX-GQ-pBD"/>
                         <outletCollection property="rootViewLandscapeConstraints" destination="V1d-Fo-J92" id="qr5-Sv-UZL"/>

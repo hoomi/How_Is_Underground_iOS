@@ -16,8 +16,8 @@
 -(void)showMap;
 
 @optional
--(void)showMapButton;
--(void)hideMapButton;
+-(void)showJourneyPlannerButton;
+-(void)hideJourneyPlannerButton;
 
 
 @end
